@@ -200,6 +200,13 @@
       margin: 12px 0;
     }
 
+    .scanner-panel { background:#f4faf6; border:1px solid #cfe8d6; border-radius:14px; padding:14px; margin:14px 0; }
+    .scanner-panel[hidden] { display:none; }
+    #qrReader { width:100%; margin-top:12px; overflow:hidden; border-radius:12px; }
+    #qrReader video { max-width:100%; }
+    .scanner-actions { display:flex; gap:8px; margin-top:10px; }
+    .scanner-actions button { flex:1; }
+    .scanner-status { font-size:13px; line-height:1.6; margin:10px 0 0; }
     .qr-panel { background:#eef8f1; border:1px solid #cfe8d6; border-radius:14px; padding:15px; margin:14px 0; }
     .qr-panel button { margin-top:10px; }
     .qr-panel[hidden] { display:none; }
@@ -214,8 +221,9 @@
     }
   </style>
 
-  <!-- JavaScript 키를 반드시 교체하세요 -->
+  <!-- 카카오맵 JavaScript SDK -->
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=23ecb8fa1a751327625e2b50fd2f873f&autoload=false"></script>
+  <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 
 <body>
@@ -305,6 +313,21 @@
         <p id="distance">두 정류장 사이 거리 계산 중</p>
         <p id="routeDescription" class="muted"></p>
         <div class="points" id="reward">+150 P</div>
+      </div>
+
+      <div class="scanner-panel">
+        <strong>📷 정류장 QR코드 카메라 인증</strong>
+        <p class="muted">정류장에 붙인 와우로드 QR코드를 휴대폰 카메라로 스캔하세요.</p>
+        <button id="startQrScanBtn" onclick="startQrScanner()">📷 카메라로 QR 스캔하기</button>
+        <div id="qrScannerArea" hidden>
+          <div id="qrReader"></div>
+          <div class="scanner-actions">
+            <button type="button" onclick="stopQrScanner()" style="background:#63766a">카메라 닫기</button>
+          </div>
+        </div>
+        <p class="scanner-status" id="qrScannerStatus" role="status" aria-live="polite"></p>
+        <button id="scannedQrCompleteBtn" onclick="completeScannedQrMission()" hidden>✅ 스캔한 QR로 미션 완료하기</button>
+        <p class="muted">시연용 QR입니다. 인쇄된 QR 사진이나 주소를 공유하면 현장 밖에서도 스캔할 수 있어요.</p>
       </div>
 
       <div class="qr-panel" id="qrPanel" hidden>
@@ -935,6 +958,138 @@ function verifyStopLocation() {
     return ["v2", new Date().toLocaleDateString("sv-SE"), currentMode,
       mission.direction, mission.crowdedId, mission.alternativeId].join("-");
   }
+
+   // 앱 내부 카메라 QR 스캔 (시연용, 정적 QR 복제 방지 불가)
+   let qrScanner = null;
+   let qrScannerStarting = false;
+   let scannedQrStopId = null;
+
+   function setQrScanStatus(message, success = false) {
+     const el = document.getElementById("qrScannerStatus");
+     el.textContent = message;
+     el.style.color = success ? "#17884d" : "#627367";
+   }
+
+   function clearScannedQr() {
+     scannedQrStopId = null;
+     document.getElementById("scannedQrCompleteBtn").hidden = true;
+   }
+
+   function parseWowroadQr(text) {
+     try {
+       const url = new URL(text.trim());
+       // 우리 GitHub Pages 주소 및 시연용 로컬 주소만 허용
+       const trustedOrigin = url.origin === "https://imlinda0982.github.io" ||
+         url.origin === "http://127.0.0.1:5500" ||
+         url.origin === "http://localhost:5500";
+       const trustedPath = url.pathname === "/wowroad/" ||
+         url.pathname === "/wowroad/index.html" ||
+         url.pathname === "/index.html" || url.pathname === "/";
+       const id = url.searchParams.get("stop");
+       if (!trustedOrigin || !trustedPath || url.searchParams.get("qr") !== "wowroad-demo-v1" ||
+           !Object.prototype.hasOwnProperty.call(stops, id) ||
+           !Object.values(alternativeStops).some(ids => ids.includes(id))) return null;
+       return id;
+     } catch (_) {
+       return null;
+     }
+   }
+
+   async function startQrScanner() {
+     if (qrScanner || qrScannerStarting) return;
+     clearScannedQr();
+     if (!window.isSecureContext) {
+       setQrScanStatus("카메라는 HTTPS에서 사용할 수 있어요. GitHub Pages 주소로 접속해 주세요.");
+       return;
+     }
+     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+       setQrScanStatus("이 브라우저는 카메라 접근을 지원하지 않아요. 휴대폰의 Chrome 또는 Safari를 사용해 주세요.");
+       return;
+     }
+     if (!window.Html5Qrcode) {
+       setQrScanStatus("QR 스캐너 라이브러리를 불러오지 못했어요. 인터넷 연결을 확인하고 새로고침해 주세요.");
+       return;
+     }
+     qrScannerStarting = true;
+     const button = document.getElementById("startQrScanBtn");
+     button.disabled = true;
+     document.getElementById("qrScannerArea").hidden = false;
+     setQrScanStatus("카메라 권한을 허용하고 QR코드를 화면 안에 맞춰 주세요.");
+     try {
+       qrScanner = new Html5Qrcode("qrReader");
+       await qrScanner.start(
+         { facingMode: "environment" },
+         { fps: 10, qrbox: { width: 220, height: 220 } },
+         async (decodedText) => {
+           const stopId = parseWowroadQr(decodedText);
+           if (!stopId) {
+             setQrScanStatus("와우로드 정류장 QR이 아니에요. 올바른 QR을 스캔해 주세요.");
+             return;
+           }
+           const mission = getCurrentMission();
+           if (!mission || mission.alternativeId !== stopId) {
+             setQrScanStatus(`스캔한 QR은 ${stops[stopId].name} (${stopId})이에요. 먼저 대체 정류장을 이 정류장으로 선택해 주세요.`);
+             return;
+           }
+           scannedQrStopId = stopId;
+           await stopQrScanner();
+           setQrScanStatus(`✅ ${stops[stopId].name} (${stopId}) QR 인식 성공! 아래 버튼으로 시연 인증을 완료하세요.`, true);
+           document.getElementById("scannedQrCompleteBtn").hidden = false;
+         },
+         () => {}
+       );
+     } catch (error) {
+       setQrScanStatus("카메라를 열 수 없어요. 카메라 권한을 확인하거나 다른 앱에서 카메라 사용을 종료해 주세요.");
+       if (qrScanner) {
+         try { qrScanner.clear(); } catch (_) {}
+         qrScanner = null;
+       }
+       document.getElementById("qrScannerArea").hidden = true;
+     } finally {
+       qrScannerStarting = false;
+       button.disabled = false;
+     }
+   }
+
+   async function stopQrScanner() {
+     const scanner = qrScanner;
+     qrScanner = null;
+     if (scanner) {
+       try { await scanner.stop(); } catch (_) {}
+       try { scanner.clear(); } catch (_) {}
+     }
+     document.getElementById("qrScannerArea").hidden = true;
+   }
+
+   function completeScannedQrMission() {
+     const mission = getCurrentMission();
+     if (!mission || !scannedQrStopId || mission.alternativeId !== scannedQrStopId) {
+       clearScannedQr();
+       alert("QR코드를 다시 스캔해 주세요.");
+       return;
+     }
+     const key = missionKey(mission);
+     if (state.history.some(entry => entry.key === key)) {
+       clearScannedQr();
+       alert("오늘 이미 완료한 미션이에요!");
+       return;
+     }
+     if (!confirm(`${stops[scannedQrStopId].name} (${scannedQrStopId}) QR 스캔 인증을 완료할까요?\n※ 시연용이며 현장 방문을 보장하지 않습니다.`)) return;
+     const today = new Date().toLocaleDateString("sv-SE");
+     state.points += mission.reward;
+     state.totalEarned += mission.reward;
+     state.history.unshift({
+       key, date: today,
+       target: `${stops[scannedQrStopId].name} (${scannedQrStopId})`,
+       reward: mission.reward,
+       mode: currentMode === "boarding" ? "승차" : "하차",
+       method: "카메라 QR 스캔 (시연)"
+     });
+     clearScannedQr();
+     save();
+     setQrScanStatus(`🎉 QR 스캔 인증 완료! ${mission.reward}P가 지급됐어요.`, true);
+     alert(`🎉 QR 스캔 인증 완료! ${mission.reward}P가 지급됐어요.`);
+   }
 
   function completeQrMission() {
     if (!qrDemoValid) return;
