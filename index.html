@@ -308,11 +308,18 @@
         </button>
       </div>
 
-      <h3>2. 버스 운행 방향</h3>
-      <select id="direction" onchange="updateDirection()">
-        <option value="A">방향 A (14899 · 14233)</option>
-        <option value="B">방향 B (14232)</option>
+      <h3>2. 버스 진행 방향 선택</h3>
+      <p class="muted" style="margin:4px 0 10px;line-height:1.6">
+        버스를 타거나 내릴 방향을 선택해 주세요. A/B 대신 정류장 순서로 확인할 수 있어요.
+      </p>
+      <select id="direction" onchange="updateDirection()" aria-label="버스 진행 방향">
+        <option value="A">삼진제약 → 극동방송 방향</option>
+        <option value="B">극동방송 → 삼진제약 방향</option>
       </select>
+      <div id="directionGuide" style="margin-top:12px;padding:14px;background:#eef7f0;border:1px solid #cfe4d5;border-radius:14px;line-height:1.75;font-size:13px" aria-live="polite"></div>
+      <p class="muted" style="font-size:12px;line-height:1.6;margin-top:8px">
+        ※ 정류장 순서로 구분한 방향입니다. 실제 탑승 전에는 이용할 버스의 노선과 행선지를 확인해 주세요.
+      </p>
 
       <h3>3. 혼잡 정류장</h3>
       <select id="crowdedStop" onchange="updateMission()">
@@ -664,6 +671,17 @@
   function updateDirection() {
     const direction =
       document.getElementById("direction").value;
+
+    const directionNames = {
+      A: "삼진제약 → 극동방송",
+      B: "극동방송 → 삼진제약"
+    };
+    const stopSequence = directions[direction]
+      .map(id => `${stops[id].name} (${id})`).join(" → ");
+    document.getElementById("directionGuide").innerHTML =
+      `<strong>🚌 ${directionNames[direction]} 방향</strong>` +
+      `<div style="margin-top:5px;overflow-wrap:anywhere">${stopSequence}</div>` +
+      `<div style="color:#577565;margin-top:6px">홍대정문 · 홍익대학교를 경유하는 정류장 순서예요.</div>`;
 
     const crowdedSelect =
       document.getElementById("crowdedStop");
