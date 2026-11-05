@@ -364,6 +364,37 @@ button:active:not(:disabled){transform:scale(.985)}
 .store-future{margin:17px 0 3px;font-size:12px}
 @media (max-width:360px){#shop .wow-shop-item .patch-art{height:115px}}
 </style>
+<style>
+/* WOWROAD v4 — GPS-first UI and fixed patch catalogue */
+:root{--v4-green:#12734f;--v4-green-dark:#095338;--v4-pale:#e9f7ec;--v4-ink:#193a2d}
+body{color:var(--v4-ink);background:#e9f0eb}
+.app{background:#f8fbf9}
+.card{border-radius:22px;border:1px solid #dbe9e1;box-shadow:0 7px 20px #174d2f0d}
+.hero{background:linear-gradient(145deg,#d9f3e3,#f3faf5);border-radius:24px}
+.hero h2{letter-spacing:-.7px;line-height:1.35}
+.mission-intro{letter-spacing:-.25px}
+#mission h3{font-size:14px;letter-spacing:-.2px;color:#1c6547;margin-top:24px}
+#mission select{border-radius:14px;padding:15px 13px}
+.gps-verification{border-radius:18px;background:#e9f7ed;border:1px solid #c3e4cd;padding:16px;margin-top:14px}
+.gps-verification-head{display:flex;align-items:center;gap:12px;margin-bottom:14px}
+.gps-verification-head strong{display:block;font-size:16px}
+.gps-verification-head small{display:block;margin-top:4px;color:#577364;font-size:11px;line-height:1.4}
+.gps-icon{display:grid;place-items:center;flex:none;border-radius:14px;background:#d0eedc;color:#146c4a;width:42px;height:42px;font-size:28px}
+#completeBtn{background:var(--v4-green);min-height:54px;margin:0;box-shadow:0 6px 16px #12734f30}
+.gps-status{font-size:12px;color:#54715e;text-align:center;margin:11px 0 0;min-height:19px}
+.gps-status[data-mode=error]{color:#b43e42;font-weight:700}
+.gps-status[data-mode=success]{color:#117147;font-weight:700}
+.gps-status[data-mode=loading]{color:#356a9c}
+#shop.wow-shop-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
+#shop .wow-shop-item{display:flex;flex-direction:column;min-width:0;min-height:266px;align-items:stretch;padding:10px;border-radius:16px}
+#shop .wow-shop-item .patch-art{height:132px;width:100%;display:flex;align-items:center;justify-content:center;background:#f4f8f5;border-radius:12px;padding:8px;overflow:hidden}
+#shop .wow-shop-item .patch-art img{height:100%;width:100%;object-fit:contain;padding:0;display:block;background:none}
+#shop .wow-shop-item .patch-title{display:flex;align-items:center;justify-content:center;text-align:center;font-size:12px;min-height:48px;line-height:1.4;word-break:keep-all;overflow-wrap:anywhere;margin:7px 0 2px}
+#shop .wow-shop-item .patch-price{margin:auto 0 8px}
+#shop .wow-shop-item button{margin:0;min-height:42px}
+.patch-position-note{font-size:12px;color:#50715e;text-align:center;margin:8px 0}
+@media(max-width:360px){#shop .wow-shop-item{padding:8px;min-height:252px}#shop .wow-shop-item .patch-art{height:113px}}
+</style>
 </head>
 
 <body>
@@ -410,7 +441,7 @@ button:active:not(:disabled){transform:scale(.985)}
 
       <div class="section-eyebrow">SMART ROUTE</div><h2>📍 정류장 분산 미션</h2><p class="muted mission-intro">이용 방향 선택 · 대체 정류장 탐색 · 거리 및 보상 확인</p>
 
-      <h3>1. 이용 방식 선택</h3>
+      <h3>01 · 이용 방식</h3>
       <div class="mode-buttons">
         <button id="boardingBtn"
                 onclick="setMode('boarding')">
@@ -422,9 +453,9 @@ button:active:not(:disabled){transform:scale(.985)}
         </button>
       </div>
 
-      <h3>2. 버스 진행 방향 선택</h3>
+      <h3>02 · 진행 방향</h3>
       <p class="muted" style="margin:4px 0 10px;line-height:1.6">
-        버스를 타거나 내릴 방향을 선택해 주세요. A/B 대신 정류장 순서로 확인할 수 있어요.
+        버스 이동 방향 · 정류장 순서 기준
       </p>
       <select id="direction" onchange="updateDirection()" aria-label="버스 진행 방향">
         <option value="A">삼진제약 → 극동방송 방향</option>
@@ -432,18 +463,18 @@ button:active:not(:disabled){transform:scale(.985)}
       </select>
       <div id="directionGuide" style="margin-top:12px;padding:14px;background:#eef7f0;border:1px solid #cfe4d5;border-radius:14px;line-height:1.75;font-size:13px" aria-live="polite"></div>
       <p class="muted" style="font-size:12px;line-height:1.6;margin-top:8px">
-        ※ 정류장 순서로 구분한 방향입니다. 실제 탑승 전에는 이용할 버스의 노선과 행선지를 확인해 주세요.
+        노선·행선지 확인 필수 · 운행 방향 참고용
       </p>
 
-      <h3>3. 혼잡 정류장</h3>
+      <h3>03 · 혼잡 정류장</h3>
       <select id="crowdedStop" onchange="updateMission()">
       </select>
 
-      <h3>4. 대체 정류장 선택</h3>
+      <h3>04 · 대체 정류장</h3>
       <select id="alternativeStop" onchange="updateMission()">
       </select>
 
-      <h3>🗺️ 홍익대학교 주변 지도</h3>
+      <h3>지도 · 정류장 위치</h3>
       <div id="map"></div>
 
       <div class="legend">
@@ -463,7 +494,7 @@ button:active:not(:disabled){transform:scale(.985)}
       </div>
 
       <p class="notice">
-        ⚠️ 시연용 미션입니다. 정류장 좌표는 제공된
+        시연용 미션 · 실제 버스 탑승 여부 미확인. 정류장 좌표는 제공된
         데이터를 사용하지만 실제 버스 노선별 정차 여부,
         보행 경로 및 혼잡도는 아직 검증되지 않았습니다.
         표시 거리는 두 정류장 사이 직선거리이며,
@@ -471,9 +502,11 @@ button:active:not(:disabled){transform:scale(.985)}
       </p>
 
 
-<button id="completeBtn" onclick="completeMission()">
-  📍 내 위치 인증
-</button>
+<div class="gps-verification">
+  <div class="gps-verification-head"><span class="gps-icon">◎</span><div><strong>GPS 도착 인증</strong><small>선택 정류장 반경 70m · 위치 정확도 100m 이내</small></div></div>
+  <button id="completeBtn" onclick="completeMission()">내 위치 인증</button>
+  <p id="gpsStatus" class="gps-status" role="status" aria-live="polite">위치 권한 필요 · HTTPS 접속 권장</p>
+</div>
 
 
 
@@ -495,7 +528,7 @@ button:active:not(:disabled){transform:scale(.985)}
         <input id="wowSize" type="range" min="5" max="25" step="1" oninput="resizeWowItem(this.value)">
         <p class="muted" style="margin:5px 0">패치 드래그 · 크기 조절 · 위치 초기화</p>
       </div>
-      <p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
+      <p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
     <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div></div><div class="card upgrade-card"><div class="section-eyebrow">PATCH LAB · 준비 중</div><h2>🎓 우리 학과 패치 업그레이드</h2><p class="muted">학과별 공동 모금 · 목표 3,000P · 디자인 개선 요청</p><div class="upgrade-steps"><span>① 학과 선택</span><span>② 공동 포인트 모금</span><span>③ 디자인 제안</span></div><p class="notice">현재는 기획 안내만 제공. 여러 사용자 포인트 합산·구매권 발급·요청 접수는 계정 및 서버 구축 후 제공 예정.</p><button class="secondary-button" type="button" disabled>업그레이드 요청 · 준비 중</button></div><div class="card"><div class="section-eyebrow">ACCESSORIES</div><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div><p class="muted store-future">신규 소품 카테고리 기획: 모자 · 가방 · 배경 · 표정. 기존 13종 우선 유지.</p></div>
   </section>
@@ -692,14 +725,6 @@ button:active:not(:disabled){transform:scale(.985)}
     state.starterGranted = true;
     localStorage.setItem('wowroad-v1', JSON.stringify(state));
   }
-
-  // 정류장별 인쇄 QR은 ?stop=정류장번호&qr=wowroad-demo-v1 주소를 엽니다.
-  // 정적 QR URL은 복제/공유 가능하므로 실제 현장 방문을 증명하지 못합니다.
-  const qrParams = new URLSearchParams(window.location.search);
-  const qrStopId = qrParams.get("stop");
-  const qrDemoValid = qrParams.get("qr") === "wowroad-demo-v1" &&
-    Object.prototype.hasOwnProperty.call(stops, qrStopId) &&
-    Object.values(alternativeStops).some(ids => ids.includes(qrStopId));
 
   let currentMode = "alighting";
 
@@ -912,7 +937,7 @@ button:active:not(:disabled){transform:scale(.985)}
       `${stops[mission.alternativeId].name} (${mission.alternativeId})`;
 
     document.getElementById("distance").textContent =
-      `정류장 간 직선거리: 약 ${mission.distance}m`;
+      `직선거리 · 약 ${mission.distance}m`;
 
     document.getElementById("routeDescription").textContent =
       mission.movementDescription;
@@ -926,7 +951,7 @@ button:active:not(:disabled){transform:scale(.985)}
       const parts = [`기본 ${rewardInfo.base}P`];
       if (rewardInfo.timeBonus) parts.push(`혼잡 시간대 +${rewardInfo.timeBonus}P`);
       if (rewardInfo.dayBonus) parts.push(`이용 집중 요일 +${rewardInfo.dayBonus}P`);
-      rewardBreakdown.textContent = `📊 오늘의 차등 보상: ${parts.join(" · ")}`;
+      rewardBreakdown.textContent = `보상 구성 · ${parts.join(" · ")}`;
     }
 
     const today =
@@ -1089,10 +1114,20 @@ button:active:not(:disabled){transform:scale(.985)}
 const GPS_RADIUS = 70;
 
 let gpsChecking = false;
+function setGpsStatus(message, mode='info') {
+  const el = document.getElementById('gpsStatus');
+  if (!el) return;
+  el.textContent = message;
+  el.dataset.mode = mode;
+}
 
 // 현재 위치와 정류장 사이 거리 확인
 function verifyStopLocation() {
   return new Promise((resolve, reject) => {
+    if (!window.isSecureContext) {
+      reject(new Error('HTTPS 또는 localhost에서 GPS 사용 가능'));
+      return;
+    }
     if (!navigator.geolocation) {
       reject(new Error("이 브라우저는 GPS 위치 인증을 지원하지 않아요."));
       return;
@@ -1169,165 +1204,6 @@ function verifyStopLocation() {
       mission.direction, mission.crowdedId, mission.alternativeId].join("-");
   }
 
-   // 앱 내부 카메라 QR 스캔 (시연용, 정적 QR 복제 방지 불가)
-   let qrScanner = null;
-   let qrScannerStarting = false;
-   let scannedQrStopId = null;
-
-   function setQrScanStatus(message, success = false) {
-     const el = document.getElementById("qrScannerStatus");
-     el.textContent = message;
-     el.style.color = success ? "#17884d" : "#627367";
-   }
-
-   function clearScannedQr() {
-     scannedQrStopId = null;
-     document.getElementById("scannedQrCompleteBtn").hidden = true;
-   }
-
-   function parseWowroadQr(text) {
-     try {
-       const url = new URL(text.trim());
-       // 우리 GitHub Pages 주소 및 시연용 로컬 주소만 허용
-       const trustedOrigin = url.origin === "https://mangdongmingdong.github.io" ||
-         url.origin === "http://127.0.0.1:5500" ||
-         url.origin === "http://localhost:5500";
-       const trustedPath = url.pathname === "/wowroad/" ||
-         url.pathname === "/wowroad/index.html" ||
-         url.pathname === "/index.html" || url.pathname === "/";
-       const id = url.searchParams.get("stop");
-       if (!trustedOrigin || !trustedPath || url.searchParams.get("qr") !== "wowroad-demo-v1" ||
-           !Object.prototype.hasOwnProperty.call(stops, id) ||
-           !Object.values(alternativeStops).some(ids => ids.includes(id))) return null;
-       return id;
-     } catch (_) {
-       return null;
-     }
-   }
-
-   async function startQrScanner() {
-     if (qrScanner || qrScannerStarting) return;
-     clearScannedQr();
-     if (!window.isSecureContext) {
-       setQrScanStatus("카메라는 HTTPS에서 사용할 수 있어요. GitHub Pages 주소로 접속해 주세요.");
-       return;
-     }
-     if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-       setQrScanStatus("이 브라우저는 카메라 접근을 지원하지 않아요. 휴대폰의 Chrome 또는 Safari를 사용해 주세요.");
-       return;
-     }
-     if (!window.Html5Qrcode) {
-       setQrScanStatus("QR 스캐너 라이브러리를 불러오지 못했어요. 인터넷 연결을 확인하고 새로고침해 주세요.");
-       return;
-     }
-     qrScannerStarting = true;
-     const button = document.getElementById("startQrScanBtn");
-     button.disabled = true;
-     document.getElementById("qrScannerArea").hidden = false;
-     setQrScanStatus("카메라 권한을 허용하고 QR코드를 화면 안에 맞춰 주세요.");
-     try {
-       qrScanner = new Html5Qrcode("qrReader");
-       await qrScanner.start(
-         { facingMode: "environment" },
-         { fps: 10, qrbox: { width: 220, height: 220 } },
-         async (decodedText) => {
-           const stopId = parseWowroadQr(decodedText);
-           if (!stopId) {
-             setQrScanStatus("와우로드 정류장 QR이 아니에요. 올바른 QR을 스캔해 주세요.");
-             return;
-           }
-           const mission = getCurrentMission();
-           if (!mission || mission.alternativeId !== stopId) {
-             setQrScanStatus(`스캔한 QR은 ${stops[stopId].name} (${stopId})이에요. 먼저 대체 정류장을 이 정류장으로 선택해 주세요.`);
-             return;
-           }
-           scannedQrStopId = stopId;
-           await stopQrScanner();
-           setQrScanStatus(`✅ ${stops[stopId].name} (${stopId}) QR 인식 성공! 아래 버튼으로 시연 인증을 완료하세요.`, true);
-           document.getElementById("scannedQrCompleteBtn").hidden = false;
-         },
-         () => {}
-       );
-     } catch (error) {
-       setQrScanStatus("카메라를 열 수 없어요. 카메라 권한을 확인하거나 다른 앱에서 카메라 사용을 종료해 주세요.");
-       if (qrScanner) {
-         try { qrScanner.clear(); } catch (_) {}
-         qrScanner = null;
-       }
-       document.getElementById("qrScannerArea").hidden = true;
-     } finally {
-       qrScannerStarting = false;
-       button.disabled = false;
-     }
-   }
-
-   async function stopQrScanner() {
-     const scanner = qrScanner;
-     qrScanner = null;
-     if (scanner) {
-       try { await scanner.stop(); } catch (_) {}
-       try { scanner.clear(); } catch (_) {}
-     }
-     document.getElementById("qrScannerArea").hidden = true;
-   }
-
-   function completeScannedQrMission() {
-     const mission = getCurrentMission();
-     if (!mission || !scannedQrStopId || mission.alternativeId !== scannedQrStopId) {
-       clearScannedQr();
-       alert("QR코드를 다시 스캔해 주세요.");
-       return;
-     }
-     const key = missionKey(mission);
-     if (state.history.some(entry => entry.key === key)) {
-       clearScannedQr();
-       alert("오늘 이미 완료한 미션이에요!");
-       return;
-     }
-     if (!confirm(`${stops[scannedQrStopId].name} (${scannedQrStopId}) QR 스캔 인증을 완료할까요?\n※ 시연용이며 현장 방문을 보장하지 않습니다.`)) return;
-     const today = new Date().toLocaleDateString("sv-SE");
-     state.points += mission.reward;
-     state.totalEarned += mission.reward;
-     state.history.unshift({
-       key, date: today,
-       target: `${stops[scannedQrStopId].name} (${scannedQrStopId})`,
-       reward: mission.reward,
-       mode: currentMode === "boarding" ? "승차" : "하차",
-       method: "카메라 QR 스캔 (시연)"
-     });
-     clearScannedQr();
-     save();
-     setQrScanStatus(`🎉 QR 스캔 인증 완료! ${mission.reward}P가 지급됐어요.`, true);
-     alert(`🎉 QR 스캔 인증 완료! ${mission.reward}P가 지급됐어요.`);
-   }
-
-  function completeQrMission() {
-    if (!qrDemoValid) return;
-    const mission = getCurrentMission();
-    if (!mission || mission.alternativeId !== qrStopId) {
-      alert("QR에 적힌 정류장을 대체 정류장으로 선택해 주세요.");
-      return;
-    }
-    const key = missionKey(mission);
-    if (state.history.some(entry => entry.key === key)) {
-      alert("오늘 이미 완료한 미션이에요!");
-      return;
-    }
-    if (!confirm(`${stops[qrStopId].name} (${qrStopId}) QR 시연 인증을 완료할까요?\n※ 실제 현장 방문을 검증하지 않습니다.`)) return;
-    const today = new Date().toLocaleDateString("sv-SE");
-    state.points += mission.reward;
-    state.totalEarned += mission.reward;
-    state.history.unshift({
-      key, date: today,
-      target: `${stops[qrStopId].name} (${qrStopId})`,
-      reward: mission.reward,
-      mode: currentMode === "boarding" ? "승차" : "하차",
-      method: "QR 시연"
-    });
-    save();
-    alert(`🎉 QR 시연 인증 완료! ${mission.reward}P가 지급됐어요.`);
-  }
-
 async function completeMission() {
   if (gpsChecking) return;
 
@@ -1346,15 +1222,21 @@ async function completeMission() {
   ].join("-");
 
   if (state.history.some(entry => entry.key === key)) {
-    alert("오늘 이미 완료한 미션이에요!");
+    setGpsStatus('오늘 완료한 미션 · 중복 지급 불가', 'info');
+    alert('오늘 완료한 미션');
     return;
   }
 
   const button = document.getElementById("completeBtn");
+  if (!window.isSecureContext) {
+    setGpsStatus('HTTPS 또는 localhost 환경 필요', 'error');
+    return;
+  }
+  setGpsStatus('현재 위치 확인 중 · 브라우저 권한 요청', 'loading');
 
   gpsChecking = true;
   button.disabled = true;
-  button.textContent = "현재 위치 확인 중";
+  button.textContent = "GPS 확인 중";
 
   try {
     const selectedStopId = mission.alternativeId;
@@ -1396,18 +1278,16 @@ async function completeMission() {
 
     save();
 
-    alert(
-      `위치 인증 완료\n` +
-      `정류장까지 약 ${result.distance}m\n` +
-      `${reward}P가 지급됐어요!`
-    );
+    setGpsStatus(`인증 완료 · 거리 ${result.distance}m · +${reward}P`, 'success');
+    alert(`위치 인증 완료 · +${reward}P`);
 
   } catch (error) {
+    setGpsStatus(`인증 실패 · ${error.message}`, 'error');
     alert(error.message);
 
   } finally {
     gpsChecking = false;
-    button.textContent = "📍 내 위치 인증";
+    button.textContent = "내 위치 인증";
     updateMission();
   }
 }
