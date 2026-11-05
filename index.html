@@ -395,6 +395,29 @@ body{color:var(--v4-ink);background:#e9f0eb}
 .patch-position-note{font-size:12px;color:#50715e;text-align:center;margin:8px 0}
 @media(max-width:360px){#shop .wow-shop-item{padding:8px;min-height:252px}#shop .wow-shop-item .patch-art{height:113px}}
 </style>
+<style>
+/* WOWROAD v5 — reward route & Patch Lab */
+.distance-note{font-size:11px;color:#557566;line-height:1.5;margin:9px 0 0}
+.wow-backdrop-picker{display:flex;flex-wrap:wrap;align-items:center;gap:9px;margin:12px 0}
+.wow-backdrop-label{font-size:12px;font-weight:800;color:#315c47}
+.wow-backdrop-options{display:flex;gap:5px;flex-wrap:wrap}
+.backdrop-chip{width:auto;padding:6px 8px;border:1px solid #cfddd3;background:#fff;color:#496454;font-size:11px;font-weight:700;display:flex;align-items:center;gap:4px;border-radius:20px}
+.backdrop-chip span{width:13px;height:13px;border-radius:50%;background:var(--chip);border:1px solid #bbb}
+.backdrop-chip.selected{border-color:#168456;color:#075f39;box-shadow:0 0 0 1px #168456}
+.upgrade-card label{display:block;margin-top:15px;margin-bottom:4px}
+.upgrade-card select,.upgrade-card textarea,.upgrade-card input{width:100%;font:inherit;border:1px solid #cbded0;border-radius:12px;padding:12px;background:#fff;color:#203e2e}
+.upgrade-card textarea{resize:vertical}
+.lab-summary{background:#f1f9f3;border-radius:14px;padding:13px;margin-top:13px}
+.lab-progress{margin-top:10px;background:#d4e7d8;border-radius:20px;overflow:hidden;height:10px}
+#labProgressBar{height:100%;width:0;background:linear-gradient(90deg,#42bd7d,#157c4d);transition:width .25s}
+.lab-contribute{display:flex;gap:7px}
+.lab-contribute input{min-width:0;flex:1;width:40%}
+.lab-contribute button{width:48%;font-size:13px;padding:8px}
+#labSubmit{margin-top:12px;background:#155e43}
+.lab-request{margin-top:12px;border:1px solid #d5e8d9;border-radius:12px;padding:12px;background:white}
+.lab-request p{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
+@media(max-width:360px){.lab-contribute button{font-size:12px}}
+</style>
 </head>
 
 <body>
@@ -490,6 +513,7 @@ body{color:var(--v4-ink);background:#e9f0eb}
         <p id="distance">두 정류장 사이 거리 계산 중</p>
         <p id="routeDescription" class="muted"></p>
         <div class="points" id="reward">+150 P</div>
+        <p class="distance-note">거리 보너스 기준 · 직선거리 100m당 20P · 최대 100P</p>
         <p id="rewardBreakdown" style="font-size:13px;color:#287c52;line-height:1.6;margin-top:8px;"></p>
       </div>
 
@@ -518,6 +542,10 @@ body{color:var(--v4-ink);background:#e9f0eb}
     <div class="card">
       <div class="section-eyebrow">WOW STUDIO</div><h2>🎨 나만의 와우</h2>
       <p class="muted">과잠에 학과 패치와 액세서리를 꾸며 보세요. 학과 패치 최대 5개 · 자유 배치 및 크기 조절</p>
+      <div class="wow-backdrop-picker" aria-label="와우 배경 선택">
+        <span class="wow-backdrop-label">🎨 배경 테마</span>
+        <div class="wow-backdrop-options" id="wowBackdropOptions"></div>
+      </div>
       <div class="wow-stage" id="wowStage">
         <img class="wow-body" id="wowBody" alt="사용자가 제공한 원본 과잠 와우 마스코트">
         <div id="wowPatchLayers"></div><div id="wowAccessoryLayers"></div>
@@ -530,7 +558,21 @@ body{color:var(--v4-ink);background:#e9f0eb}
       </div>
       <p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
-    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div></div><div class="card upgrade-card"><div class="section-eyebrow">PATCH LAB · 준비 중</div><h2>🎓 우리 학과 패치 업그레이드</h2><p class="muted">학과별 공동 모금 · 목표 3,000P · 디자인 개선 요청</p><div class="upgrade-steps"><span>① 학과 선택</span><span>② 공동 포인트 모금</span><span>③ 디자인 제안</span></div><p class="notice">현재는 기획 안내만 제공. 여러 사용자 포인트 합산·구매권 발급·요청 접수는 계정 및 서버 구축 후 제공 예정.</p><button class="secondary-button" type="button" disabled>업그레이드 요청 · 준비 중</button></div><div class="card"><div class="section-eyebrow">ACCESSORIES</div><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div><p class="muted store-future">신규 소품 카테고리 기획: 모자 · 가방 · 배경 · 표정. 기존 13종 우선 유지.</p></div>
+    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div></div><div class="card upgrade-card" id="patchLab">
+      <div class="section-eyebrow">PATCH LAB · 개인 시연</div>
+      <h2>🎓 학과 패치 업그레이드</h2>
+      <p class="muted">목표 3,000P · 학과별 개인 모금 및 디자인 요청서</p>
+      <label for="labDepartment">참여 학과</label>
+      <select id="labDepartment" onchange="renderPatchLab()"></select>
+      <div class="lab-summary"><div class="between"><b id="labBalance">0 / 3,000 P</b><b id="labPercent">0%</b></div><div class="lab-progress"><div id="labProgressBar"></div></div></div>
+      <label for="labContribution">모금 포인트</label>
+      <div class="lab-contribute"><input type="number" id="labContribution" min="1" max="3000" step="1" value="100" inputmode="numeric" aria-label="모금할 포인트"><button type="button" onclick="contributePatchLab()">포인트 적립</button></div>
+      <label for="labRequest">업그레이드 디자인 요청</label>
+      <textarea id="labRequest" rows="3" maxlength="400" placeholder="예: 학과 상징을 넣은 금색 자수 패치"></textarea>
+      <button type="button" id="labSubmit" onclick="submitPatchLabRequest()">3,000P 달성 후 요청 등록</button>
+      <p class="notice">⚠️ 현재 개인 브라우저 시연 · 다른 학생과의 포인트 합산, 운영자 접수, 실제 패치 제작 의뢰 없음. 적립한 포인트는 이 브라우저 안에서 차감되며 환불 기능 없음.</p>
+      <div id="labRequestList"></div>
+    </div><div class="card"><div class="section-eyebrow">ACCESSORIES</div><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div><p class="muted">액세서리 13종 유지 · 배경 테마 4종 추가</p></div>
   </section>
 
   <!-- 기록 -->
@@ -703,7 +745,10 @@ body{color:var(--v4-ink);background:#e9f0eb}
     wowEquipped: [],
     wowJacketOn: true,
     wowPositions: {},
-    wowAccessoriesEquipped: []
+    wowAccessoriesEquipped: [],
+    wowBackdrop: "mint",
+    patchLab: {},
+    patchLabRequests: []
   };
 
   let state;
@@ -726,6 +771,9 @@ body{color:var(--v4-ink);background:#e9f0eb}
     localStorage.setItem('wowroad-v1', JSON.stringify(state));
   }
 
+  if (!state.patchLab || typeof state.patchLab!=='object' || Array.isArray(state.patchLab)) state.patchLab={};
+  if (!Array.isArray(state.patchLabRequests)) state.patchLabRequests=[];
+  if (!['mint','sky','cream','lavender'].includes(state.wowBackdrop)) state.wowBackdrop='mint';
   let currentMode = "alighting";
 
   let kakaoMap = null;
@@ -871,6 +919,13 @@ body{color:var(--v4-ink);background:#e9f0eb}
     );
   }
 
+  // 거리별 보너스: 정류장 간 직선거리 100m마다 20P, 최대 100P.
+  // 실제 보행거리/추가 보행량과는 다름.
+  function getDistanceBonus(distance) {
+    if (!Number.isFinite(distance) || distance < 0) return 0;
+    return Math.min(100, Math.floor(distance / 100) * 20);
+  }
+
   // =====================================
   // 7. 미션 정보 갱신
   // =====================================
@@ -918,7 +973,8 @@ body{color:var(--v4-ink);background:#e9f0eb}
       crowdedId,
       alternativeId,
       distance,
-      reward: getDifferentialReward(crowdedId).total,
+      distanceBonus: getDistanceBonus(distance),
+      reward: getDifferentialReward(crowdedId).total + getDistanceBonus(distance),
       movementDescription
     };
   }
@@ -951,6 +1007,7 @@ body{color:var(--v4-ink);background:#e9f0eb}
       const parts = [`기본 ${rewardInfo.base}P`];
       if (rewardInfo.timeBonus) parts.push(`혼잡 시간대 +${rewardInfo.timeBonus}P`);
       if (rewardInfo.dayBonus) parts.push(`이용 집중 요일 +${rewardInfo.dayBonus}P`);
+      parts.push(`거리 ${mission.distance}m · +${mission.distanceBonus}P`);
       rewardBreakdown.textContent = `보상 구성 · ${parts.join(" · ")}`;
     }
 
@@ -1261,6 +1318,7 @@ async function completeMission() {
       throw new Error("이미 완료한 미션이에요.");
     }
 
+    // 인증을 시작한 미션의 값을 다시 계산하여 예측/실제 보상 동일화
     const reward = mission.reward;
 
     state.points += reward;
@@ -1272,6 +1330,8 @@ async function completeMission() {
       target:
         `${stops[selectedStopId].name} (${selectedStopId})`,
       reward,
+      distance: mission.distance,
+      distanceBonus: mission.distanceBonus,
       mode:
         currentMode === "boarding" ? "승차" : "하차"
     });
@@ -1336,6 +1396,7 @@ function wowLayerMarkup(id){const it=wowGet(id),p=wowPos(id);if(!it)return '';
  return `<img class="wow-layer ${wowSelected===id?'is-selected':''}" data-wow-id="${id}" src="${it.src}" alt="${it.name}" draggable="false" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;z-index:${wowSelected===id?25:10}">`;
 }
 function drawWowLayers(){
+ renderWowBackdrop();
  const jacketOn=state.wowJacketOn!==false;
  document.getElementById('wowPatchLayers').innerHTML=state.wowEquipped.filter(id=>state.owned.includes(id)).slice(0,5).map(wowLayerMarkup).join('');
  document.getElementById('wowAccessoryLayers').innerHTML=(state.wowAccessoriesEquipped||[]).filter(id=>state.owned.includes(id)).map(id=>{const it=wowGet(id);if(!it)return '';return `<img class="wow-accessory-item" src="${it.src}" alt="${it.name}" style="left:${it.x}%;top:${it.y}%;width:${it.w}%;">`;}).join('');
@@ -1378,6 +1439,73 @@ function renderWowAccessories(){
  function endDrag(){if(!drag)return;drag=null;localStorage.setItem('wowroad-v1',JSON.stringify(state));}
  stage.addEventListener('pointerup',endDrag);stage.addEventListener('pointercancel',endDrag);
 })();
+
+
+  // 무료 배경 4종: 원본 과잠 이미지 및 패치/액세서리에는 영향 없음
+  const wowBackdrops = [
+    {id:'mint', label:'민트', color:'#e6f8ed'},
+    {id:'sky', label:'하늘', color:'#e2f3ff'},
+    {id:'cream', label:'크림', color:'#fff3df'},
+    {id:'lavender', label:'라벤더', color:'#f0e9ff'}
+  ];
+  function setWowBackdrop(id){
+    if(!wowBackdrops.some(v=>v.id===id))return;
+    state.wowBackdrop=id;save();
+  }
+  function renderWowBackdrop(){
+    const id=state.wowBackdrop||'mint';
+    const stage=document.getElementById('wowStage');
+    const choice=wowBackdrops.find(v=>v.id===id)||wowBackdrops[0];
+    stage.style.background=`linear-gradient(160deg,${choice.color},#ffffff)`;
+    const choices=document.getElementById('wowBackdropOptions');
+    if(choices)choices.innerHTML=wowBackdrops.map(v=>`<button type="button" class="backdrop-chip ${id===v.id?'selected':''}" style="--chip:${v.color}" onclick="setWowBackdrop('${v.id}')" aria-pressed="${id===v.id}"><span></span>${v.label}</button>`).join('');
+  }
+
+  // Patch Lab: '기기 내 개인 모금'만 구현. 공유 모금/운영자 접수는 서버 필요.
+  const PATCH_LAB_GOAL=3000;
+  function safeText(text){return String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function getLabChoice(){return document.getElementById('labDepartment')?.value || items[0].id;}
+  function setupPatchLab(){
+    const select=document.getElementById('labDepartment');
+    if(select&&!select.options.length)select.innerHTML=items.map(it=>`<option value="${it.id}">${it.name}</option>`).join('');
+    renderPatchLab();
+  }
+  function renderPatchLab(){
+    const id=getLabChoice();
+    const total=Number(state.patchLab?.[id]||0);
+    const pct=Math.min(100,Math.floor(total/PATCH_LAB_GOAL*100));
+    document.getElementById('labBalance').textContent=`${total.toLocaleString()} / 3,000 P`;
+    document.getElementById('labPercent').textContent=`${pct}%`;
+    document.getElementById('labProgressBar').style.width=pct+'%';
+    const submit=document.getElementById('labSubmit');
+    submit.disabled=total<PATCH_LAB_GOAL || (state.patchLabRequests||[]).some(r=>r.departmentId===id);
+    submit.textContent=total<PATCH_LAB_GOAL?'3,000P 달성 후 요청 등록':submit.disabled?'요청 등록 완료':'디자인 요청 등록';
+    const list=(state.patchLabRequests||[]).filter(x=>x.departmentId===id);
+    document.getElementById('labRequestList').innerHTML=list.map(x=>`<div class="lab-request"><b>요청 등록 · ${safeText(x.date)}</b><p>${safeText(x.message)}</p></div>`).join('');
+  }
+  function contributePatchLab(){
+    const id=getLabChoice(), amount=Number(document.getElementById('labContribution').value);
+    const current=Number(state.patchLab?.[id]||0);
+    if(!Number.isSafeInteger(amount)||amount<=0){alert('1P 이상의 정수 입력');return;}
+    if(current>=PATCH_LAB_GOAL){alert('이미 3,000P 목표 달성');return;}
+    if(amount>PATCH_LAB_GOAL-current){alert(`남은 목표 ${PATCH_LAB_GOAL-current}P 이하로 입력`);return;}
+    if(state.points<amount){alert('보유 포인트 부족');return;}
+    if(!confirm(`${items.find(x=>x.id===id).name}에 ${amount}P 적립 · 취소 불가 (개인 시연)`))return;
+    state.points-=amount;
+    state.patchLab ||= {};
+    state.patchLab[id]=current+amount;
+    save();
+  }
+  function submitPatchLabRequest(){
+    const id=getLabChoice(), msg=document.getElementById('labRequest').value.trim();
+    if(Number(state.patchLab?.[id]||0)<PATCH_LAB_GOAL){alert('3,000P 달성 필요');return;}
+    if(!msg||msg.length>400){alert('디자인 요청 내용 입력 · 최대 400자');return;}
+    state.patchLabRequests ||= [];
+    if(state.patchLabRequests.some(r=>r.departmentId===id)){alert('이 학과의 요청 등록 완료');return;}
+    state.patchLabRequests.push({departmentId:id,message:msg,date:new Date().toLocaleDateString('sv-SE')});
+    save();document.getElementById('labRequest').value='';
+    alert('기기 내 요청 등록 완료 · 외부 전송 없음');
+  }
 
   function renderPatchShop() {
     const query = (document.getElementById('patchSearch')?.value || '').trim().replace(/\s+/g,'').toLowerCase();
@@ -1426,6 +1554,7 @@ function renderWowAccessories(){
     renderPatchShop();
 
     renderWowAccessories();
+    setupPatchLab();
     document.getElementById("historyList").innerHTML =
       state.history.length
         ? state.history.map(entry => `
