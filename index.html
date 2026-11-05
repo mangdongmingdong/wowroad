@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>와우로드 | 혼잡을 피해서!</title>
+  <title>와우로드 | 편안한 이동을 위한 작은 변화</title>
 
   <style>
     * { box-sizing: border-box; }
@@ -279,6 +279,61 @@
 #shop .wow-shop-item .patch-title{min-height:53px}
 @media(max-width:360px){#shop .wow-shop-item .patch-art{height:135px}#wowAccessoryShop .wow-shop-item img{height:115px}}
 </style>
+<style id="wowroad-premium-theme">
+
+/* WowRoad 2.0 · Mobility clarity + playful character studio */
+:root{--forest:#146b4a;--forest-dark:#0d4d37;--mint:#ddf3e7;--ink:#1d302b;--sub:#6a8177;--line:#e1ebe5;--paper:#f7faf8;--shadow:0 10px 30px rgba(25,73,48,.065)}
+html{scroll-behavior:smooth}body{background:#e5eee8;color:var(--ink);font-family:Pretendard,"Apple SD Gothic Neo","Malgun Gothic",system-ui,sans-serif}
+.app{max-width:480px;min-height:100svh;padding:28px 20px calc(116px + env(safe-area-inset-bottom,0px));background:var(--paper);position:relative;box-shadow:0 0 80px #244b3620}
+header{padding:3px 1px 17px;border-bottom:1px solid var(--line);align-items:center}
+header h1{font-size:24px;letter-spacing:-1.2px;display:flex;align-items:center;gap:6px;font-weight:850;white-space:nowrap}
+.brand-symbol{display:inline-flex;background:var(--forest);color:#fff;width:32px;height:32px;border-radius:11px;align-items:center;justify-content:center;font-size:20px;letter-spacing:-1px;transform:rotate(-6deg);margin-right:2px}
+.brand-dot{color:#40bd82;font-size:26px;margin-left:-8px}
+.wow-eyebrow{font-size:9px;font-weight:800;letter-spacing:1.5px;color:#5c8873;margin-bottom:7px}
+header .points{font-size:18px;white-space:nowrap;letter-spacing:-.6px;background:#e2f2e8;padding:10px 12px;border-radius:15px;color:var(--forest)}
+.page{animation:pageFade .23s ease both}@keyframes pageFade{from{opacity:.35;transform:translateY(5px)}to{opacity:1;transform:translateY(0)}}
+.card{border:1px solid var(--line);border-radius:23px;padding:21px;margin-top:17px;box-shadow:var(--shadow);background:#fff}
+.card h2{font-weight:850;letter-spacing:-.7px;font-size:20px;line-height:1.35;margin-bottom:13px}
+.card h3{font-size:15px;letter-spacing:-.4px;margin:22px 0 10px}
+.card p{line-height:1.75}.muted{color:var(--sub)}
+.section-eyebrow{font-size:10px;font-weight:850;letter-spacing:1.75px;color:#37996b;margin-bottom:9px}
+.hero{position:relative;overflow:hidden;isolation:isolate;background:linear-gradient(135deg,#d7f4e2 0%,#ecf8e9 58%,#e1f5ed 100%);padding:27px 23px;border:1px solid #cfebd8}
+.hero::after{content:"✦";position:absolute;font-size:174px;font-weight:400;line-height:1;right:-21px;top:-47px;color:#5bc79425;z-index:-1;transform:rotate(12deg)}
+.hero-kicker{display:inline-block;font-size:11px;font-weight:800;background:#ffffffa8;color:#287a54;border:1px solid #ffffffd0;border-radius:100px;padding:7px 11px;margin-bottom:18px}
+.hero h2{font-size:25px;line-height:1.37;margin-bottom:13px;letter-spacing:-1.2px;color:#173c2c}
+.hero p{font-size:13px;color:#4f7563;line-height:1.8;margin-bottom:21px}
+button{border-radius:13px;background:var(--forest);transition:background .16s ease,transform .12s ease,box-shadow .16s ease}
+button:active:not(:disabled){transform:scale(.985)}button:focus-visible,select:focus-visible,input:focus-visible{outline:3px solid #7bcfa4;outline-offset:2px}
+.hero button{background:#126e4a;box-shadow:0 7px 16px #1a78522a;text-align:left;padding:14px 16px;display:flex;align-items:center;justify-content:space-between;font-size:14px}
+.hero button span{font-size:18px}
+select{border:1px solid #d6e6db;background:#f9fcfa;color:#294d3b;font-weight:600;min-height:48px}
+label{color:#35584a}
+.mode-buttons{margin:11px 0 19px}.mode-buttons button{border:1px solid #d8e9df;background:#f3f8f4;color:#47705a}.mode-buttons button.active{background:#176b49;color:#fff;border-color:#176b49;box-shadow:0 5px 14px #246f4624}
+#directionGuide{background:#f0f8f2!important;border-color:#d9eadc!important;color:#325d45}
+#map{height:330px;border:1px solid #e1e9e3;border-radius:18px;background:#ecf4ef}
+.recommend{padding:19px;border-radius:19px;background:linear-gradient(145deg,#e8f7ec,#f3fcf6);border:1px solid #d2e9d9}
+.recommend h2{font-size:20px!important}.recommend .points{font-size:28px}
+.scanner-panel,.qr-panel{border-radius:17px!important}.notice{border:1px solid #e3e9e3;background:#f5f7f4;color:#68796f;border-radius:15px}
+.wow-stage{border-radius:22px;background:radial-gradient(circle at 50% 30%,#f8fff7 0,#e4f4e8 65%,#d5ebdd 100%);border:1px solid #d9eee0;box-shadow:inset 0 0 30px #ffffffaa}
+.wow-shop-grid{gap:12px}.wow-category{padding-bottom:6px}.wow-category button{border:1px solid #d7e9dc;border-radius:100px}.wow-category button.active{background:#166c49;border-color:#166c49}
+#shop .wow-shop-item{box-shadow:0 4px 13px #254b3412;border-color:#e1eae2;border-radius:18px;min-height:270px}
+#shop .wow-shop-item .patch-art{background:#f2f7f3;border-radius:12px;height:145px}
+#shop .wow-shop-item .patch-title{min-height:49px;font-weight:800;font-size:12px}
+#shop .wow-shop-item.patch-equipped{background:#f1faf3;border-color:#52b17f}
+#wowAccessoryShop .wow-shop-item{display:flex;flex-direction:column;align-items:stretch;margin:0;min-height:260px;border-radius:18px;padding:11px;box-shadow:0 4px 13px #254b3412}
+#wowAccessoryShop .wow-shop-item img{height:138px;background:#f2f7f3}
+#wowAccessoryShop .wow-shop-item b{flex:1;min-height:40px;display:flex!important;align-items:center;justify-content:center}
+#wowAccessoryShop .wow-shop-item small{margin:2px 0 10px}
+#wowAccessoryShop .wow-shop-item button{margin-top:auto}
+.wow-editor{border-radius:17px;background:#f1f8f3}
+.tabs{max-width:480px;gap:6px;padding:11px 12px calc(13px + env(safe-area-inset-bottom,0px));border-top:1px solid #dcebe1;box-shadow:0 -7px 25px #224d3114;background:#ffffffed;backdrop-filter:blur(12px)}
+.tabs button{font-weight:800;background:transparent;color:#708378;font-size:12px;padding:12px 4px;border-radius:13px;letter-spacing:-.2px}
+.tabs button.active{background:#def3e6;color:#146b4a}
+.item{background:#f9fcfa;border-color:#e0eae4}
+@media(max-width:360px){.app{padding-left:14px;padding-right:14px}header h1{font-size:21px}header .points{font-size:15px;padding:9px}.hero h2{font-size:23px}#wowAccessoryShop .wow-shop-item{padding:8px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.page{animation:none}button{transition:none}}
+
+</style>
 </head>
 
 <body>
@@ -286,8 +341,8 @@
 
   <header>
     <div>
-      <div class="muted">한 정거장의 작은 변화</div>
-      <h1>🚌 와우로드</h1>
+      <div class="muted wow-eyebrow">HONGIK MOBILITY REWARDS</div>
+      <h1><span class="brand-symbol">W</span> 와우로드 <span class="brand-dot">.</span></h1>
     </div>
     <div class="points" id="points">0 P</div>
   </header>
@@ -295,24 +350,23 @@
   <!-- 홈 -->
   <section id="home" class="page active">
     <div class="card hero">
-      <h2>혼잡을 피하고, 포인트를 모아요!</h2>
+      <div class="hero-kicker">🌿 나의 이동이 만드는 변화</div><h2>조금 더 여유로운 길,<br>함께 만들어 볼까요?</h2>
       <p>
-        혼잡한 정류장 대신 다른 정류장을 선택하고,
-        조금 더 걸으며 포인트를 모아보세요.
+        사람이 몰리는 정류장 대신 가까운 대안을 찾아보세요.<br>작은 선택이 포인트와 새로운 와우를 선물해요.
       </p>
       <button onclick="showPage('mission')">
-        오늘의 미션 시작 →
+        대체 정류장 찾아보기 <span aria-hidden="true">↗</span>
       </button>
     </div>
 
     <div class="card">
-      <h2>🌱 나의 활동</h2>
+      <div class="section-eyebrow">MY ACTIVITY</div><h2>🌱 나의 활동</h2>
       <p>완료한 미션: <b id="missionCount">0회</b></p>
       <p>누적 획득 포인트: <b id="totalEarned">0 P</b></p>
     </div>
 
     <div class="card">
-      <h2>🎁 캐릭터 꾸미기</h2>
+      <div class="section-eyebrow">REWARDS</div><h2>🎁 나만의 와우 꾸미기</h2>
       <p>미션 포인트로 학과별 패치를 모아 과잠을 꾸며 보세요!</p>
       <button onclick="showPage('character')">
         꾸미러 가기
@@ -324,7 +378,7 @@
   <section id="mission" class="page">
     <div class="card">
 
-      <h2>📍 정류장 분산 미션</h2>
+      <div class="section-eyebrow">SMART ROUTE</div><h2>📍 정류장 분산 미션</h2><p class="muted mission-intro">이용할 방향과 정류장을 선택하면 이동 거리와 보상을 한눈에 확인할 수 있어요.</p>
 
       <h3>1. 이용 방식 선택</h3>
       <div class="mode-buttons">
@@ -405,7 +459,7 @@
         데이터를 사용하지만 실제 버스 노선별 정차 여부,
         보행 경로 및 혼잡도는 아직 검증되지 않았습니다.
         표시 거리는 두 정류장 사이 직선거리이며,
-        GPS 인증 없이 미션이 완료됩니다.
+        GPS 인증은 위치 권한과 허용 반경이 필요합니다. 단, 시연용 QR 링크 인증은 실제 현장 방문을 증명하지 못합니다.
       </p>
 
 
@@ -421,7 +475,7 @@
   <!-- 캐릭터 -->
   <section id="character" class="page">
     <div class="card">
-      <h2>🎨 나만의 와우</h2>
+      <div class="section-eyebrow">WOW STUDIO</div><h2>🎨 나만의 와우</h2>
       <p class="muted">과잠에 학과 패치와 액세서리를 꾸며 보세요. 패치는 최대 5개까지 붙이고 위치와 크기를 바꿀 수 있어요.</p>
       <div class="wow-stage" id="wowStage">
         <img class="wow-body" id="wowBody" alt="사용자가 제공한 원본 과잠 와우 마스코트">
@@ -435,18 +489,18 @@
       </div>
       <p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
-    <div class="card"><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><div id="shop" class="wow-shop-grid"></div></div><div class="card"><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div></div>
+    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><div id="shop" class="wow-shop-grid"></div></div><div class="card"><div class="section-eyebrow">ACCESSORIES</div><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div></div>
   </section>
 
   <!-- 기록 -->
   <section id="history" class="page">
     <div class="card">
-      <h2>📋 미션 기록</h2>
+      <div class="section-eyebrow">YOUR JOURNEY</div><h2>📋 미션 기록</h2>
       <div id="historyList"></div>
     </div>
   </section>
 
-  <nav class="tabs">
+  <nav class="tabs" aria-label="주요 메뉴">
     <button data-page="home" class="active"
             onclick="showPage('home')">🏠 홈</button>
     <button data-page="mission"
@@ -665,6 +719,8 @@
         el.dataset.page === page
       );
     });
+
+    window.scrollTo({top:0, behavior:"instant"});
 
     if (page === "mission") {
       if (!kakaoMap) {
