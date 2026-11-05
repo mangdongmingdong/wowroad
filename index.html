@@ -754,22 +754,21 @@ body{color:var(--v4-ink);background:#e9f0eb}
   let state;
 
   try {
-    state = {
-      ...initialState,
-      ...JSON.parse(
-        localStorage.getItem("wowroad-v1") || "{}"
-      )
-    };
+    // 저장 데이터와 초기 지급 여부를 분리해서 읽음.
+    // 구버전 데이터에 starterGranted가 없으면 기본값 true에 가려지던 문제 수정.
+    const previousSave = JSON.parse(localStorage.getItem("wowroad-v1") || "{}");
+    state = { ...initialState, ...previousSave };
+    if (previousSave.starterGranted !== true) {
+      state.points = Math.max(0, Number(previousSave.points) || 0) + 150;
+      state.starterGranted = true;
+      localStorage.setItem("wowroad-v1", JSON.stringify(state));
+    }
   } catch (error) {
     state = { ...initialState };
   }
 
-  // 기존 사용자도 최초 1회 시작 포인트 지급 (localStorage 시연 데이터)
-  if (state.starterGranted !== true) {
-    state.points = (Number(state.points) || 0) + 150;
-    state.starterGranted = true;
-    localStorage.setItem('wowroad-v1', JSON.stringify(state));
-  }
+  // 이미 starterGranted=true로 저장된 사용자는 중복 지급하지 않음.
+  // 사용 후 0P가 되는 것은 정상이며, 로그인이 아닌 브라우저 최초 지급 방식임.
 
   if (!state.patchLab || typeof state.patchLab!=='object' || Array.isArray(state.patchLab)) state.patchLab={};
   if (!Array.isArray(state.patchLabRequests)) state.patchLabRequests=[];
