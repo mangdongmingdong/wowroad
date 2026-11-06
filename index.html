@@ -418,6 +418,16 @@ body{color:var(--v4-ink);background:#e9f0eb}
 .lab-request p{font-size:13px;white-space:pre-wrap;overflow-wrap:anywhere}
 @media(max-width:360px){.lab-contribute button{font-size:12px}}
 </style>
+<style>
+.lab-cloud-status{padding:11px 13px;margin:12px 0;border:1px solid #b3dbc8;background:#edfaf2;border-radius:12px;color:#176b45;font-size:13px;font-weight:700;line-height:1.6}.lab-cloud-status.error{border-color:#ecc7a4;background:#fff6e9;color:#925e1a}
+.lab-auth-panel{margin:12px 0}.lab-auth-row{display:flex;gap:8px}.lab-auth-row input{width:60%;min-width:0}.lab-auth-row button{width:40%;padding:10px 5px;font-size:12px}
+.lab-account-panel{background:#eff8f3;border-radius:14px;padding:12px;margin:12px 0;display:flex;gap:10px;align-items:center;justify-content:space-between}.lab-account-panel[hidden],.lab-auth-panel[hidden],.lab-preview[hidden]{display:none!important}.lab-account-panel div{min-width:0;display:flex;flex-direction:column;gap:3px}.lab-account-panel span{font-size:12px;overflow-wrap:anywhere}.lab-account-panel strong{color:#14704c;font-size:19px}.lab-account-panel button{width:auto;padding:8px 10px;flex-shrink:0}
+.lab-participants{display:flex;justify-content:space-between;align-items:center;margin-top:9px;color:#66806f;font-size:12px}.lab-refresh{width:auto;padding:4px 10px;background:transparent;color:#15734b;border:1px solid #bed9c9;font-size:12px}
+.lab-design-upload{margin:20px 0 12px;padding:15px;background:#f8fbf9;border:1px solid #deebe2;border-radius:16px}.lab-design-upload h3{margin:0 0 4px}.lab-design-upload label{display:block;margin:12px 0 6px}
+.lab-upload-label{display:flex!important;flex-direction:column;justify-content:center;align-items:center;gap:4px;border:2px dashed #a8cfb5;border-radius:14px;padding:20px 10px;background:#fff;cursor:pointer;text-align:center}.lab-upload-label span{font-size:28px;color:#258357}.lab-upload-label small{color:#7c8b80}
+.lab-preview img,.lab-submitted-img{display:block;width:100%;max-height:250px;object-fit:contain;border-radius:12px;background:#edf3ee;margin:10px 0}.lab-preview button{width:100%}.lab-design-upload input[type=text]{width:100%;border:1px solid #cbded0;border-radius:12px;padding:12px;background:#fff}
+.lab-request-display .lab-request h3{font-size:15px;margin:0}.lab-request-display .lab-request p{white-space:pre-wrap}
+</style>
 </head>
 
 <body>
@@ -559,20 +569,53 @@ body{color:var(--v4-ink);background:#e9f0eb}
       <p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
     <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div></div><div class="card upgrade-card" id="patchLab">
-      <div class="section-eyebrow">PATCH LAB · 개인 시연</div>
-      <h2>🎓 학과 패치 업그레이드</h2>
-      <p class="muted">목표 3,000P · 학과별 개인 모금 및 디자인 요청서</p>
-      <label for="labDepartment">참여 학과</label>
-      <select id="labDepartment" onchange="renderPatchLab()"></select>
-      <div class="lab-summary"><div class="between"><b id="labBalance">0 / 3,000 P</b><b id="labPercent">0%</b></div><div class="lab-progress"><div id="labProgressBar"></div></div></div>
-      <label for="labContribution">모금 포인트</label>
-      <div class="lab-contribute"><input type="number" id="labContribution" min="1" max="3000" step="1" value="100" inputmode="numeric" aria-label="모금할 포인트"><button type="button" onclick="contributePatchLab()">포인트 적립</button></div>
-      <label for="labRequest">업그레이드 디자인 요청</label>
-      <textarea id="labRequest" rows="3" maxlength="400" placeholder="예: 학과 상징을 넣은 금색 자수 패치"></textarea>
-      <button type="button" id="labSubmit" onclick="submitPatchLabRequest()">3,000P 달성 후 요청 등록</button>
-      <p class="notice">⚠️ 현재 개인 브라우저 시연 · 다른 학생과의 포인트 합산, 운영자 접수, 실제 패치 제작 의뢰 없음. 적립한 포인트는 이 브라우저 안에서 차감되며 환불 기능 없음.</p>
-      <div id="labRequestList"></div>
-    </div><div class="card"><div class="section-eyebrow">ACCESSORIES</div><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div><p class="muted">액세서리 13종 유지 · 배경 테마 4종 추가</p></div>
+  <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
+  <h2>🎓 학과 패치 업그레이드</h2>
+  <p class="muted">학과별 공동 모금 · 3,000P 목표 · 학생 디자인 이미지 제출</p>
+  <div id="cloudStatus" class="lab-cloud-status" role="status">서버 연결 상태 확인 중</div>
+  <div id="cloudAuthPanel" class="lab-auth-panel">
+    <strong>🔐 닉네임 계정 · 개인정보 입력 없음</strong>
+    <p class="muted">이메일·전화번호·실명 불필요 · 닉네임 및 비밀번호만 입력 · 서버 계정별 포인트 보관</p>
+    <div class="nickname-fields">
+      <label for="cloudNickname">닉네임</label>
+      <input id="cloudNickname" type="text" maxlength="16" minlength="2" autocomplete="username" placeholder="한글·영문·숫자·밑줄 (2~16자)" spellcheck="false">
+      <label for="cloudPassword">비밀번호</label>
+      <input id="cloudPassword" type="password" minlength="8" maxlength="72" autocomplete="current-password" placeholder="8자 이상 (재사용하지 않는 비밀번호)">
+      <div class="lab-auth-actions">
+        <button id="cloudSignIn" type="button">로그인</button>
+        <button id="cloudSignUp" type="button" class="secondary-button">첫 가입 · 150P</button>
+      </div>
+    </div>
+    <p class="muted">※ 복구용 이메일을 받지 않으므로 비밀번호 분실 시 계정 복구 불가. 기존 익명 계정 포인트는 자동 이전되지 않음.</p>
+  </div>
+  <div id="cloudAccountPanel" class="lab-account-panel" hidden>
+    <div class="account-logged-in"><span>🙋 <b id="cloudAccountNickname">닉네임</b> 님</span><strong id="cloudBalance">0 P</strong></div>
+    <p class="muted">공동 모금용 서버 지갑 · 아래의 미션/상점 포인트와 별도</p>
+    <button type="button" id="cloudSignOut" class="secondary-button account-signout">로그아웃</button>
+  </div>
+  <label for="labDepartment">모금 참여 학과</label>
+  <select id="labDepartment"></select>
+  <div class="lab-summary">
+    <div class="between"><b id="labBalance">0 / 3,000 P</b><b id="labPercent">0%</b></div>
+    <div class="lab-progress"><div id="labProgressBar"></div></div>
+    <div class="lab-participants"><span id="labContributors">참여 횟수 0회</span><button type="button" class="lab-refresh" id="labRefresh">새로고침</button></div>
+  </div>
+  <label for="labContribution">공동 모금 포인트</label>
+  <div class="lab-contribute"><input type="number" id="labContribution" min="1" max="3000" step="1" value="100" inputmode="numeric"><button type="button" id="labContribute">포인트 기부</button></div>
+  <p class="muted">서버 공동 모금용 지갑에서 차감 · 기부 취소 불가 · 미션/상점 포인트와 별도 · 닉네임 계정별 관리</p>
+  <div class="lab-design-upload">
+    <h3>🖼️ 패치 디자인 이미지 제출</h3>
+    <p class="muted">모금 3,000P 달성 시, 학과의 패치 디자인 이미지 등록</p>
+    <label for="labDesignFile" class="lab-upload-label"><span>＋</span><b>이미지 선택</b><small>PNG · JPG · WEBP / 최대 5MB</small></label>
+    <input type="file" id="labDesignFile" accept="image/png,image/jpeg,image/webp" hidden>
+    <div id="labDesignPreview" class="lab-preview" hidden><img id="labPreviewImg" alt="선택한 패치 디자인 미리보기"><button type="button" id="labClearFile" class="secondary-button">이미지 다시 선택</button></div>
+    <label for="labDesignTitle">디자인 이름</label><input id="labDesignTitle" type="text" maxlength="60" placeholder="예: 컴퓨터공학과 별빛 패치">
+    <label for="labDesignNote">추가 설명 (선택)</label><textarea id="labDesignNote" rows="2" maxlength="300" placeholder="디자인 의도, 자수 색상 등"></textarea>
+    <button type="button" id="labSubmit">디자인 이미지 등록 · 3,000P 달성 후</button>
+  </div>
+  <div id="labRequestList" class="lab-request-display"></div>
+  <p class="notice">※ 공동 모금은 Supabase 서버 설정 후 여러 학생에게 공유됩니다. 디자인 등록은 목표 달성 학과당 1건으로 제한됩니다. 등록된 이미지 및 설명은 다른 이용자에게 공개됩니다. 실제 제작·운영자 심사는 별도로 진행해야 합니다.</p>
+</div><div class="card"><div class="section-eyebrow">ACCESSORIES</div><h2>✨ 액세서리 상점 13종</h2><p class="muted">목걸이 3 · 팔찌 3 · 안경 2 · 신발 5종. 목걸이·팔찌·안경·신발은 와우의 신체 위치에 맞게 자동으로 착용돼요.</p><div class="wow-category" id="wowCategories"></div><div id="wowAccessoryShop" class="wow-shop-grid"></div><p class="muted">액세서리 13종 유지 · 배경 테마 4종 추가</p></div>
   </section>
 
   <!-- 기록 -->
@@ -1460,51 +1503,8 @@ function renderWowAccessories(){
     if(choices)choices.innerHTML=wowBackdrops.map(v=>`<button type="button" class="backdrop-chip ${id===v.id?'selected':''}" style="--chip:${v.color}" onclick="setWowBackdrop('${v.id}')" aria-pressed="${id===v.id}"><span></span>${v.label}</button>`).join('');
   }
 
-  // Patch Lab: '기기 내 개인 모금'만 구현. 공유 모금/운영자 접수는 서버 필요.
-  const PATCH_LAB_GOAL=3000;
-  function safeText(text){return String(text).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-  function getLabChoice(){return document.getElementById('labDepartment')?.value || items[0].id;}
-  function setupPatchLab(){
-    const select=document.getElementById('labDepartment');
-    if(select&&!select.options.length)select.innerHTML=items.map(it=>`<option value="${it.id}">${it.name}</option>`).join('');
-    renderPatchLab();
-  }
-  function renderPatchLab(){
-    const id=getLabChoice();
-    const total=Number(state.patchLab?.[id]||0);
-    const pct=Math.min(100,Math.floor(total/PATCH_LAB_GOAL*100));
-    document.getElementById('labBalance').textContent=`${total.toLocaleString()} / 3,000 P`;
-    document.getElementById('labPercent').textContent=`${pct}%`;
-    document.getElementById('labProgressBar').style.width=pct+'%';
-    const submit=document.getElementById('labSubmit');
-    submit.disabled=total<PATCH_LAB_GOAL || (state.patchLabRequests||[]).some(r=>r.departmentId===id);
-    submit.textContent=total<PATCH_LAB_GOAL?'3,000P 달성 후 요청 등록':submit.disabled?'요청 등록 완료':'디자인 요청 등록';
-    const list=(state.patchLabRequests||[]).filter(x=>x.departmentId===id);
-    document.getElementById('labRequestList').innerHTML=list.map(x=>`<div class="lab-request"><b>요청 등록 · ${safeText(x.date)}</b><p>${safeText(x.message)}</p></div>`).join('');
-  }
-  function contributePatchLab(){
-    const id=getLabChoice(), amount=Number(document.getElementById('labContribution').value);
-    const current=Number(state.patchLab?.[id]||0);
-    if(!Number.isSafeInteger(amount)||amount<=0){alert('1P 이상의 정수 입력');return;}
-    if(current>=PATCH_LAB_GOAL){alert('이미 3,000P 목표 달성');return;}
-    if(amount>PATCH_LAB_GOAL-current){alert(`남은 목표 ${PATCH_LAB_GOAL-current}P 이하로 입력`);return;}
-    if(state.points<amount){alert('보유 포인트 부족');return;}
-    if(!confirm(`${items.find(x=>x.id===id).name}에 ${amount}P 적립 · 취소 불가 (개인 시연)`))return;
-    state.points-=amount;
-    state.patchLab ||= {};
-    state.patchLab[id]=current+amount;
-    save();
-  }
-  function submitPatchLabRequest(){
-    const id=getLabChoice(), msg=document.getElementById('labRequest').value.trim();
-    if(Number(state.patchLab?.[id]||0)<PATCH_LAB_GOAL){alert('3,000P 달성 필요');return;}
-    if(!msg||msg.length>400){alert('디자인 요청 내용 입력 · 최대 400자');return;}
-    state.patchLabRequests ||= [];
-    if(state.patchLabRequests.some(r=>r.departmentId===id)){alert('이 학과의 요청 등록 완료');return;}
-    state.patchLabRequests.push({departmentId:id,message:msg,date:new Date().toLocaleDateString('sv-SE')});
-    save();document.getElementById('labRequest').value='';
-    alert('기기 내 요청 등록 완료 · 외부 전송 없음');
-  }
+  // Patch Lab 공동 모금은 별도 Supabase 모듈에서 관리합니다.
+  function setupPatchLab(){}
 
   function renderPatchShop() {
     const query = (document.getElementById('patchSearch')?.value || '').trim().replace(/\s+/g,'').toLowerCase();
@@ -1583,5 +1583,207 @@ function renderWowAccessories(){
 
 
 </script>
+
+<style>
+/* WOWROAD v8 닉네임 인증 */
+.nickname-fields{display:grid;grid-template-columns:1fr;gap:9px;margin:12px 0}
+.nickname-fields input{width:100%;padding:13px;border:1px solid #cfdfd4;border-radius:12px;background:#fff;color:#23392b;font-size:15px}
+.lab-auth-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:4px}
+.lab-auth-actions button{font-size:13px;padding:12px 5px;min-height:46px}
+.account-logged-in{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
+.account-signout{width:auto;padding:9px 18px;margin:12px 0 0;font-size:13px}
+.lab-auth-panel[hidden],.lab-account-panel[hidden]{display:none!important}
+</style>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script>
+/* PATCH LAB 서버 설정: 아래 두 값 입력 (service_role 키 절대 금지) */
+const PATCH_SUPABASE_URL = 'YOUR_SUPABASE_URL';
+const PATCH_SUPABASE_ANON_KEY = 'YOUR_SUPABASE_PUBLISHABLE_KEY';
+(function(){
+'use strict';
+const $=id=>document.getElementById(id);
+const TARGET=3000;
+const configured=/^https:\/\/[a-z0-9-]+\.supabase\.co\/?$/i.test(PATCH_SUPABASE_URL)&&!PATCH_SUPABASE_ANON_KEY.startsWith('YOUR_');
+let db=null, currentUser=null, cloudWallet=0, fund=null, submitted=null, selectedFile=null, busy=false;
+const status=(msg,fail=false)=>{ $('cloudStatus').textContent=msg; $('cloudStatus').classList.toggle('error',fail); };
+const escapeHtml=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function activeDept(){return $('labDepartment').value;}
+function setBusy(value){busy=value;renderButtons();}
+function renderButtons(){
+ const logged=!!currentUser, ready=!!db, total=Number(fund?.total_points||0);
+ $('labContribute').disabled=busy||!logged||!ready||total>=TARGET;
+ $('labSubmit').disabled=busy||!logged||!ready||total<TARGET||!!submitted||!selectedFile;
+ $('labSubmit').textContent=submitted?'디자인 등록 완료':total<TARGET?'3,000P 달성 후 디자인 등록':'디자인 이미지 등록';
+ $('labRefresh').disabled=busy||!ready;
+}
+function render(){
+ const total=Number(fund?.total_points||0),pct=Math.min(100,Math.floor(total/TARGET*100));
+ $('labBalance').textContent=`${total.toLocaleString()} / ${TARGET.toLocaleString()} P`;
+ $('labPercent').textContent=`${pct}%`;
+ $('labProgressBar').style.width=pct+'%';
+ $('labContributors').textContent=`참여 횟수 ${Number(fund?.contribution_count||0)}회`;
+ $('cloudAuthPanel').hidden=!!currentUser;
+ $('cloudAccountPanel').hidden=!currentUser;
+ $('cloudAccountNickname').textContent=currentUser?.user_metadata?.nickname || '이용자';
+ $('cloudBalance').textContent=cloudWallet.toLocaleString()+' P';
+ const list=$('labRequestList');
+ list.innerHTML='';
+ if(submitted){
+   const card=document.createElement('div');card.className='lab-request';
+   const h=document.createElement('h3');h.textContent='✅ 제출된 학과 디자인 · '+submitted.title;card.appendChild(h);
+   const img=document.createElement('img');img.alt='학과 패치 제안 이미지';img.className='lab-submitted-img';
+   const {data}=db.storage.from('patch-designs').getPublicUrl(submitted.image_path);
+   if(data?.publicUrl)img.src=data.publicUrl;
+   card.appendChild(img);
+   if(submitted.note){const p=document.createElement('p');p.textContent=submitted.note;card.appendChild(p);}
+   list.appendChild(card);
+ }
+ renderButtons();
+}
+async function loadWallet(){
+ if(!currentUser){cloudWallet=0;return;}
+ // 가입 시 서버 트리거로 150P 지급. 웹브라우저에서 포인트 생성 불가.
+ const {data,error}=await db.from('patch_wallets').select('balance').eq('user_id',currentUser.id).single();
+ if(error)throw error;
+ cloudWallet=Number(data?.balance||0);
+}
+async function refresh(){
+ if(!db)return;
+ const dept=activeDept();
+ const [fundResult,reqResult]=await Promise.all([
+   db.from('patch_funds').select('total_points,contribution_count,status').eq('department_id',dept).maybeSingle(),
+   db.from('patch_design_requests').select('title,note,image_path,created_at').eq('department_id',dept).maybeSingle()
+ ]);
+ if(fundResult.error)throw fundResult.error;
+ if(reqResult.error)throw reqResult.error;
+ if(activeDept()!==dept)return;
+ fund=fundResult.data;submitted=reqResult.data;
+ await loadWallet();render();
+}
+async function guarded(task){
+ if(busy)return;setBusy(true);
+ try{await task();}catch(e){console.error(e);status(e.message||'요청 처리 실패',true);alert('처리 실패: '+(e.message||'다시 시도'));}
+ finally{setBusy(false);}
+}
+// 로그인 표시용 닉네임 → 내부 기술 식별자(SHA-256). 이메일 입력 및 저장 요구 없음.
+// 비밀번호는 Supabase Auth로만 전달되며 브라우저 localStorage나 엑셀에 저장하지 않음.
+function normalizedNickname(){
+  const n=$('cloudNickname').value.normalize('NFKC').trim();
+  if(!/^[\p{L}\p{N}_]{2,16}$/u.test(n)) throw new Error('닉네임: 글자·숫자·밑줄 2~16자');
+  return n;
+}
+async function internalEmail(nickname){
+  if(!window.crypto?.subtle)throw new Error('HTTPS 환경에서만 계정 이용 가능');
+  const canonical=nickname.toLocaleLowerCase('ko-KR');
+  const bytes=new TextEncoder().encode('wowroad-nickname-v1:'+canonical);
+  const hashed=await crypto.subtle.digest('SHA-256',bytes);
+  const hex=Array.from(new Uint8Array(hashed),b=>b.toString(16).padStart(2,'0')).join('');
+  return `u${hex}@members.wowroad.invalid`;
+}
+function authFields(){
+  const nickname=normalizedNickname(),password=$('cloudPassword').value;
+  if(password.length<8||password.length>72)throw new Error('비밀번호: 8~72자');
+  return {nickname,password};
+}
+async function signIn(){
+  if(!db){status('서버 연결 필요',true);return;}
+  await guarded(async()=>{
+    const {nickname,password}=authFields();
+    const email=await internalEmail(nickname);
+    const {data,error}=await db.auth.signInWithPassword({email,password});
+    if(error)throw new Error('닉네임 또는 비밀번호 오류 · 서버 인증 설정 확인');
+    currentUser=data.user; $('cloudPassword').value='';
+    await refresh();status(`${nickname}님 로그인 완료`);
+  });
+}
+async function signUp(){
+  if(!db){status('서버 연결 필요',true);return;}
+  await guarded(async()=>{
+    const {nickname,password}=authFields();
+    if(!confirm(`${nickname} 이름으로 계정 생성 · 비밀번호 분실 시 복구 불가 · 가입 진행?`))return;
+    const email=await internalEmail(nickname);
+    const {data,error}=await db.auth.signUp({email,password,options:{data:{nickname}}});
+    if(error)throw error;
+    if(!data.session){throw new Error('서버에서 이메일 인증 비활성화 필요 · 설정 가이드 확인');}
+    currentUser=data.user;$('cloudPassword').value='';
+    await refresh();status(`${nickname}님 가입 완료 · 초기 150P 지급`);
+  });
+}
+ async function contribute(){
+ if(!currentUser){alert('닉네임 로그인 후 이용 가능');return;}
+ const dept=activeDept(),points=Number($('labContribution').value);
+ if(!Number.isSafeInteger(points)||points<=0||points>TARGET){alert('1~3,000 사이 정수 입력');return;}
+ if(points>cloudWallet){alert('공동 모금용 계정 포인트 부족');return;}
+ if(points>TARGET-Number(fund?.total_points||0)){alert('남은 목표를 초과하는 금액');return;}
+ if(!confirm(`${items.find(x=>x.id===dept)?.name} 공동 모금에 ${points}P 기부 · 취소 불가`))return;
+ await guarded(async()=>{
+   const {error}=await db.rpc('contribute_to_patch',{p_department_id:dept,p_amount:points});
+   if(error)throw error;
+   await refresh();status(`${points}P 공동 모금 반영 완료`);
+ });
+}
+function chooseFile(f){
+ if(f && (!['image/png','image/jpeg','image/webp'].includes(f.type)||f.size>5*1024*1024||f.size===0)){
+    $('labDesignFile').value='';alert('PNG/JPG/WEBP · 최대 5MB 이미지 선택');return;
+ }
+ selectedFile=f||null;
+ $('labDesignPreview').hidden=!f;
+ if(f){const reader=new FileReader();reader.onload=()=>{if(selectedFile===f)$('labPreviewImg').src=reader.result;};reader.readAsDataURL(f);}
+ else $('labPreviewImg').removeAttribute('src');
+ renderButtons();
+}
+async function submitDesign(){
+ if(!currentUser){alert('닉네임 로그인 후 이용 가능');return;}
+ if(Number(fund?.total_points||0)<TARGET){alert('공동 모금 3,000P 달성 후 신청 가능');return;}
+ if(submitted){alert('이 학과에는 이미 제출된 디자인이 있음');return;}
+ const title=$('labDesignTitle').value.trim(),note=$('labDesignNote').value.trim(),f=selectedFile;
+ if(!title||title.length>60){alert('디자인 이름 입력 · 최대 60자');return;}
+ if(!f){alert('패치 디자인 이미지 첨부 필요');return;}
+ const dept=activeDept(),ext=({'image/png':'png','image/jpeg':'jpg','image/webp':'webp'})[f.type];
+ const path=`${currentUser.id}/${dept}-${Date.now()}-${Math.random().toString(36).slice(2,9)}.${ext}`;
+ await guarded(async()=>{
+   status('디자인 이미지 업로드 중');
+   const {error:upError}=await db.storage.from('patch-designs').upload(path,f,{contentType:f.type,upsert:false});
+   if(upError)throw upError;
+   const {error:reqError}=await db.rpc('submit_patch_design',{p_department_id:dept,p_image_path:path,p_title:title,p_note:note});
+   if(reqError){await db.storage.from('patch-designs').remove([path]);throw reqError;}
+   chooseFile(null);$('labDesignFile').value='';$('labDesignTitle').value='';$('labDesignNote').value='';
+   await refresh();status('학과 디자인 이미지 등록 완료');
+ });
+}
+async function init(){
+ $('labDepartment').innerHTML=items.map(i=>`<option value="${i.id}">${escapeHtml(i.name)}</option>`).join('');
+ $('labDepartment').addEventListener('change',()=>{fund=null;submitted=null;render();guarded(async()=>{await refresh();status('학과별 공동 모금 현황');});});
+ $('cloudSignIn').addEventListener('click',signIn);
+ $('cloudSignUp').addEventListener('click',signUp);
+ $('cloudPassword').addEventListener('keydown',e=>{if(e.key==='Enter')signIn();});
+ $('cloudSignOut').addEventListener('click',()=>guarded(async()=>{await db.auth.signOut();currentUser=null;cloudWallet=0;render();status('로그아웃 완료');}));
+ $('labContribute').addEventListener('click',contribute);
+ $('labSubmit').addEventListener('click',submitDesign);
+ $('labDesignFile').addEventListener('change',e=>chooseFile(e.target.files[0]));
+ $('labClearFile').addEventListener('click',()=>{$('labDesignFile').value='';chooseFile(null);$('labDesignFile').click();});
+ $('labRefresh').addEventListener('click',()=>guarded(async()=>{await refresh();status('공동 모금 현황 갱신 완료');}));
+ if(!configured){status('공동 모금 서버 미연결 · Supabase URL과 공개 키 설정 필요',true);render();return;}
+ if(!window.supabase){status('서버 라이브러리 로딩 실패 · 네트워크 확인',true);render();return;}
+ db=window.supabase.createClient(PATCH_SUPABASE_URL,PATCH_SUPABASE_ANON_KEY);
+  try{
+    const {data:{session},error}=await db.auth.getSession();if(error)throw error;
+    currentUser=session?.user?.user_metadata?.nickname ? session.user : null;
+    // 구버전 익명 로그인 세션은 개인정보 없는 닉네임 로그인으로 자동 전환
+    if(session?.user && !currentUser){await db.auth.signOut();}
+    await refresh();status(currentUser?'닉네임 계정 연결 완료':'닉네임 로그인 또는 첫 가입');
+    db.auth.onAuthStateChange((_event,session)=>{
+      currentUser=session?.user?.user_metadata?.nickname ? session.user : null;
+      setTimeout(()=>{
+        refresh().then(()=>status(currentUser?'닉네임 계정 연결 완료':'닉네임 로그인 필요'))
+          .catch(e=>status(e.message,true));
+      },0);
+    });
+ }catch(e){status('서버 연결 오류 · '+e.message,true);}
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+
 </body>
 </html>
