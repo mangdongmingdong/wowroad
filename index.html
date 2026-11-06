@@ -499,6 +499,25 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
 #labProgressBar{background:#27477e!important}
 #cloudAccountPanel .account-logged-in strong{color:#1c3971!important}
 </style>
+<style id="wowroad-v11-patch-alignment">
+/* Patch alignment v11: preserve source PNG aspect ratios in an orderly 2-column grid. */
+#shop.wow-shop-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;align-items:stretch}
+#shop .wow-shop-item{box-sizing:border-box;display:flex;flex-direction:column;min-height:286px;height:100%;padding:12px 10px;margin:0;border:1px solid #D6E0F4;border-radius:17px;background:#FFF;overflow:hidden;box-shadow:0 5px 15px rgba(25,46,90,.065)}
+#shop .wow-shop-item.patch-equipped{border:2px solid #344F96;background:#F2F5FE;padding:11px 9px}
+#shop .wow-shop-item .patch-art{height:154px;flex:0 0 154px;display:flex;align-items:center;justify-content:center;overflow:hidden;padding:10px;border-radius:13px;background:#F0F4FC}
+#shop .wow-shop-item .patch-art img{display:block;max-width:100%;max-height:100%;width:100%;height:100%;object-fit:contain;object-position:center;background:none;border:0;padding:0;mix-blend-mode:normal}
+#shop .wow-shop-item .patch-title{flex:0 0 auto;display:flex;justify-content:center;align-items:center;min-height:51px;margin:9px 0 3px;font-size:12px;font-weight:800;line-height:1.4;text-align:center;word-break:keep-all;overflow-wrap:anywhere;color:#1D3159}
+#shop .wow-shop-item .patch-price{margin:auto 0 9px;text-align:center;line-height:1.4;color:#526586}
+#shop .wow-shop-item button{min-height:42px;width:100%;margin:0;border-radius:11px;background:#253E76;color:#FFF;font-weight:750}
+#shop .wow-shop-item.patch-equipped button{background:#3B558E}
+.wow-align-toolbar{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin:11px 0 6px}
+.wow-align-toolbar button{flex:0 1 auto;width:auto;min-width:155px;padding:10px 14px;border-radius:11px;background:#263D73;color:#fff;font-size:13px}
+.wow-align-toolbar span{font-size:11px;color:#61718D;line-height:1.5}
+#wowStage{isolation:isolate}
+#wowPatchLayers,#wowAccessoryLayers{pointer-events:none}
+#wowPatchLayers .wow-layer{pointer-events:auto;z-index:16;filter:drop-shadow(0 1.5px 2px rgba(16,32,71,.3))}
+@media(max-width:360px){#shop.wow-shop-grid{gap:9px}#shop .wow-shop-item{padding:9px 7px;min-height:263px}#shop .wow-shop-item .patch-art{height:135px;flex-basis:135px}#shop .wow-shop-item .patch-title{font-size:11.5px}}
+</style>
 </head>
 
 <body>
@@ -654,7 +673,7 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
         <input id="wowSize" type="range" min="5" max="25" step="1" oninput="resizeWowItem(this.value)">
         <p class="muted" style="margin:5px 0">패치 드래그 · 크기 조절 · 위치 초기화</p>
       </div>
-      <p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
+      <div class="wow-align-toolbar"><button type="button" onclick="alignAllWowPatches()">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
     <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div></div><div class="card upgrade-card" id="patchLab">
   <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
@@ -1512,10 +1531,26 @@ const wowAccessories = [{"id":"acc0","name":"H 로고 목걸이","category":"목
 let wowSelected=null, wowCategory='전체';
 function wowAllItems(){return [...items.map((it,i)=>({...it,category:'패치',src:wowDepartmentImages[i],x:40,y:59,w:12})),...wowAccessories];}
 function wowGet(id){return wowAllItems().find(it=>it.id===id);}
+// Original 35 department embroidery images: slot locations for the fixed navy varsity jacket.
+// Keep the five-patch array order stable; manual dragging continues to be saved separately.
+const wowPatchSlots = Object.freeze([[32,59],[56,59],[32,66],[56,66],[44,72]]);
 function wowDefaultPosition(id){
  const it=wowGet(id); if(!it)return {x:40,y:60,w:12};
- if(id.startsWith('dept')){const i=state.wowEquipped.indexOf(id);const spots=[[34,58],[54,58],[34,64],[54,64],[44,70]];const p=spots[Math.max(0,i)%5];return {x:p[0],y:p[1],w:11};}
+ if(id.startsWith('dept')){
+   const i=Math.max(0,(state.wowEquipped||[]).indexOf(id));
+   const p=wowPatchSlots[i%wowPatchSlots.length];
+   return {x:p[0],y:p[1],w:11};
+ }
  return {x:it.x,y:it.y,w:it.w};
+}
+function alignAllWowPatches(){
+ state.wowPositions ||= {};
+ const equipped=(state.wowEquipped||[]).filter(id=>state.owned.includes(id)).slice(0,5);
+ equipped.forEach(id=>delete state.wowPositions[id]);
+ wowSelected=null;
+ save();
+ renderWowEditor();
+ drawWowLayers();
 }
 function wowPos(id){state.wowPositions ||= {};return state.wowPositions[id] || wowDefaultPosition(id);}
 function wowSelect(id){wowSelected=id;renderWowEditor();drawWowLayers();}
@@ -1526,7 +1561,7 @@ function renderWowEditor(){
  const p=wowPos(wowSelected);document.getElementById('wowSize').value=p.w;
  document.getElementById('wowSizeLabel').textContent=Math.round(p.w/(it.w||12)*100)+'%';
 }
-function resizeWowItem(value){if(!wowSelected)return;const p={...wowPos(wowSelected),w:Number(value)};state.wowPositions[wowSelected]=p;localStorage.setItem('wowroad-v1',JSON.stringify(state));drawWowLayers();renderWowEditor();}
+function resizeWowItem(value){if(!wowSelected)return;const p={...wowPos(wowSelected),w:Math.max(5,Math.min(25,Number(value)))};p.x=Math.max(0,Math.min(100-p.w,p.x));state.wowPositions[wowSelected]=p;save();renderWowEditor();}
 function resetWowPosition(){if(!wowSelected)return;delete state.wowPositions[wowSelected];save();renderWowEditor();}
 function wowLayerMarkup(id){const it=wowGet(id),p=wowPos(id);if(!it)return '';
  return `<img class="wow-layer ${wowSelected===id?'is-selected':''}" data-wow-id="${id}" src="${it.src}" alt="${it.name}" draggable="false" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;z-index:${wowSelected===id?25:10}">`;
