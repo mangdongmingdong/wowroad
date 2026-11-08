@@ -551,6 +551,16 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
 <style id="wow-contest-style">
 .wow-contest{border-color:#dbe4f4!important}.contest-top{display:flex;justify-content:space-between;gap:9px;align-items:start}.contest-top h2{margin-bottom:5px;color:#192e5a}.contest-month-pill{white-space:nowrap;background:#e8edfb;color:#233b76;padding:7px 9px;border-radius:20px;font-weight:700;font-size:11px}.contest-phase{display:flex;flex-direction:column;gap:4px;border-radius:14px;background:#f0f3fd;color:#22375f;padding:13px;margin:12px 0 16px}.contest-phase small{line-height:1.5;color:#6b7a99}.contest-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:9px 0 15px}.contest-actions button{font-size:12px;padding:12px 5px;min-width:0}.wow-contest input[type=text],.wow-contest #contestTitle{width:100%;border:1px solid #cbd6ea;border-radius:12px;padding:13px;font-size:14px;background:white;margin:7px 0 14px;color:#172c50}.contest-preview{border:1px solid #dce4f4;border-radius:16px;padding:10px;text-align:center;margin:12px auto}.contest-preview img{width:min(100%,230px);max-height:360px;object-fit:contain;border-radius:12px;background:#f7f9fc}.contest-consent{display:flex;gap:9px;align-items:center;font-weight:500;font-size:12px;line-height:1.5;margin:10px 0 16px}.contest-consent input{width:18px;height:18px;flex:0 0 18px;accent-color:#263d73}.contest-gallery-heading{margin-top:22px;align-items:center}.contest-gallery-heading h3{margin:0}.contest-gallery{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px;margin-top:12px}.contest-entry{border:1px solid #e0e7f4;border-radius:15px;padding:9px;min-width:0;background:white}.contest-entry img{width:100%;aspect-ratio:3/4;object-fit:contain;background:#f3f5fb;border-radius:10px}.contest-entry strong{font-size:13px;display:block;margin-top:7px;overflow-wrap:anywhere}.contest-entry small{display:block;font-size:11px;color:#7281a0;margin:4px 0 9px;overflow-wrap:anywhere}.contest-entry button{font-size:12px;padding:9px 5px;min-height:37px}.contest-entry button:disabled{background:#e8ecf6;color:#5c6b85}.contest-entry .contest-votes{font-size:12px;color:#2a437d;font-weight:700;margin:5px 0}.contest-gallery .contest-empty{grid-column:1/-1;text-align:center;color:#687a99;background:#f6f8fd;border-radius:12px;padding:18px 12px;line-height:1.6}
 </style>
+
+<style id="wowroad-v14-wardrobe-and-shop-update">
+/* Home hero: remove the decorative diamond/star, including previous !important styles. */
+#home .hero::after,#home .hero::before{content:none!important;display:none!important;background:none!important}
+/* Four patches by default; search results and expanded view remain fully visible. */
+#patchShopToggle{display:block;width:100%;margin-top:12px;padding:12px 16px!important;border:1px solid #cad7ef!important;border-radius:12px!important;background:#eaf0fc!important;color:#1d376c!important;font-weight:800!important;cursor:pointer}
+#patchShopToggle[hidden]{display:none!important}
+#patchShopToggle:focus-visible{outline:3px solid #7e9cdd;outline-offset:2px}
+#wardrobeSyncStatus{margin:9px 0 0;font-size:11px;color:#405781;line-height:1.5}
+</style>
 </head>
 
 <body>
@@ -584,7 +594,7 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
   <!-- 홈 -->
   <section id="home" class="page active">
     <div class="card hero">
-      <div class="hero-kicker">🌿 나의 이동이 만드는 변화</div><h2>혼잡 분산, 더 여유로운 이동</h2>
+      <div class="hero-kicker">🌿 나의 이동이 만드는 변화</div><h2>와우를 찾아서, 혼잡을 피해서</h2>
       <p>
         홍익대학교 주변 대체 정류장 안내 · 위치 인증 · 포인트 적립
       </p>
@@ -709,7 +719,7 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
       <button type="button" class="wow-remove-item" id="wowRemoveSticker" onclick="removeSelectedWowSticker()" hidden>선택한 스티커 제거</button></div>
       <div class="wow-align-toolbar"><button type="button" onclick="alignAllWowPatches()">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
-    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div></div><div class="card upgrade-card" id="patchLab">
+    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div><button type="button" id="patchShopToggle" aria-expanded="false" onclick="togglePatchShop()">전체 와펜 35종 펼치기 ↓</button><p id="wardrobeSyncStatus" role="status" aria-live="polite"></p></div><div class="card upgrade-card" id="patchLab">
   <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
   <h2>🎓 학과 패치 업그레이드</h2>
   <p class="muted">학과별 공동 모금 · 3,000P 목표 · 학생 디자인 이미지 제출</p>
@@ -958,7 +968,9 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
   function wowLocalKey(){return 'wowroad-v10-local-'+(window.WowCloud?.user?.id||'guest');}
   window.wowLocalKey=wowLocalKey;
   window.wowResetUserLocal=function(){
-    const fresh={...initialState,points:0,starterGranted:true,totalEarned:0,history:[],owned:[],wowEquipped:[],wowPositions:{},wowAccessoriesEquipped:[],wowBackdrop:'mint'};
+    // Immediately change account-scoped local state; server wardrobe is restored after wallet loading.
+    window.WowWardrobe?.reset();
+    const fresh={...initialState,points:0,starterGranted:true,totalEarned:0,history:[],owned:[],wowEquipped:[],wowPositions:{},wowAccessoriesEquipped:[],wowStickers:[],wowBackdrop:'mint',patchCatalogVersion:35};
     try{const prior=JSON.parse(localStorage.getItem(wowLocalKey())||'{}');state={...fresh,...prior,points:0,starterGranted:true};}catch{state=fresh;}
     render();
   };
@@ -988,11 +1000,97 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
   let alternativeMarker = null;
   let connectionLine = null;
 
+
+  // Account-scoped cloud wardrobe: the wallet and item purchases remain authoritative elsewhere.
+  // Only equipped items, their positions/sizes and backdrop are stored in this table.
+  (function setupWowWardrobe(){
+    const fields=['wowEquipped','wowAccessoriesEquipped','wowStickers','wowPositions','wowBackdrop','wowJacketOn'];
+    let loadedUser=null, ready=false, restorePromise=null, pending=null, writeChain=Promise.resolve(), generation=0;
+    let lastError='';
+    const label=()=>document.getElementById('wardrobeSyncStatus');
+    const show=(msg,fail=false)=>{const el=label();if(el){el.textContent=msg;el.style.color=fail?'#af3243':'#405781';}};
+    const userId=()=>window.WowCloud?.user?.id||null;
+    const client=()=>window.WowCloud?.client||null;
+    function snapshot(){
+      const copy={};for(const field of fields)copy[field]=JSON.parse(JSON.stringify(state[field]??(field==='wowPositions'?{}:field==='wowBackdrop'?'mint':field==='wowJacketOn'?true:[])));
+      return copy;
+    }
+    function normalized(raw){
+      if(!raw||typeof raw!=='object'||Array.isArray(raw))return null;
+      const r={};
+      const owned=new Set(state.owned||[]);
+      const safeIds=x=>Array.isArray(x)?[...new Set(x.filter(id=>typeof id==='string'&&owned.has(id)))]:[];
+      r.wowEquipped=safeIds(raw.wowEquipped).filter(id=>id.startsWith('dept')).slice(0,5);
+      r.wowAccessoriesEquipped=safeIds(raw.wowAccessoriesEquipped).filter(id=>/^acc\d+$/.test(id)||/^ear/.test(id));
+      r.wowStickers=safeIds(raw.wowStickers).filter(id=>id.startsWith('stk'));
+      r.wowBackdrop=['mint','sky','cream','lavender'].includes(raw.wowBackdrop)?raw.wowBackdrop:'mint';
+      r.wowJacketOn=true;
+      r.wowPositions={};
+      if(raw.wowPositions&&typeof raw.wowPositions==='object'&&!Array.isArray(raw.wowPositions)){
+        for(const [id,p] of Object.entries(raw.wowPositions)){
+          if(!owned.has(id)||!p||typeof p!=='object')continue;
+          const x=Number(p.x),y=Number(p.y),w=Number(p.w);
+          if(![x,y,w].every(Number.isFinite))continue;
+          const width=Math.max(4,Math.min(90,w));
+          r.wowPositions[id]={x:Math.max(0,Math.min(100-width,x)),y:Math.max(0,Math.min(96,y)),w:width};
+        }
+      }
+      return r;
+    }
+    async function send(copy,uid,expectedGeneration){
+      if(!client()||!uid||expectedGeneration!==generation) return;
+      const {error}=await client().from('wow_user_wardrobes').upsert({user_id:uid,configuration:copy,updated_at:new Date().toISOString()},{onConflict:'user_id'});
+      if(error){lastError=error.message;show('꾸미기 서버 저장 실패 · SQL 설치와 연결을 확인하세요',true);throw error;}
+      lastError='';show('꾸미기 설정 서버에 저장됨 ✓');
+    }
+    function queueSave(){
+      if(!ready||loadedUser!==userId()||!client())return;
+      const copy=snapshot(),uid=loadedUser,gen=generation;
+      if(pending)clearTimeout(pending);
+      pending=setTimeout(()=>{
+        pending=null;
+        // Serialize overlapping writes so older snapshots cannot overwrite newer ones.
+        writeChain=writeChain.catch(()=>{}).then(()=>send(copy,uid,gen));
+        writeChain.catch(()=>{});
+      },550);
+      show('꾸미기 설정 저장 중…');
+    }
+    async function flush(){
+      if(pending){clearTimeout(pending);pending=null;const uid=loadedUser,gen=generation,copy=snapshot();
+        writeChain=writeChain.catch(()=>{}).then(()=>send(copy,uid,gen));}
+      await writeChain;
+    }
+    function reset(){
+      if(pending){clearTimeout(pending);pending=null;}
+      generation++;loadedUser=null;ready=false;restorePromise=null;lastError='';
+      show('');
+    }
+    async function restore(){
+      const uid=userId();if(!uid||!client())return;
+      if(ready&&loadedUser===uid)return;
+      if(restorePromise&&loadedUser===uid)return restorePromise;
+      loadedUser=uid;ready=false;const gen=generation;
+      restorePromise=(async()=>{
+        show('꾸미기 설정 불러오는 중…');
+        const {data,error}=await client().from('wow_user_wardrobes').select('configuration').eq('user_id',uid).maybeSingle();
+        if(gen!==generation||uid!==userId())return;
+        if(error){show('서버 꾸미기 설정을 불러오지 못했어요 · SQL 적용 확인',true);console.error('[WowWardrobe] restore',error);return;}
+        const original=data?.configuration;
+        const normalizedData=normalized(original||snapshot());
+        if(normalizedData)Object.assign(state,normalizedData,{patchCatalogVersion:35,wowShoeFitVersion:2});
+        localStorage.setItem(wowLocalKey(),JSON.stringify(state));
+        ready=true;render();
+        if(!original){show('기존 꾸미기 설정 서버에 처음 저장 중…');queueSave();}
+        else show('이전 꾸미기 설정 복원 완료 ✓');
+      })().finally(()=>{if(gen===generation)restorePromise=null;});
+      return restorePromise;
+    }
+    window.WowWardrobe={reset,restore,queueSave,flush,get ready(){return ready;},get error(){return lastError;}};
+  })();
+
   function save() {
-    localStorage.setItem(
-      wowLocalKey(),
-      JSON.stringify(state)
-    );
+    localStorage.setItem(wowLocalKey(), JSON.stringify(state));
+    window.WowWardrobe?.queueSave();
     render();
   }
 
@@ -1695,7 +1793,7 @@ function renderWowAccessories(){
   state.wowPositions[drag.id]={...p,x:Math.max(0,Math.min(100-p.w,x)),y:Math.max(0,Math.min(96,y))};
   const el=stage.querySelector(`[data-wow-id="${drag.id}"]`);if(el){el.style.left=state.wowPositions[drag.id].x+'%';el.style.top=state.wowPositions[drag.id].y+'%';}
  });
- function endDrag(){if(!drag)return;drag=null;localStorage.setItem('wowroad-v1',JSON.stringify(state));}
+ function endDrag(){if(!drag)return;drag=null;save();}
  stage.addEventListener('pointerup',endDrag);stage.addEventListener('pointercancel',endDrag);
 })();
 
@@ -1723,11 +1821,16 @@ function renderWowAccessories(){
   // Patch Lab 공동 모금은 별도 Supabase 모듈에서 관리합니다.
   function setupPatchLab(){}
 
+  let patchShopExpanded=false;
+  function togglePatchShop(){patchShopExpanded=!patchShopExpanded;renderPatchShop();}
   function renderPatchShop() {
     const query = (document.getElementById('patchSearch')?.value || '').trim().replace(/\s+/g,'').toLowerCase();
-    const list = items.map((item, i)=>({item, i})).filter(({item})=>item.name.replace(/\s+/g,'').toLowerCase().includes(query));
+    const filtered = items.map((item, i)=>({item, i})).filter(({item})=>item.name.replace(/\s+/g,'').toLowerCase().includes(query));
+    const list = query || patchShopExpanded ? filtered : filtered.slice(0,4);
     const count = document.getElementById('patchCount');
-    if(count) count.textContent = query ? `검색 결과 ${list.length}개` : '전체 35개 학과';
+    if(count)count.textContent=query?`검색 결과 ${filtered.length}개`:(patchShopExpanded?'전체 35개 학과':'35개 학과 중 4개 미리보기');
+    const toggle=document.getElementById('patchShopToggle');
+    if(toggle){toggle.hidden=!!query;toggle.textContent=patchShopExpanded?'접기 ↑':'전체 와펜 35종 펼치기 ↓';toggle.setAttribute('aria-expanded',String(patchShopExpanded));}
     const equipped = (state.wowEquipped||[]).filter(id=>state.owned.includes(id)).slice(0,5);
     document.getElementById('shop').innerHTML = list.length ? list.map(({item,i})=>{
       const owned=state.owned.includes(item.id), on=equipped.includes(item.id);
@@ -1753,16 +1856,16 @@ function renderWowAccessories(){
     // 구 버전의 10종 패치 구매 데이터가 새 학과에 잘못 대응되지 않도록 분리
     if(state.patchCatalogVersion!==35){
       state.owned=state.owned.filter(id=>!/^patch\d+$/.test(id));
-      state.wowEquipped=[];
+      state.wowEquipped=state.wowEquipped.filter(id=>/^dept\d+$/.test(id));
       state.patchCatalogVersion=35;
-      localStorage.setItem('wowroad-v1', JSON.stringify(state));
+      localStorage.setItem(wowLocalKey(), JSON.stringify(state));
     }
     wowRenderOutfit();
     state.wowPositions ||= {}; state.wowAccessoriesEquipped ||= [];
     if(state.wowShoeFitVersion!==2){
       for(const id of ['acc8','acc9','acc10','acc11','acc12']) delete state.wowPositions[id];
       state.wowShoeFitVersion=2;
-      localStorage.setItem('wowroad-v1',JSON.stringify(state));
+      localStorage.setItem(wowLocalKey(),JSON.stringify(state));
     }
     const equippedPatches=state.wowEquipped.filter(id=>state.owned.includes(id)).slice(0,5);
     drawWowLayers();
@@ -1901,7 +2004,9 @@ async function refresh(){
  if(reqResult.error)throw reqResult.error;
  if(activeDept()!==dept)return;
  fund=fundResult.data;submitted=reqResult.data;
- await loadWallet();render();
+ await loadWallet();
+ if(currentUser)await window.WowWardrobe?.restore();
+ render();
 }
 async function guarded(task){
  if(busy)return;setBusy(true);
@@ -1935,7 +2040,7 @@ async function signIn(){
     const email=await internalEmail(nickname);
     const {data,error}=await db.auth.signInWithPassword({email,password});
     if(error)throw new Error('닉네임 또는 비밀번호 오류 · 서버 인증 설정 확인');
-    currentUser=data.user; window.WowCloud.user=currentUser; window.wowResetUserLocal(); $('cloudPassword').value='';
+    const priorUserId=window.WowCloud.user?.id;currentUser=data.user; window.WowCloud.user=currentUser; if(priorUserId!==currentUser.id)window.wowResetUserLocal(); $('cloudPassword').value='';
     await refresh();status(`${nickname}님 로그인 완료`);
   });
 }
@@ -1948,7 +2053,7 @@ async function signUp(){
     const {data,error}=await db.auth.signUp({email,password,options:{data:{nickname}}});
     if(error)throw error;
     if(!data.session){throw new Error('서버에서 이메일 인증 비활성화 필요 · 설정 가이드 확인');}
-    currentUser=data.user;window.WowCloud.user=currentUser;window.wowResetUserLocal();$('cloudPassword').value='';
+    const priorUserId=window.WowCloud.user?.id;currentUser=data.user;window.WowCloud.user=currentUser;if(priorUserId!==currentUser.id)window.wowResetUserLocal();$('cloudPassword').value='';
     await refresh();status(`${nickname}님 가입 완료 · 초기 150P 지급`);
   });
 }
@@ -2000,7 +2105,7 @@ async function init(){
  $('cloudSignIn').addEventListener('click',signIn);
  $('cloudSignUp').addEventListener('click',signUp);
  $('cloudPassword').addEventListener('keydown',e=>{if(e.key==='Enter')signIn();});
- $('cloudSignOut').addEventListener('click',()=>guarded(async()=>{await db.auth.signOut();currentUser=null;cloudWallet=0;window.WowCloud.user=null;window.WowCloud.balance=0;window.wowResetUserLocal();render();status('로그아웃 완료');}));
+ $('cloudSignOut').addEventListener('click',()=>guarded(async()=>{await window.WowWardrobe?.flush();await db.auth.signOut();currentUser=null;cloudWallet=0;window.WowCloud.user=null;window.WowCloud.balance=0;window.wowResetUserLocal();render();status('로그아웃 완료');}));
  $('labContribute').addEventListener('click',contribute);
  $('labSubmit').addEventListener('click',submitDesign);
  $('labDesignFile').addEventListener('change',e=>chooseFile(e.target.files[0]));
@@ -2016,7 +2121,11 @@ async function init(){
     if(session?.user && !currentUser){await db.auth.signOut();}
     await refresh();status(currentUser?'닉네임 계정 연결 완료':'닉네임 로그인 또는 첫 가입');
     db.auth.onAuthStateChange((_event,session)=>{
-      currentUser=session?.user?.user_metadata?.nickname ? session.user : null;window.WowCloud.user=currentUser;window.wowResetUserLocal();
+      const next=session?.user?.user_metadata?.nickname ? session.user : null;
+      const previousId=window.WowCloud?.user?.id||null;
+      currentUser=next;window.WowCloud.user=next;
+      // Avoid erasing restored customization on TOKEN_REFRESHED / INITIAL_SESSION.
+      if(previousId!==(next?.id||null))window.wowResetUserLocal();
       setTimeout(()=>{
         refresh().then(()=>status(currentUser?'닉네임 계정 연결 완료':'닉네임 로그인 필요'))
           .catch(e=>status(e.message,true));
