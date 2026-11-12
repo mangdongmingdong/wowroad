@@ -561,9 +561,35 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
 #patchShopToggle:focus-visible{outline:3px solid #7e9cdd;outline-offset:2px}
 #wardrobeSyncStatus{margin:9px 0 0;font-size:11px;color:#405781;line-height:1.5}
 </style>
+<style id="wowroad-v14-flash-event-style">
+#wowFlashEvent[hidden]{display:none!important}
+#wowFlashEvent{position:fixed;inset:0;z-index:100004;display:flex;align-items:center;justify-content:center;padding:20px;background:rgba(12,25,53,.70);backdrop-filter:blur(7px)}
+#wowFlashEvent .flash-card{width:min(100%,375px);max-height:92dvh;overflow:auto;background:#fff;border-radius:26px;padding:28px 23px 22px;text-align:center;color:#192e5a;box-shadow:0 24px 76px #050f2d55;position:relative}
+#wowFlashEvent .flash-icon{width:70px;height:70px;margin:0 auto 12px;display:grid;place-items:center;border-radius:22px;background:#eaf0ff;font-size:36px}
+#wowFlashEvent .flash-overline{font-size:11px;letter-spacing:1.7px;font-weight:800;color:#5471a7;margin:0 0 10px}
+#wowFlashEvent h2{font-size:25px;line-height:1.3;color:#192e5a;margin:0 0 9px}
+#wowFlashEvent .flash-points{font-size:45px;line-height:1.2;font-weight:900;color:#274889;margin:9px 0}
+#wowFlashEvent .flash-body{font-size:14px;color:#50617f;line-height:1.65;margin:7px 0 15px;white-space:pre-line}
+#wowFlashEvent #wowFlashClaim{width:100%;background:#263f79!important;color:#fff!important;border-radius:13px;min-height:51px;font-size:15px}
+#wowFlashEvent .flash-dismiss{margin-top:10px;padding:8px;width:auto;background:transparent!important;color:#65738e!important;font-size:13px}
+#wowFlashEvent .flash-status{min-height:17px;font-size:12px;color:#344e83;margin-top:7px;line-height:1.5}
+</style>
 </head>
 
 <body>
+<div id="wowFlashEvent" role="dialog" aria-modal="true" aria-labelledby="wowFlashTitle" hidden>
+  <div class="flash-card">
+    <div class="flash-icon" aria-hidden="true">🎁</div>
+    <p class="flash-overline">WOWROAD SURPRISE EVENT</p>
+    <h2 id="wowFlashTitle">선착순 1명 깜짝 이벤트!</h2>
+    <div class="flash-points">+200P</div>
+    <p class="flash-body" id="wowFlashDescription">지금 가장 먼저 버튼을 누른 한 명에게 200P를 드려요!
+GPS 인증이나 미션 수행은 필요 없어요.</p>
+    <button id="wowFlashClaim" type="button">🎁 200P 받기</button>
+    <p id="wowFlashStatus" class="flash-status" aria-live="polite"></p>
+    <button id="wowFlashDismiss" type="button" class="flash-dismiss">나중에 하기</button>
+  </div>
+</div>
 <section id="onboarding" aria-label="와우로드 시작 화면">
  <div class="auth-inner">
   <div class="auth-mark" aria-hidden="true">W</div>
@@ -2293,6 +2319,95 @@ function init(){
   if(signedIn())loadGallery();else message('닉네임 로그인 후 공모전 참여 가능');
 }
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
+})();
+</script>
+<script id="wowroad-v14-flash-event-script">
+(function(){
+  'use strict';
+  const dialog=document.getElementById('wowFlashEvent');
+  const title=document.getElementById('wowFlashTitle');
+  const desc=document.getElementById('wowFlashDescription');
+  const action=document.getElementById('wowFlashClaim');
+  const status=document.getElementById('wowFlashStatus');
+  const dismiss=document.getElementById('wowFlashDismiss');
+  if(!dialog||!action)return;
+  let currentEvent=null,checking=false,claiming=false,lastFocus=null;
+  const eventKey=ev=>`wowroad-flash-dismiss-${window.WowCloud?.user?.id||'guest'}-${ev.date}-${ev.slot}`;
+  const readDismissed=key=>{try{return sessionStorage.getItem(key)==='1';}catch{return false;}};
+  const setDismissed=key=>{try{sessionStorage.setItem(key,'1');}catch{}};
+  function close(markDismissed=true){
+    if(markDismissed&&currentEvent)setDismissed(eventKey(currentEvent));
+    dialog.hidden=true;
+    if(lastFocus?.isConnected)lastFocus.focus();
+  }
+  function show(ev){
+    currentEvent=ev;lastFocus=document.activeElement;
+    title.textContent='선착순 1명 깜짝 이벤트!';
+    desc.textContent='지금 가장 먼저 버튼을 누른 한 명에게 200P를 드려요!\nGPS 인증이나 미션 수행은 필요 없어요.';
+    action.textContent='🎁 200P 받기';
+    action.disabled=false;action.hidden=false;dismiss.textContent='나중에 하기';status.textContent='';
+    dialog.hidden=false;action.focus();
+  }
+  async function checkEvent(){
+    if(checking||claiming||!dialog.hidden||document.hidden)return;
+    const cloud=window.WowCloud;
+    if(!cloud?.user?.id||!cloud.client)return;
+    checking=true;
+    try{
+      const {data,error}=await cloud.client.rpc('wow_flash_event_status');
+      if(error){
+        // SQL을 아직 적용하지 않았다면 조용히 무시하며 기존 기능에는 영향을 주지 않습니다.
+        return;
+      }
+      if(!data?.active||data.claimed)return;
+      if(readDismissed(eventKey(data)))return;
+      // 서버 조회 중 로그아웃 또는 계정 전환된 경우 무시합니다.
+      if(!window.WowCloud?.user?.id)return;
+      show(data);
+    }catch(err){console.warn('[WOWROAD] 깜짝 이벤트 상태 조회 실패',err);}
+    finally{checking=false;}
+  }
+  async function claimEvent(){
+    if(claiming||!currentEvent)return;
+    if(!window.WowCloud?.user?.id){status.textContent='로그인 후 참여할 수 있어요.';return;}
+    claiming=true;action.disabled=true;action.textContent='선착순 확인 중…';status.textContent='서버에서 당첨 여부를 확인하고 있어요.';
+    try{
+      const {data,error}=await window.WowCloud.client.rpc('wow_claim_flash_event');
+      if(error)throw error;
+      const result=data?.status;
+      if(result==='won'){
+        title.textContent='🎉 축하해요! 당첨!';
+        desc.textContent='선착순 이벤트에 당첨됐어요!\n200P가 내 포인트 지갑에 적립됐어요.';
+        action.hidden=true;dismiss.textContent='확인';status.textContent='🎁 +200P 적립 완료';
+        setDismissed(eventKey(currentEvent));
+        try{
+          await window.WowCloud.sync();
+          if(typeof window.render==='function')window.render();
+          const pts=document.getElementById('points');
+          if(pts)pts.textContent=Number(window.WowCloud.balance||0).toLocaleString()+' P';
+        }catch(syncError){status.textContent='200P 지급 성공 · 잔액은 새로고침 후 확인할 수 있어요.';}
+      }else if(result==='taken'){
+        title.textContent='아쉽게도 마감됐어요!';
+        desc.textContent='다른 사용자가 먼저 200P를 받았어요.\n다음 깜짝 이벤트에 다시 도전해 주세요!';
+        action.hidden=true;dismiss.textContent='확인';status.textContent='선착순 1명 당첨 완료';
+        setDismissed(eventKey(currentEvent));
+      }else{
+        title.textContent='이벤트 시간이 종료됐어요';
+        desc.textContent='이벤트는 매일 오전 10시와 오후 5시에 시작돼요.';
+        action.hidden=true;dismiss.textContent='확인';status.textContent='';
+        setDismissed(eventKey(currentEvent));
+      }
+    }catch(err){
+      status.textContent='참여 확인 실패 · '+(err.message||'잠시 후 다시 시도해 주세요.');
+      action.disabled=false;action.textContent='🎁 다시 시도';
+    }finally{claiming=false;}
+  }
+  action.addEventListener('click',claimEvent);
+  dismiss.addEventListener('click',()=>close(true));
+  dialog.addEventListener('keydown',e=>{if(e.key==='Escape')close(true);});
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkEvent();});
+  // 로그인, 재로그인, 접속 중 10:00/17:00 도달 시에도 확인합니다.
+  window.addEventListener('load',()=>{setTimeout(checkEvent,1500);setInterval(checkEvent,15000);});
 })();
 </script>
 </body>
