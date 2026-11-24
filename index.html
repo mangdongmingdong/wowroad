@@ -244,7 +244,20 @@
 .wow-category button{white-space:nowrap;width:auto;padding:9px 12px;font-size:12px;background:#e8eefa;color:#2b426c}
 .wow-category button.active{background:#263d73;color:white}
 
-  </style>
+  
+/* 2026-11-24: accessible direction focus and overlapping marker hierarchy */
+#wowQuickSignOut{min-width:66px}
+.wow-direction-switch{display:grid!important;grid-template-columns:1fr 1fr;gap:8px!important;margin:10px 0 5px!important}
+.wow-direction-switch button{appearance:none;min-width:0;min-height:58px;display:flex;align-items:center;justify-content:flex-start;flex-wrap:wrap;gap:6px;padding:9px!important;border:1px solid #d7e0ed!important;border-radius:13px!important;background:#fff!important;color:#243a5c!important;font-size:11px!important;font-weight:750!important;cursor:pointer;box-shadow:0 2px 6px #0d20430a}
+.wow-direction-switch button.active{background:#f1f7ff!important;border-color:#416bc5!important;box-shadow:0 0 0 2px #b8cef8!important}
+.wow-direction-switch button:focus-visible{outline:3px solid #3569e9;outline-offset:2px}
+.wow-direction-tag{margin-left:auto;font-size:10px;color:#4269a5;white-space:nowrap}
+.wow-direction-tip{margin:3px 0 10px!important;font-size:11px!important;line-height:1.5!important;color:#637694!important}
+#mission .wow-tap-map-pin.wow-direction-elevated{transform:translateY(-13px);box-shadow:0 8px 20px #061e4490!important;filter:drop-shadow(0 2px 2px #20385e45)}
+#mission .wow-tap-map-pin.wow-direction-elevated.selected{transform:translateY(-20px)}
+#mission .wow-tap-map-pin.wow-direction-dimmed{opacity:.54;filter:saturate(.45);transform:scale(.88)}
+@media(max-width:390px){.wow-direction-switch button{font-size:10px!important;padding:8px!important}}
+</style>
 
   <!-- 카카오맵 JavaScript SDK -->
   <script src="https://dapi.kakao.com/v2/maps/sdk.js?appkey=23ecb8fa1a751327625e2b50fd2f873f&autoload=false"></script>
@@ -853,15 +866,15 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
   <header class="wow-app-header">
     <div class="wow-brand-lockup"><span class="wow-brand-mark" aria-hidden="true">W</span><div><span class="wow-brand-name">와우로드</span><small>WOWROAD</small></div></div>
-    <div class="wow-header-actions"><div class="points" id="points" title="보유 포인트">0 P</div><button type="button" id="wowQuickSignOut" class="wow-top-signout" title="로그아웃" aria-label="로그아웃" hidden>나가기</button></div>
+    <div class="wow-header-actions"><div class="points" id="points" title="보유 포인트">0 P</div><button type="button" id="wowQuickSignOut" class="wow-top-signout" title="로그아웃" aria-label="로그아웃" hidden>로그아웃</button></div>
   </header>
 
   <!-- 홈: 명확한 단일 주요 행동 + 실제 계정 상태 -->
   <section id="home" class="page active wow-clean-home">
     <div class="wow-home-welcome">
       <span class="wow-overline">CAMPUS MOBILITY</span>
-      <h2>오늘도, 조금 더<br><em>여유로운 이동.</em></h2>
-      <p>익숙한 정류장 대신, 나에게 맞는 대체 정류장을 찾아보세요.</p>
+      <h2>와우를 찾아서,<br><em>혼잡을 피해서!</em></h2>
+      <p>정류장을 바꾸는 작은 선택에, 귀여운 보상을 더하자!</p>
       <button class="wow-main-cta" type="button" onclick="showPage('mission')">지도에서 정류장 찾기 <span aria-hidden="true">→</span></button>
     </div>
     <div class="wow-home-label">나의 이용 현황 <span>MY ACTIVITY</span></div>
@@ -887,7 +900,8 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         <span><i class="wow-legend-dot red"></i>혼잡 정류장 · 위치만 안내</span>
         <span><i class="wow-legend-dot blue"></i>대체 정류장 · 눌러서 선택</span>
       </div>
-      <div class="wow-map-line-legend"><span><i class="wow-line-a"></i>삼진제약 → 극동방송 방면</span><span><i class="wow-line-b"></i>극동방송 → 삼진제약 방면</span></div>
+      <div class="wow-map-line-legend wow-direction-switch" role="group" aria-label="진행 방향의 핀 강조하기"><button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i>삼진제약 → 극동방송 <span class="wow-direction-tag">핀 보기</span></button><button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i>극동방송 → 삼진제약 <span class="wow-direction-tag">핀 보기</span></button></div>
+       <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">지도 위 방향선을 누르거나 방면 버튼을 눌러 주세요. 해당 방면의 핀이 앞으로 표시됩니다.</p>
       <div class="wow-map-hero"><div id="map" role="region" aria-label="총 8개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div><div class="wow-map-help-overlay">파란 핀을 눌러 선택</div></div>
       <div class="wow-map-toolbar"><span>정류장 8개 · 선택 가능 5개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 지도 보기 ↗</button></div>
       <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">STEP 02 · 선택한 대체 정류장</div><strong id="wowMapSelectedName">정류장을 선택해 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
@@ -1635,12 +1649,32 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   // 연결선은 정류장 순서의 도식적 직선이며 실제 도로/버스 노선 경로를 의미하지 않습니다.
   let wowAllStopOverlays=[];
   let wowGuideLines=[];
+  let wowMapActiveDirection=null;
+  let wowLineClickTargets=[];
+  function wowFocusDirection(direction){
+    if(direction!=='A'&&direction!=='B')return;
+    // Already-selected direction can be dismissed to show both sets of pins equally.
+    wowMapActiveDirection=wowMapActiveDirection===direction?null:direction;
+    const tip=document.getElementById('wowDirectionTip');
+    if(tip)tip.textContent=wowMapActiveDirection
+      ? (wowMapActiveDirection==='A'?'삼진제약 → 극동방송':'극동방송 → 삼진제약')+' 방면 핀을 앞으로 표시했어요. 파란 핀을 눌러 대체 정류장을 선택하세요.'
+      : '두 방향의 핀을 모두 보여드리고 있어요. 지도 위 방향선이나 방면 버튼을 눌러 주세요.';
+    ['A','B'].forEach(d=>{
+      const btn=document.getElementById('wowDirection'+d);
+      if(btn){btn.classList.toggle('active',wowMapActiveDirection===d);btn.setAttribute('aria-pressed',String(wowMapActiveDirection===d));}
+    });
+    updateMap();
+  }
   let wowSelectionLine=null;
   const wowMapStopIds=[...directions.A,...directions.B];
   const wowDirectionLabels={A:'삼진제약 → 극동방송 방면',B:'극동방송 → 삼진제약 방면'};
   function wowSelectStopFromMap(id){
     const direction=alternativeStops.A.includes(id)?'A':alternativeStops.B.includes(id)?'B':null;
     if(!direction)return;
+    wowMapActiveDirection=direction;
+    const tip=document.getElementById('wowDirectionTip');
+    if(tip)tip.textContent=wowDirectionLabels[direction]+'의 대체 정류장을 선택했어요. 같은 방면의 핀이 앞으로 표시됩니다.';
+    ['A','B'].forEach(d=>{const btn=document.getElementById('wowDirection'+d);if(btn){btn.classList.toggle('active',d===direction);btn.setAttribute('aria-pressed',String(d===direction));}});
     const directionEl=document.getElementById('direction');
     const alternativeEl=document.getElementById('alternativeStop');
     if(directionEl.value!==direction){ directionEl.value=direction; updateDirection(); }
@@ -1684,6 +1718,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     if(connectionLine){connectionLine.setMap(null);connectionLine=null;}
     wowAllStopOverlays.forEach(overlay=>overlay.setMap(null));wowAllStopOverlays=[];
     wowGuideLines.forEach(line=>line.setMap(null));wowGuideLines=[];
+    wowLineClickTargets.forEach(line=>line.setMap(null));wowLineClickTargets=[];
     if(wowSelectionLine){wowSelectionLine.setMap(null);wowSelectionLine=null;}
     const routeSummary=document.getElementById('wowRouteSummary');
     if(routeSummary){
@@ -1693,13 +1728,21 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     // 방면 A와 B는 서로 다른 색의 선으로 연결, 선택한 쪽을 진하게 강조.
     for(const direction of ['A','B']){
       const positions=directions[direction].map(id=>new kakao.maps.LatLng(...stops[id].position));
-      const chosen=mission.direction===direction;
+      const focused=wowMapActiveDirection===direction;
+      const subdued=wowMapActiveDirection!==null&&!focused;
       const line=new kakao.maps.Polyline({map:kakaoMap,path:positions,
-        strokeWeight:chosen?6:4,
+        strokeWeight:focused?8:5,
         strokeColor:direction==='A'?'#159d85':'#cf8c39',
-        strokeOpacity:chosen?.94:.42,
-        strokeStyle:'solid',zIndex:chosen?4:2});
+        strokeOpacity:focused?1:subdued?.24:.83,
+        strokeStyle:'solid',zIndex:focused?9:3});
       wowGuideLines.push(line);
+      // Give the route line a generous touch target on mobile.
+      const touchLine=new kakao.maps.Polyline({map:kakaoMap,path:positions,
+        strokeWeight:24,strokeColor:direction==='A'?'#159d85':'#cf8c39',
+        strokeOpacity:.015,strokeStyle:'solid',zIndex:10});
+      kakao.maps.event.addListener(touchLine,'click',()=>wowFocusDirection(direction));
+      kakao.maps.event.addListener(line,'click',()=>wowFocusDirection(direction));
+      wowLineClickTargets.push(touchLine);
     }
     // 선택한 대체 정류장과 계산 기준 혼잡 정류장을 보라색 점선으로 연결.
     const selectedFrom=new kakao.maps.LatLng(...stops[mission.crowdedId].position);
@@ -1713,7 +1756,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       const selected=id===mission.alternativeId;
       const pin=document.createElement(crowded?'div':'button');
       if(!crowded)pin.type='button';
-      pin.className='wow-tap-map-pin'+(crowded?' crowded':' alternate')+(selected?' selected':'');
+      pin.className='wow-tap-map-pin'+(crowded?' crowded':' alternate')+(selected?' selected':'')+(elevated?' wow-direction-elevated':'')+(dimmed?' wow-direction-dimmed':'');
       const num=document.createElement('span');num.className='wow-pin-number';num.textContent=String(index+1);
       const label=document.createElement('span');label.className='wow-pin-label';label.textContent=stop.name;
       pin.append(num,label);
@@ -1725,7 +1768,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         pin.addEventListener('pointerdown',event=>event.stopPropagation());
       }
       const overlay=new kakao.maps.CustomOverlay({position:new kakao.maps.LatLng(...stop.position),content:pin,
-        xAnchor:.5,yAnchor:.95,zIndex:selected?20:crowded?9:11,map:kakaoMap});
+        xAnchor:.5,yAnchor:.95,zIndex:elevated?(selected?130:120):dimmed?12:(selected?80:crowded?45:55),map:kakaoMap});
       wowAllStopOverlays.push(overlay);
     });
     wowUpdateDirectStopList();
