@@ -1739,7 +1739,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       // Give the route line a generous touch target on mobile.
       const touchLine=new kakao.maps.Polyline({map:kakaoMap,path:positions,
         strokeWeight:24,strokeColor:direction==='A'?'#159d85':'#cf8c39',
-        strokeOpacity:.015,strokeStyle:'solid',zIndex:10});
+        strokeOpacity:.015,strokeStyle:'solid',zIndex:4});
       kakao.maps.event.addListener(touchLine,'click',()=>wowFocusDirection(direction));
       kakao.maps.event.addListener(line,'click',()=>wowFocusDirection(direction));
       wowLineClickTargets.push(touchLine);
@@ -1754,6 +1754,10 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       const direction=directions.A.includes(id)?'A':'B';
       const crowded=(crowdedStops[direction]||[]).includes(id);
       const selected=id===mission.alternativeId;
+      // Explicitly compute focus state for every marker. Without these variables,
+      // a ReferenceError aborts marker creation after route polylines are drawn.
+      const elevated=wowMapActiveDirection===direction;
+      const dimmed=wowMapActiveDirection!==null&&!elevated;
       const pin=document.createElement(crowded?'div':'button');
       if(!crowded)pin.type='button';
       pin.className='wow-tap-map-pin'+(crowded?' crowded':' alternate')+(selected?' selected':'')+(elevated?' wow-direction-elevated':'')+(dimmed?' wow-direction-dimmed':'');
@@ -1768,10 +1772,14 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         pin.addEventListener('pointerdown',event=>event.stopPropagation());
       }
       const overlay=new kakao.maps.CustomOverlay({position:new kakao.maps.LatLng(...stop.position),content:pin,
-        xAnchor:.5,yAnchor:.95,zIndex:elevated?(selected?130:120):dimmed?12:(selected?80:crowded?45:55),map:kakaoMap});
+        xAnchor:.5,yAnchor:.95,zIndex:elevated?(selected?130:120):dimmed?32:(selected?90:crowded?65:75),map:kakaoMap});
       wowAllStopOverlays.push(overlay);
     });
     wowUpdateDirectStopList();
+    const pinNotice=document.getElementById('wowDirectionTip');
+    if(pinNotice && !wowMapActiveDirection){
+      pinNotice.textContent='정류장 핀 8개 표시 중 · 파란 핀 5개를 눌러 대체 정류장을 선택하세요. 선이나 방면 버튼을 누르면 해당 방향을 강조합니다.';
+    }
     // 첫 진입에는 8개를 모두 보여 주고, 사용자가 핀을 선택할 때마다 과도하게 지도가 움직이지 않게 합니다.
     if(!window.wowMapViewInitialized){
       window.wowMapViewInitialized=true;
