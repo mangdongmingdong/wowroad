@@ -1032,6 +1032,25 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 .wow-all-lock-button:disabled{opacity:.45;cursor:not-allowed}
 @media(max-width:400px){.wow-all-lock-control{padding:12px;gap:8px}.wow-all-lock-button{min-width:102px;font-size:12px;padding:10px 8px}}
 </style>
+<style id="wow-one-tap-lock-ui-cleanup">
+/* Single-action lock toolbar; override older flex/card styling. */
+#character .wow-all-lock-control{
+  display:block!important; width:100%!important; min-width:0!important;
+  padding:0!important; margin:12px 0 16px!important;
+  border:0!important; background:transparent!important; box-shadow:none!important;
+}
+#character .wow-all-lock-control .wow-all-lock-button{
+  display:flex!important; align-items:center!important; justify-content:center!important;
+  width:100%!important; max-width:100%!important; min-width:0!important;
+  min-height:48px!important; padding:12px 16px!important;
+  box-sizing:border-box!important; flex:none!important;
+  white-space:nowrap!important; word-break:keep-all!important;
+  font-size:14px!important; font-weight:750!important;
+  border-radius:14px!important; line-height:1.25!important;
+}
+#character .wow-all-lock-control .wow-all-lock-button:disabled{opacity:.52}
+.wow-lock-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
+</style>
 </head>
 
 <body>
@@ -1240,12 +1259,9 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 <img alt="사용자가 제공한 원본 과잠 와우 마스코트" class="wow-body" id="wowBody"/>
 <div id="wowStickerLayers"></div><div id="wowPatchLayers"></div><div id="wowAccessoryLayers"></div>
 </div>
-<div class="wow-all-lock-control" role="group" aria-label="와우 꾸미기 전체 고정">
-  <div class="wow-all-lock-copy">
-    <strong id="wowAllLockTitle">꾸미기 아이템 전체 고정</strong>
-    <span id="wowAllLockStatus" role="status" aria-live="polite">장착한 와펜·액세서리·스티커를 한 번에 고정할 수 있어요.</span>
-  </div>
+<div class="wow-all-lock-control" role="group" aria-label="꾸미기 아이템 전체 고정 및 해제">
   <button type="button" class="wow-all-lock-button" id="wowAllLockButton" onclick="toggleAllWowItemLocks()" aria-pressed="false" disabled>🔒 전체 고정</button>
+  <span class="wow-lock-sr-only" id="wowAllLockStatus" role="status" aria-live="polite"></span>
 </div>
 <div class="wow-editor" hidden="" id="wowEditor">
 <div class="wow-editor-row"><b id="wowSelectedName">선택한 아이템</b><button id="wowResetItemPosition" onclick="resetWowPosition()">위치 초기화</button></div>
@@ -2405,7 +2421,6 @@ function toggleAllWowItemLocks(){
 function renderAllWowItemLockControl(){
   const btn=document.getElementById('wowAllLockButton');
   const status=document.getElementById('wowAllLockStatus');
-  const heading=document.getElementById('wowAllLockTitle');
   if(!btn||!status)return;
   const active=wowActiveLayerIds(),locked=active.filter(id=>wowIsItemLocked(id));
   const allLocked=active.length>0&&locked.length===active.length;
@@ -2413,7 +2428,6 @@ function renderAllWowItemLockControl(){
   btn.textContent=allLocked?'🔓 전체 해제':'🔒 전체 고정';
   btn.classList.toggle('is-all-locked',allLocked);
   btn.setAttribute('aria-pressed',String(allLocked));
-  if(heading)heading.textContent=allLocked?'모든 아이템 고정됨':'꾸미기 아이템 전체 고정';
   status.textContent=!active.length?'와펜·액세서리·스티커를 장착하면 사용할 수 있어요.'
     :allLocked?`${active.length}개 아이템이 고정되어 있어요.`
     :`${active.length}개 중 ${locked.length}개 고정 · 한 번에 모두 고정할 수 있어요.`;
