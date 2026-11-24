@@ -914,6 +914,64 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 #mission .wow-route-external{display:none!important}
 @media(max-width:360px){#mission .wow-direction-v2 button{min-height:108px!important;padding:12px 10px!important}#mission .wow-direction-v2 .wow-direction-title{font-size:12px!important}}
 </style>
+
+<style id="wow-toss-flow-styles">
+/* Restrained, readable mobile flow inspired by modern Korean fintech patterns. */
+#mission.wow-toss-mission{padding:22px 20px 106px;background:#f7f9fc;min-height:calc(100vh - 140px);color:#17243a}
+#mission .wow-toss-screen[hidden]{display:none!important}
+#mission .wow-toss-progress{margin:0 0 25px}
+#mission .wow-toss-progress-label{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;font-size:12px;font-weight:750;color:#6c7d96}
+#mission .wow-toss-progress-bars{display:grid;grid-template-columns:repeat(3,1fr);gap:6px}
+#mission .wow-toss-progress-bars span{height:4px;background:#e0e7f2;border-radius:999px}
+#mission .wow-toss-progress-bars span.on{background:#245cd6}
+#mission .wow-toss-head{margin:0 0 23px}
+#mission .wow-toss-eyebrow{font-size:10px;letter-spacing:.13em;color:#628ae0;font-weight:800}
+#mission .wow-toss-head h2{font-size:26px;letter-spacing:-.045em;line-height:1.25;color:#17243a;margin:9px 0 8px;font-weight:800}
+#mission .wow-toss-head p{font-size:13px;line-height:1.65;color:#65748d;margin:0}
+#mission .wow-toss-head p b{color:#245cd6}
+#mission .wow-toss-step-caption{margin:20px 0 11px;font-size:14px;font-weight:800;color:#25334b}
+#mission .wow-toss-directions{display:grid!important;grid-template-columns:1fr 1fr;gap:10px;margin:0}
+#mission .wow-toss-directions button{min-width:0!important;min-height:82px;background:#fff!important;border:1px solid #e0e6f0!important;border-radius:15px!important;box-shadow:none!important;color:#27374f!important;display:flex!important;flex-direction:column;justify-content:center;align-items:flex-start;gap:8px;padding:14px!important;opacity:1!important}
+#mission .wow-toss-directions button.active,#mission .wow-toss-directions button[aria-pressed=true]{background:#eef4ff!important;border:2px solid #2461dc!important;padding:13px!important;color:#194da9!important}
+#mission .wow-toss-directions .wow-direction-title{font-weight:800!important;font-size:14px!important;line-height:1.25!important;color:inherit!important}
+#mission .wow-toss-directions .wow-direction-tag{font-size:11px!important;color:#8390a4!important}
+#mission .wow-toss-directions button.active .wow-direction-tag{color:#2760cc!important}
+#mission .wow-direction-tip{font-size:11px;line-height:1.5;color:#687a98;margin:9px 0 0}
+#mission .wow-mission-v2-legend{margin:6px 0 10px;padding:0;gap:12px;font-size:11px}
+#mission .wow-map-hero{border-radius:17px!important;overflow:hidden;border:1px solid #e0e7f0}
+#mission #map{height:min(48vh,430px)!important;min-height:310px!important}
+#mission .wow-map-toolbar{margin-top:9px}
+#mission #wowMapSelection{margin-top:13px}
+#mission .wow-route-summary{margin-top:10px}
+#mission .wow-map-disclaimer{font-size:11px!important;line-height:1.5!important}
+#mission .wow-toss-bottom-action{position:sticky;bottom:77px;z-index:40;background:rgba(247,249,252,.97);backdrop-filter:blur(9px);margin:16px -20px -1px;padding:12px 20px 14px;border-top:1px solid #e8edf5;border-radius:14px 14px 0 0;box-shadow:0 -9px 20px rgba(25,43,73,.04)}
+#mission .wow-toss-selected{display:flex;flex-direction:column;gap:3px;margin:0 0 10px}
+#mission .wow-toss-selected span{font-size:11px;color:#7b8ca5;font-weight:650}
+#mission .wow-toss-selected b{font-size:15px;color:#1d3053}
+#mission #wowTossNext,#mission .wow-toss-success button:not(.wow-toss-secondary){width:100%;height:52px;background:#2358d6;color:#fff;border:none;border-radius:13px;font-size:15px;font-weight:800;cursor:pointer;box-shadow:none}
+#mission #wowTossNext span{margin-left:6px}
+#mission .wow-toss-arrival-card{padding:22px 19px;background:#fff;border:1px solid #e6ebf3;border-radius:20px;display:flex;gap:17px;align-items:center}
+#mission .wow-toss-arrival-icon{width:54px;height:54px;border-radius:16px;display:flex;justify-content:center;align-items:center;background:#edf3ff;color:#215bd0;font-size:31px;font-weight:800;flex-shrink:0}
+#mission .wow-toss-arrival-card div{display:flex;flex-direction:column;gap:5px;min-width:0}
+#mission .wow-toss-arrival-card small,#mission .wow-toss-arrival-card span:last-child{font-size:12px;color:#8190a5}
+#mission .wow-toss-arrival-card strong{font-size:19px;color:#14243e;line-height:1.3}
+#mission .wow-toss-detail .recommend{border:0!important;box-shadow:none!important;padding:18px 6px!important;margin:15px 0 0;background:transparent!important}
+#mission .wow-toss-detail #reward{font-size:29px!important;color:#2358d6!important}
+#mission .wow-toss-detail .notice{font-size:11px!important;line-height:1.6!important}
+#mission .wow-toss-detail .gps-verification{background:#fff;border:1px solid #e4eaf4;border-radius:19px;padding:19px!important;margin-top:17px}
+#mission #completeBtn{border:0!important;border-radius:13px!important;background:#2358d6!important;color:#fff!important;min-height:52px!important;font-size:15px!important;font-weight:800!important}
+#mission #completeBtn:disabled{opacity:.55}
+#mission .wow-toss-secondary{display:block;background:transparent;border:0;color:#657997;font-size:13px;font-weight:750;margin:21px auto;padding:13px;cursor:pointer}
+#mission .wow-toss-success{text-align:center;padding:45px 14px 30px}
+#mission .wow-toss-success-check{height:80px;width:80px;border-radius:50%;background:#e5f7f0;color:#159967;display:grid;place-items:center;font-size:42px;font-weight:800;margin:12px auto 25px}
+#mission .wow-toss-success h2{font-size:28px;letter-spacing:-.04em;margin:12px 0;color:#152744}
+#mission .wow-toss-success p{font-size:13px;color:#65758c;line-height:1.7}
+#mission .wow-toss-earned{background:#fff;border:1px solid #e5eaf4;border-radius:19px;padding:24px;margin:32px 0;display:flex;flex-direction:column;gap:7px}
+#mission .wow-toss-earned small{font-size:12px;color:#7c8ba0}
+#mission .wow-toss-earned strong{font-size:34px;color:#2358d6;letter-spacing:-.04em}
+@media(max-width:420px){#mission.wow-toss-mission{padding-left:16px;padding-right:16px}#mission .wow-toss-bottom-action{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}#mission .wow-toss-head h2{font-size:24px}}
+</style>
+
 </head>
 
 <body>
@@ -1027,25 +1085,21 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   </section>
 
   <!-- 미션 -->
-  <section id="mission" class="page">
-    <div class="card">
-
-      <div class="wow-mission-head wow-mission-v2-head">
-        <span class="wow-overline">WOWROAD · MISSION</span>
-        <h2>어느 정류장 쪽을<br>이용하시나요?</h2>
-        <p class="mission-intro">① 이용하는 정류장 쪽을 고른 후<br>② 지도에서 <strong>파란 핀</strong>을 눌러 대체 정류장을 선택해 주세요.</p>
+  <section id="mission" class="page wow-toss-mission">
+    <div class="wow-toss-progress" aria-label="미션 진행 단계">
+      <div class="wow-toss-progress-label"><span id="wowMissionStepLabel">STEP 1 / 3</span><span id="wowMissionStepHint">정류장 선택</span></div>
+      <div class="wow-toss-progress-bars"><span class="on"></span><span></span><span></span></div>
+    </div>
+    <div id="wowMissionScreen1" class="wow-toss-screen">
+      <div class="wow-toss-head"><span class="wow-toss-eyebrow">WOWROAD MISSION</span><h2>어디서 이용하시나요?</h2><p>이용할 정류장 쪽을 고르고 지도에서 <b>파란 핀</b>을 눌러주세요.</p></div>
+      <div class="wow-toss-step-caption">이용하는 정류장 쪽</div>
+      <div class="wow-map-line-legend wow-direction-switch wow-direction-v2 wow-toss-directions" role="group" aria-label="정류장 쪽 선택">
+        <button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i><span class="wow-direction-title">하나은행 앞</span><span class="wow-direction-tag">선택하기</span></button>
+        <button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i><span class="wow-direction-title">체육관 앞</span><span class="wow-direction-tag">선택하기</span></button>
       </div>
-      <div class="wow-mission-v2-step"><span class="wow-mission-v2-stepno">01</span><div><strong>이용할 정류장 쪽 선택</strong><small>아래 두 곳 중 한 곳을 선택해 주세요</small></div></div>
-      <div class="wow-map-line-legend wow-direction-switch wow-direction-v2" role="group" aria-label="이용 정류장 쪽 선택">
-        <button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i><span class="wow-direction-title">하나은행 앞<br>정류장 이용</span><span class="wow-direction-tag">선택하기</span></button>
-        <button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i><span class="wow-direction-title">체육관 앞<br>정류장 이용</span><span class="wow-direction-tag">선택하기</span></button>
-      </div>
-      <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">정류장 쪽을 선택하면 그 방향의 핀이 강조됩니다.</p>
-      <div class="wow-mission-v2-step wow-mission-v2-mapstep"><span class="wow-mission-v2-stepno">02</span><div><strong>지도에서 파란 핀 선택</strong><small>파란 핀을 누르면 선택한 정류장 정보가 아래에 표시됩니다</small></div></div>
-      <div class="wow-map-legend wow-mission-v2-legend" aria-label="정류장 색상 안내">
-        <span><i class="wow-legend-dot red"></i><b>빨간 핀</b> · 혼잡 정류장</span>
-        <span><i class="wow-legend-dot blue"></i><b>파란 핀</b> · 선택 가능</span>
-      </div>
+      <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">선택한 방면의 정류장 핀이 강조됩니다.</p>
+      <div class="wow-toss-step-caption">지도에서 대체 정류장 선택</div>
+      <div class="wow-map-legend wow-mission-v2-legend" aria-label="지도 핀 안내"><span><i class="wow-legend-dot red"></i> 혼잡 · 위치 안내</span><span><i class="wow-legend-dot blue"></i> 대체 · 누르면 선택</span></div>
       <div class="wow-map-hero"><div id="map" role="region" aria-label="총 10개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div><div class="wow-map-help-overlay">파란 핀을 눌러 선택</div></div>
       <div class="wow-map-toolbar"><span>정류장 10개 · 선택 가능 6개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 지도 보기 ↗</button></div>
       <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">✓ 선택한 대체 정류장</div><strong id="wowMapSelectedName">지도의 파란 핀을 눌러 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
@@ -1068,7 +1122,13 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       <select id="crowdedStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
       <div id="wowAlternativeCards" hidden></div>
       <div id="wowAllStopPanel" hidden><div id="wowEightStopList"></div><span id="wowEightStopCount"></span></div>
-      <div class="recommend">
+
+      <div class="wow-toss-bottom-action"><div class="wow-toss-selected"><span>선택한 대체 정류장</span><b id="wowTossSelectedStop">지도에서 파란 핀을 눌러주세요</b></div><button type="button" id="wowTossNext" onclick="wowMissionGo(2)">이 정류장으로 이동하기 <span aria-hidden="true">→</span></button></div>
+    </div>
+    <div id="wowMissionScreen2" class="wow-toss-screen" hidden>
+      <div class="wow-toss-head"><span class="wow-toss-eyebrow">ARRIVAL CHECK</span><h2>정류장에 도착하셨나요?</h2><p>선택한 정류장에 도착하면 아래 버튼으로 위치를 인증해 주세요.</p></div>
+      <div class="wow-toss-arrival-card"><span class="wow-toss-arrival-icon">⌖</span><div><small>인증할 정류장</small><strong id="wowTossArrivalName">선택된 정류장</strong><span id="wowTossArrivalId">정류장 ID</span></div></div>
+      <div class="wow-toss-detail">      <div class="recommend">
         <span class="stop-tag" id="modeLabel">정류장 방문 미션</span>
         <h2 id="target" style="margin-top:12px">
           대체 정류장을 선택하세요
@@ -1098,6 +1158,11 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
 
 
+</div>
+      <button type="button" class="wow-toss-secondary" onclick="wowMissionGo(1)">← 다른 정류장 선택하기</button>
+    </div>
+    <div id="wowMissionScreen3" class="wow-toss-screen" hidden>
+      <div class="wow-toss-success"><div class="wow-toss-success-check">✓</div><span class="wow-toss-eyebrow">MISSION COMPLETE</span><h2>도착 인증 완료!</h2><p>대체 정류장 이용에 참여해 주셔서 감사합니다.</p><div class="wow-toss-earned"><small>이번 미션에서 획득한 포인트</small><strong id="wowTossEarned">+0 P</strong></div><button type="button" onclick="showPage('character')">와우 꾸미러 가기 →</button><button type="button" class="wow-toss-secondary" onclick="wowMissionGo(1)">다른 정류장 보기</button></div>
     </div>
   </section>
 
@@ -1788,6 +1853,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     document.getElementById("completeBtn").disabled =
       state.history.some(entry => entry.key === key);
     updateMap();
+    window.wowMissionSync?.();
   }
 
   // =====================================
@@ -2160,7 +2226,7 @@ async function completeMission() {
     save();
 
     setGpsStatus(`인증 완료 · 거리 ${result.distance}m · +${creditedReward}P`, 'success');
-    alert(`위치 인증 완료 · +${creditedReward}P`);
+    window.wowMissionShowSuccess?.(creditedReward);
 
   } catch (error) {
     setGpsStatus(`인증 실패 · ${error.message}`, 'error');
@@ -3092,5 +3158,52 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
  <input id="peImportFile" type="file" accept=".json,application/json" hidden onchange="peImport(event)">
  <p class="pe-status" id="peStatus" aria-live="polite"></p>
 </section></div>
+
+<script id="wow-toss-flow-script">
+(function(){
+  let step=1;
+  function sync(){
+    const selected=document.getElementById('alternativeStop');
+    const name=document.getElementById('wowMapSelectedName');
+    const label=document.getElementById('wowTossSelectedStop');
+    if(label)label.textContent=name?.textContent?.trim()||'지도에서 파란 핀을 눌러주세요';
+    const target=document.getElementById('target');
+    const arrival=document.getElementById('wowTossArrivalName');
+    if(arrival)arrival.textContent=target?.textContent?.trim()||'선택된 정류장';
+    const id=document.getElementById('wowTossArrivalId');
+    if(id)id.textContent='정류장 ID '+(selected?.value||'');
+  }
+  function go(next){
+    if(![1,2,3].includes(next))return;
+    if(next===2 && !document.getElementById('alternativeStop')?.value){
+      alert('지도에서 파란 핀을 눌러 대체 정류장을 선택해 주세요.');return;
+    }
+    // Completion page is only entered after a verified server credit.
+    if(next===3)return;
+    step=next;
+    document.querySelectorAll('#mission .wow-toss-screen').forEach((el,i)=>el.hidden=i!==next-1);
+    document.getElementById('wowMissionStepLabel').textContent='STEP '+next+' / 3';
+    document.getElementById('wowMissionStepHint').textContent=['정류장 선택','도착 인증','미션 완료'][next-1];
+    document.querySelectorAll('#mission .wow-toss-progress-bars span').forEach((el,i)=>el.classList.toggle('on',i<next));
+    sync();
+    window.scrollTo({top:0,behavior:'smooth'});
+    if(next===1){setTimeout(()=>{if(typeof kakaoMap!=='undefined'&&kakaoMap){kakaoMap.relayout();if(typeof updateMap==='function')updateMap();}},90);}
+  }
+  function success(points){
+    const e=document.getElementById('wowTossEarned');if(e)e.textContent='+'+Number(points).toLocaleString('ko-KR')+' P';
+    step=3;
+    document.querySelectorAll('#mission .wow-toss-screen').forEach((el,i)=>el.hidden=i!==2);
+    document.getElementById('wowMissionStepLabel').textContent='STEP 3 / 3';
+    document.getElementById('wowMissionStepHint').textContent='미션 완료';
+    document.querySelectorAll('#mission .wow-toss-progress-bars span').forEach(el=>el.classList.add('on'));
+    window.scrollTo({top:0,behavior:'smooth'});
+  }
+  window.wowMissionGo=go;
+  window.wowMissionSync=sync;
+  window.wowMissionShowSuccess=success;
+  document.addEventListener('DOMContentLoaded',()=>{sync();document.querySelectorAll('.tabs button[data-page="mission"]').forEach(btn=>btn.addEventListener('click',()=>{if(step===3)go(1);}));});
+})();
+</script>
+
 </body>
 </html>
