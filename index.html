@@ -587,6 +587,52 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
 #wowSignupConfirm #wowSignupCancel{background:#e8eef9!important;color:#284273!important}
 #wowSignupConfirm #wowSignupAccept{background:#243f7d!important;color:#fff!important}
 </style>
+
+<style id="wowroad-feedback-ux-v14">
+/* Feedback-driven responsive design, no changes to rewards or authentication database. */
+.wow-header-actions{display:flex;align-items:flex-end;flex-direction:column;gap:7px}
+.wow-top-signout{width:auto!important;min-width:unset!important;margin:0!important;padding:6px 10px!important;font-size:11px!important;border:1px solid #cdd9ed!important;border-radius:9px!important;background:#fff!important;color:#415b89!important;box-shadow:none!important}
+.wow-top-signout[hidden]{display:none!important}
+#mission>.card{padding:17px 13px 21px}
+#mission .mission-intro{margin:0 0 12px!important}
+.wow-route-heading{display:flex;align-items:center;flex-wrap:wrap;gap:6px 8px;margin:12px 1px 9px;color:#173565;font-size:13px}
+.wow-route-heading small{font-size:11px;color:#687b99;width:100%}
+.wow-live-dot{width:8px;height:8px;background:#5683d0;border-radius:50%;box-shadow:0 0 0 3px #dfe9fa}
+#mission #map{height:clamp(350px,53svh,530px)!important;border-radius:20px!important;border:1px solid #cad7ed!important;background:#ecf1f9!important;margin-bottom:9px!important;box-shadow:0 8px 22px #1e3d6c10}
+.wow-map-actions{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:8px 0 6px}
+.wow-map-key{display:inline-flex;gap:5px;align-items:center;font-size:11px;color:#4a5d7b;white-space:nowrap}
+.wow-map-key i{display:inline-block;width:9px;height:9px;border-radius:50%}.wow-key-red{background:#df555c}.wow-key-blue{background:#3159a6}
+#wowShowAllStops{margin:0 0 0 auto!important;padding:7px 9px!important;width:auto!important;min-width:unset!important;background:#eef3fb!important;color:#294c84!important;font-size:11px!important;border-radius:10px!important;border:1px solid #cbd8ed!important}
+#wowShowAllStops[aria-pressed="true"]{background:#dbe9ff!important}
+.wow-map-disclaimer{font-size:11px;line-height:1.55;color:#667998;margin:7px 0 17px}
+.wow-control-grid{display:grid;grid-template-columns:1fr;gap:7px}
+.wow-control-grid h3{margin:9px 0 8px!important;font-size:13px}
+.wow-control-grid .mode-buttons{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin:0}
+.wow-control-grid .mode-buttons button{margin:0!important;min-height:40px!important;padding:9px 6px!important}
+.wow-control-grid #direction{min-height:42px!important}
+.wow-direction-guide{margin:11px 0;padding:12px;background:#f1f5fc;border:1px solid #d9e3f3;border-radius:14px;line-height:1.6;font-size:12px;color:#2d456c}
+.wow-stop-sequence{display:flex;align-items:center;flex-wrap:wrap;gap:5px;margin:9px 0}
+.wow-stop-sequence>span{flex:1 1 85px;min-width:0;padding:6px;border:1px solid #d8e2f1;border-radius:9px;background:white;font-size:11px;font-weight:650;color:#214272;text-align:center}
+.wow-stop-sequence small{display:block;font-size:9px;font-weight:450;color:#647994}
+.wow-stop-sequence>b{font-size:13px;color:#7c91af}
+.wow-guide-hint{font-size:11px;color:#5c7494}
+#mission select{font-size:13px!important;max-width:100%;white-space:normal;overflow-wrap:anywhere}
+#mission .recommend{border-radius:18px!important}
+.wow-demand-context{background:#eef3fb;border-left:3px solid #4f77b8;border-radius:7px;padding:10px;font-size:12px;line-height:1.5;color:#2a4976}
+.wow-route-external{display:block;text-align:center;text-decoration:none!important;padding:12px;border-radius:12px;background:#233e75;color:#fff!important;font-weight:700;font-size:13px;margin:10px 0 12px}
+.wow-straight-arrow{width:33px;height:33px;border-radius:50%;background:white;border:2px solid #3159a6;color:#3159a6;display:grid;place-items:center;box-shadow:0 2px 8px #243c6670;pointer-events:none}
+.wow-straight-arrow span{display:block;font-weight:900;font-size:23px;line-height:1}
+.wow-secondary-map-pin{font-size:9px;color:#4c6188;background:#ffffffee;border:1px solid #b7c8e1;box-shadow:0 1px 5px #203b5626;padding:3px 5px;border-radius:9px;white-space:nowrap;pointer-events:none}
+#wowPatchQuickSelect{margin:4px 0 10px!important;background:#f4f7fd;border:1px solid #d5e2f5;border-radius:12px;font-size:13px!important}
+#shop.wow-shop-grid,#wowAccessoryShop.wow-shop-grid{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch!important;gap:10px!important}
+#shop .wow-shop-item,#wowAccessoryShop .wow-shop-item{display:flex!important;flex-direction:column!important;align-items:center!important;min-width:0;min-height:255px!important;height:100%!important;padding:10px 8px!important;overflow:hidden!important;border:1px solid #dae4f2!important;background:#fff!important;border-radius:16px!important}
+#shop .wow-shop-item .patch-art{width:100%;height:125px;display:grid;place-items:center;flex:none}
+#shop .wow-shop-item .patch-art img{max-width:100%;max-height:115px;object-fit:contain}
+#shop .wow-shop-item .patch-title{display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden;min-height:35px;line-height:1.4;text-align:center}
+#shop .wow-shop-item button,#wowAccessoryShop .wow-shop-item button{margin-top:auto!important;width:100%;min-height:37px!important;flex:none}
+@media(min-width:420px){.wow-control-grid{grid-template-columns:1fr 1fr;align-items:end;gap:10px}}
+@media(max-width:360px){#mission #map{height:360px!important}.wow-stop-sequence>span{flex-basis:75px}.wow-map-key{font-size:10px}}
+</style>
 </head>
 
 <body>
@@ -679,7 +725,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       <div class="muted wow-eyebrow">HONGIK MOBILITY REWARDS</div>
       <h1><span class="brand-symbol">W</span> 와우로드 <span class="brand-dot">.</span></h1>
     </div>
-    <div class="points" id="points">0 P</div>
+    <div class="wow-header-actions"><div class="points" id="points">0 P</div><button type="button" id="wowQuickSignOut" class="wow-top-signout" title="현재 계정에서 로그아웃" aria-label="로그아웃" hidden>로그아웃</button></div>
   </header>
 
   <!-- 홈 -->
@@ -715,7 +761,11 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
       <div class="section-eyebrow">SMART ROUTE</div><h2>📍 정류장 분산 미션</h2><p class="muted mission-intro">이용 방향 선택 · 대체 정류장 탐색 · 거리 및 보상 확인</p>
 
-      <h3>01 · 이용 방식</h3>
+      <div class="wow-route-heading"><span class="wow-live-dot"></span><strong>정류장 지도부터 확인하세요</strong><small>대체 정류장을 선택하면 지도가 갱신됩니다.</small></div>
+      <div id="map" role="region" aria-label="혼잡 및 대체 정류장 지도"></div>
+      <div class="wow-map-actions"><span class="wow-map-key"><i class="wow-key-red"></i>혼잡 정류장</span><span class="wow-map-key"><i class="wow-key-blue"></i>대체 정류장</span><button type="button" id="wowShowAllStops" aria-pressed="false">전체 8개 보기</button></div>
+      <p class="wow-map-disclaimer">점선·화살표는 두 정류장의 <b>직선 방향</b>을 나타냅니다. 실제 보행 경로 및 실시간 혼잡도 정보는 아닙니다.</p>
+      <div class="wow-control-grid"><div><h3>01 · 이용 방식</h3>
       <div class="mode-buttons">
         <button id="boardingBtn"
                 onclick="setMode('boarding')">
@@ -727,7 +777,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         </button>
       </div>
 
-      <h3>02 · 진행 방향</h3>
+      </div><div><h3>02 · 진행 방향</h3>
       <p class="muted" style="margin:4px 0 10px;line-height:1.6">
         버스 이동 방향 · 정류장 순서 기준
       </p>
@@ -735,7 +785,8 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         <option value="A">삼진제약 → 극동방송 방향</option>
         <option value="B">극동방송 → 삼진제약 방향</option>
       </select>
-      <div id="directionGuide" style="margin-top:12px;padding:14px;background:#eef7f0;border:1px solid #cfe4d5;border-radius:14px;line-height:1.75;font-size:13px" aria-live="polite"></div>
+      </div></div>
+      <div id="directionGuide" class="wow-direction-guide" aria-live="polite"></div>
       <p class="muted" style="font-size:12px;line-height:1.6;margin-top:8px">
         노선·행선지 확인 필수 · 운행 방향 참고용
       </p>
@@ -748,13 +799,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       <select id="alternativeStop" onchange="updateMission()">
       </select>
 
-      <h3>지도 · 정류장 위치</h3>
-      <div id="map"></div>
 
-      <div class="legend">
-        <span><span class="dot red"></span>혼잡 정류장</span>
-        <span><span class="dot green"></span>대체 정류장</span>
-      </div>
 
       <div class="recommend">
         <span class="stop-tag" id="modeLabel">하차 미션</span>
@@ -763,6 +808,8 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         </h2>
         <p id="distance">두 정류장 사이 거리 계산 중</p>
         <p id="routeDescription" class="muted"></p>
+        <p id="wowDemandContext" class="wow-demand-context" aria-live="polite"></p>
+        <a id="wowKakaoWalk" class="wow-route-external" href="https://map.kakao.com/" target="_blank" rel="noopener noreferrer">↗ 카카오맵에서 실제 이동 경로 확인</a>
         <div class="points" id="reward">+150 P</div>
         <p class="distance-note">거리 보너스 기준 · 직선거리 100m당 20P · 최대 100P</p>
         <p id="rewardBreakdown" style="font-size:13px;color:#287c52;line-height:1.6;margin-top:8px;"></p>
@@ -810,7 +857,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       <button type="button" class="wow-remove-item" id="wowRemoveSticker" onclick="removeSelectedWowSticker()" hidden>선택한 스티커 제거</button></div>
       <div class="wow-align-toolbar"><button type="button" onclick="alignAllWowPatches()">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p id="equipped" style="text-align:center" class="muted">착용 중인 패치: 없음</p>
     </div>
-    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div><button type="button" id="patchShopToggle" aria-expanded="false" onclick="togglePatchShop()">전체 와펜 35종 펼치기 ↓</button><p id="wardrobeSyncStatus" role="status" aria-live="polite"></p></div><div class="card upgrade-card" id="patchLab">
+    <div class="card"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="wowPatchQuickSelect">학과 바로 선택</label><select id="wowPatchQuickSelect" class="wow-patch-quick"><option value="">전체 학과에서 선택</option></select><label class="search-label" for="patchSearch">학과명 검색</label><input id="patchSearch" class="patch-search" type="search" placeholder="예: 컴퓨터공학과" oninput="renderPatchShop()" autocomplete="off"><div class="shop-count" id="patchCount">35개 학과</div><div id="shop" class="wow-shop-grid"></div><button type="button" id="patchShopToggle" aria-expanded="false" onclick="togglePatchShop()">전체 와펜 35종 펼치기 ↓</button><p id="wardrobeSyncStatus" role="status" aria-live="polite"></p></div><div class="card upgrade-card" id="patchLab">
   <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
   <h2>🎓 학과 패치 업그레이드</h2>
   <p class="muted">학과별 공동 모금 · 3,000P 목표 · 학생 디자인 이미지 제출</p>
@@ -1255,9 +1302,9 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     const stopSequence = directions[direction]
       .map(id => `${stops[id].name} (${id})`).join(" → ");
     document.getElementById("directionGuide").innerHTML =
-      `<strong>🚌 ${directionNames[direction]} 방향</strong>` +
-      `<div style="margin-top:5px;overflow-wrap:anywhere">${stopSequence}</div>` +
-      `<div style="color:#577565;margin-top:6px">홍대정문 · 홍익대학교를 경유하는 정류장 순서예요.</div>`;
+      `<strong>🚌 ${directionNames[direction]} 방면 · 4개 정류장</strong>` +
+      `<div class="wow-stop-sequence">${directions[direction].map((id,index)=>`<span>${index+1}. ${stops[id].name}<small>정류장 ID ${id}</small></span>`).join('<b>→</b>')}</div>` +
+      `<div class="wow-guide-hint">같은 이름의 정류장도 방향과 고유 ID가 다릅니다. 실제 탑승 전 버스 행선지와 정류장 표지판을 확인하세요.</div>`;
 
     const crowdedSelect =
       document.getElementById("crowdedStop");
@@ -1268,14 +1315,14 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     crowdedSelect.innerHTML =
       crowdedStops[direction].map(id => `
         <option value="${id}">
-          ${stops[id].name} (${id})
+          ${stops[id].name} · ${directionNames[direction]} 방면 · ID ${id}
         </option>
       `).join("");
 
     alternativeSelect.innerHTML =
       alternativeStops[direction].map(id => `
         <option value="${id}">
-          ${stops[id].name} (${id})
+          ${stops[id].name} · ${directionNames[direction]} 방면 · ID ${id}
         </option>
       `).join("");
 
@@ -1405,6 +1452,22 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       rewardBreakdown.textContent = `보상 구성 · ${parts.join(" · ")}`;
     }
 
+    // Data context is explicitly historical and incomplete (only three crowded stops).
+    const context = document.getElementById('wowDemandContext');
+    if(context){
+      const weekly=weekdayRidership[mission.crowdedId];
+      if(Array.isArray(weekly) && weekly.length){
+        const avg=Math.round(weekly.reduce((sum,n)=>sum+n,0)/weekly.length);
+        context.textContent=`📊 선택한 혼잡 정류장 · 2026년 9월 요일별 이용객 평균 약 ${avg.toLocaleString('ko-KR')}명/일 (과거 집계 기준 · 실시간 아님)`;
+      } else context.textContent='이 정류장의 검증된 혼잡도 자료는 제공되지 않았습니다.';
+    }
+    const walking=document.getElementById('wowKakaoWalk');
+    if(walking){
+      const target=stops[mission.alternativeId];
+      walking.href=`https://map.kakao.com/link/to/${encodeURIComponent(target.name+' '+mission.alternativeId)},${target.position[0]},${target.position[1]}`;
+      walking.setAttribute('aria-label', `${target.name} 정류장 카카오맵 길찾기 열기`);
+    }
+
     const today =
       new Date().toLocaleDateString("sv-SE");
 
@@ -1492,72 +1555,54 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     });
   }
 
+  // All-stop overlays are intentionally optional: on small screens selected pins remain primary.
+  let wowAllStopOverlays = [];
+  let wowAllStopsVisible = false;
+  let wowDirectionArrow = null;
   function updateMap() {
     if (!kakaoMap) return;
-
     const mission = getCurrentMission();
     if (!mission) return;
+    if (crowdedMarker) crowdedMarker.setMap(null);
+    if (alternativeMarker) alternativeMarker.setMap(null);
+    if (connectionLine) connectionLine.setMap(null);
+    if (wowDirectionArrow) {wowDirectionArrow.setMap(null);wowDirectionArrow=null;}
+    wowAllStopOverlays.forEach(o=>o.setMap(null));wowAllStopOverlays=[];
 
-    if (crowdedMarker) {
-      crowdedMarker.setMap(null);
-    }
-
-    if (alternativeMarker) {
-      alternativeMarker.setMap(null);
-    }
-
-    if (connectionLine) {
-      connectionLine.setMap(null);
-    }
-
-    const crowdedPosition =
-      stops[mission.crowdedId].position;
-
-    const alternativePosition =
-      stops[mission.alternativeId].position;
-
-    const p1 = new kakao.maps.LatLng(
-      crowdedPosition[0],
-      crowdedPosition[1]
-    );
-
-    const p2 = new kakao.maps.LatLng(
-      alternativePosition[0],
-      alternativePosition[1]
-    );
-
-    // 혼잡 정류장: 빨간색
-    crowdedMarker = makeStopOverlay(
-      mission.crowdedId,
-      "#e24b4b",
-      "혼잡"
-    );
-
-    // 대체 정류장: 초록색
-    alternativeMarker = makeStopOverlay(
-      mission.alternativeId,
-      "#3559a4",
-      "대체"
-    );
-
-    // 직선 연결: 실제 도보 경로 아님
-    connectionLine = new kakao.maps.Polyline({
-      path: [p1, p2],
-      strokeWeight: 4,
-      strokeColor: "#3559a4",
-      strokeOpacity: 0.8,
-      strokeStyle: "shortdash",
-      map: kakaoMap
+    const from=stops[mission.crowdedId].position;
+    const to=stops[mission.alternativeId].position;
+    const p1=new kakao.maps.LatLng(from[0],from[1]);
+    const p2=new kakao.maps.LatLng(to[0],to[1]);
+    connectionLine=new kakao.maps.Polyline({
+      path:[p1,p2],strokeWeight:5,strokeColor:'#4464bc',strokeOpacity:.88,strokeStyle:'shortdash',map:kakaoMap
     });
-
-    const bounds = new kakao.maps.LatLngBounds();
-
-    bounds.extend(p1);
-    bounds.extend(p2);
-
-    kakaoMap.setBounds(bounds, 70, 40, 70, 40);
+    // Straight-line direction only; not a claim about roads or pedestrian routing.
+    const mid=new kakao.maps.LatLng((from[0]+to[0])/2,(from[1]+to[1])/2);
+    const rad=Math.atan2(to[0]-from[0],(to[1]-from[1])*Math.cos(from[0]*Math.PI/180));
+    const deg=90-rad*180/Math.PI;
+    const arrow=document.createElement('div');
+    arrow.className='wow-straight-arrow';
+    arrow.title='대체 정류장까지의 직선 방향 · 보행 경로 아님';
+    arrow.innerHTML='<span aria-hidden="true">➜</span>';
+    arrow.querySelector('span').style.transform=`rotate(${-deg}deg)`;
+    wowDirectionArrow=new kakao.maps.CustomOverlay({position:mid,content:arrow,yAnchor:.5,map:kakaoMap});
+    if(wowAllStopsVisible){
+      for(const id of Object.keys(stops)){
+        if(id===mission.crowdedId||id===mission.alternativeId)continue;
+        const node=document.createElement('div');
+        node.className='wow-secondary-map-pin';
+        node.textContent=stops[id].name;
+        node.title=`${stops[id].name} · 정류장 ID ${id}`;
+        wowAllStopOverlays.push(new kakao.maps.CustomOverlay({position:new kakao.maps.LatLng(...stops[id].position),content:node,yAnchor:.5,map:kakaoMap}));
+      }
+    }
+    crowdedMarker=makeStopOverlay(mission.crowdedId,'#df555c','혼잡');
+    alternativeMarker=makeStopOverlay(mission.alternativeId,'#3159a6','대체');
+    const bounds=new kakao.maps.LatLngBounds();
+    if(wowAllStopsVisible)Object.values(stops).forEach(v=>bounds.extend(new kakao.maps.LatLng(...v.position)));
+    else {bounds.extend(p1);bounds.extend(p2);}
+    kakaoMap.setBounds(bounds,90,55,80,55);
   }
-
   // =====================================
   // 9. 미션 완료
   // =====================================
@@ -2246,7 +2291,7 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
    const logged=!$('cloudAccountPanel').hidden;
    $('onboarding').hidden=logged;
    document.body.style.overflow=logged?'':'hidden';
-   if(logged && !$('onboarding').dataset.opened){ $('onboarding').dataset.opened='yes';if(typeof showPage==='function')showPage('home');}
+   if(logged && !$('onboarding').dataset.opened){ $('onboarding').dataset.opened='yes';if(typeof showPage==='function')showPage('mission');}
    if(!logged){$('onboarding').dataset.opened='';}
  }
  document.addEventListener('DOMContentLoaded',()=>{
@@ -2473,6 +2518,51 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   document.addEventListener('visibilitychange',()=>{if(!document.hidden)checkEvent();});
   // 로그인, 재로그인, 접속 중 10:00/17:00 도달 시에도 확인합니다.
   window.addEventListener('load',()=>{setTimeout(checkEvent,1500);setInterval(checkEvent,15000);});
+})();
+</script>
+
+<script id="wowroad-feedback-ux-behavior">
+(function(){'use strict';
+function initFeedbackUX(){
+  const account=document.getElementById('cloudAccountPanel');
+  const logout=document.getElementById('wowQuickSignOut');
+  const baseLogout=document.getElementById('cloudSignOut');
+  if(account&&logout&&baseLogout){
+    const sync=()=>{logout.hidden=account.hidden;};
+    const observer=new MutationObserver(sync);
+    observer.observe(account,{attributes:true,attributeFilter:['hidden']});
+    logout.addEventListener('click',()=>{
+      if(logout.disabled)return;
+      logout.disabled=true;
+      baseLogout.click();
+      setTimeout(()=>{logout.disabled=false;sync();},1200);
+    });
+    sync();
+  }
+  const all=document.getElementById('wowShowAllStops');
+  if(all){
+    all.addEventListener('click',()=>{
+      if(typeof wowAllStopsVisible==='undefined')return;
+      wowAllStopsVisible=!wowAllStopsVisible;
+      all.setAttribute('aria-pressed',String(wowAllStopsVisible));
+      all.textContent=wowAllStopsVisible?'선택한 2개만 보기':'전체 8개 보기';
+      if(typeof updateMap==='function')updateMap();
+    });
+  }
+  const quick=document.getElementById('wowPatchQuickSelect');
+  const search=document.getElementById('patchSearch');
+  if(quick&&search&&typeof items!=='undefined'){
+    for(const item of items){const opt=document.createElement('option');opt.value=item.name;opt.textContent=item.name;quick.append(opt);}
+    quick.addEventListener('change',()=>{
+      search.value=quick.value;
+      if(typeof renderPatchShop==='function')renderPatchShop();
+      const shop=document.getElementById('shop');
+      if(shop)shop.scrollIntoView({behavior:'smooth',block:'nearest'});
+    });
+    search.addEventListener('input',()=>{if(search.value!==quick.value)quick.value='';});
+  }
+}
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',initFeedbackUX);else initFeedbackUX();
 })();
 </script>
 </body>
