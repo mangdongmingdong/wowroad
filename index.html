@@ -993,6 +993,45 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
   box-shadow: 0 0 0 2px #dbe7ff !important;
 }
 </style>
+
+<style id="wow-gps-compact-2026">
+/* Step 2 shows one task, no scrolling to find the GPS action. */
+#mission #wowMissionScreen2.wow-gps-compact-screen{box-sizing:border-box;min-height:calc(100dvh - 190px);padding-bottom:125px}
+#mission #wowMissionScreen2 .wow-gps-compact-intro{margin:0 0 20px}
+#mission #wowMissionScreen2 .wow-gps-compact-intro h2{margin:9px 0 6px;font-size:27px;line-height:1.22;letter-spacing:-.045em;color:#142744;font-weight:800}
+#mission #wowMissionScreen2 .wow-gps-compact-intro p{margin:0;font-size:13px;line-height:1.5;color:#74829a}
+#mission #wowMissionScreen2 .wow-gps-compact-card{background:#fff;border:1px solid #e4eaf3;border-radius:23px;display:flex;flex-direction:column;align-items:center;text-align:center;padding:27px 18px 21px;box-shadow:0 3px 12px rgba(25,45,85,.025)}
+#mission #wowMissionScreen2 .wow-gps-compact-marker{display:grid;place-items:center;width:52px;height:52px;border-radius:17px;background:#edf3ff;color:#245cda;font-size:30px;margin-bottom:13px}
+#mission #wowMissionScreen2 .wow-gps-compact-label{font-size:12px;color:#8190a6;font-weight:650;margin-bottom:6px}
+#mission #wowMissionScreen2 #wowTossArrivalName{font-size:24px;line-height:1.3;letter-spacing:-.04em;color:#142744;font-weight:800}
+#mission #wowMissionScreen2 .wow-gps-compact-id{font-size:12px;color:#8a96aa;margin-top:5px}
+#mission #wowMissionScreen2 .wow-gps-compact-stats{width:100%;margin-top:23px;border-top:1px solid #edf0f5;padding-top:18px;display:grid;grid-template-columns:1fr 1fr;gap:6px}
+#mission #wowMissionScreen2 .wow-gps-compact-stats>div{display:flex;flex-direction:column;gap:6px;align-items:center;justify-content:center;min-width:0}
+#mission #wowMissionScreen2 .wow-gps-compact-stats>div+div{border-left:1px solid #ebeff5}
+#mission #wowMissionScreen2 .wow-gps-compact-stats small{font-size:11px;color:#8490a2}
+#mission #wowMissionScreen2 #reward{font-size:25px;color:#245cd6;font-weight:800;letter-spacing:-.045em}
+#mission #wowMissionScreen2 #distance{font-size:15px;font-weight:750;color:#263650}
+#mission #wowMissionScreen2 .wow-gps-compact-back{display:block;margin:22px auto 0;border:0;background:transparent;font-size:13px;color:#647792;font-weight:700;padding:10px;cursor:pointer}
+#mission #wowMissionScreen2 .wow-gps-compact-details{margin-top:10px;border:0;color:#8490a1;font-size:11px}
+#mission #wowMissionScreen2 .wow-gps-compact-details summary{text-align:center;cursor:pointer;list-style:revert;font-size:11px;color:#8190a6}
+#mission #wowMissionScreen2 .wow-gps-compact-detail-content{padding:12px 13px;background:#f1f4f9;border-radius:12px;margin-top:10px;line-height:1.55;overflow-wrap:anywhere}
+#mission #wowMissionScreen2 .wow-gps-compact-detail-content p{margin:5px 0;font-size:11px!important;color:#75849b!important}
+#mission #wowMissionScreen2 .wow-gps-fixed-action{position:fixed!important;bottom:calc(79px + env(safe-area-inset-bottom, 0px))!important;left:50%!important;transform:translateX(-50%)!important;width:min(516px,100%)!important;box-sizing:border-box!important;margin:0!important;padding:13px 20px 11px!important;border-radius:16px 16px 0 0!important;background:rgba(255,255,255,.98)!important;border:1px solid #e5eaf3!important;border-bottom:0!important;box-shadow:0 -8px 24px rgba(26,50,89,.08)!important;z-index:85!important;display:flex!important;flex-direction:column;gap:7px!important}
+#mission #wowMissionScreen2 #completeBtn{display:block!important;width:100%!important;min-height:54px!important;padding:12px!important;border:none!important;border-radius:14px!important;background:#245bd6!important;color:white!important;font-size:16px!important;font-weight:800!important;box-shadow:none!important}
+#mission #wowMissionScreen2 .gps-status{margin:0!important;min-height:13px!important;font-size:11px!important;color:#7c899e!important;line-height:1.35!important;text-align:center!important}
+@media(max-width:400px){#mission #wowMissionScreen2 .wow-gps-compact-card{padding:18px 13px 17px}#mission #wowMissionScreen2 .wow-gps-compact-intro{margin-bottom:14px}#mission #wowMissionScreen2 .wow-gps-compact-intro h2{font-size:24px}#mission #wowMissionScreen2 .wow-gps-compact-stats{margin-top:15px;padding-top:12px}#mission #wowMissionScreen2 .wow-gps-fixed-action{padding:10px 14px 8px!important}}
+@media(max-height:680px){#mission #wowMissionScreen2 .wow-gps-compact-intro p{display:none}#mission #wowMissionScreen2 .wow-gps-compact-marker{display:none}#mission #wowMissionScreen2 .wow-gps-compact-card{padding:14px}#mission #wowMissionScreen2 .wow-gps-compact-details{margin-top:5px}}
+</style>
+<style id="wow-all-lock-styles">
+.wow-all-lock-control{display:flex;align-items:center;gap:12px;justify-content:space-between;margin:13px 0 12px;padding:14px;border:1px solid #dce6f4;background:#f6f9fe;border-radius:16px;box-sizing:border-box}
+.wow-all-lock-copy{display:flex;flex-direction:column;gap:5px;flex:1;min-width:0}
+.wow-all-lock-copy strong{color:#172c52;font-size:14px;line-height:1.35;font-weight:800}
+.wow-all-lock-copy span{font-size:11px;line-height:1.5;color:#70819f;overflow-wrap:anywhere}
+.wow-all-lock-button{flex:0 0 auto;min-width:116px;min-height:45px;background:#254987;border:1px solid #254987;border-radius:11px;color:#fff;font-size:13px;font-weight:800;cursor:pointer;padding:10px 12px;white-space:nowrap}
+.wow-all-lock-button.is-all-locked{background:#fff;color:#244b94;border-color:#b4c7e6}
+.wow-all-lock-button:disabled{opacity:.45;cursor:not-allowed}
+@media(max-width:400px){.wow-all-lock-control{padding:12px;gap:8px}.wow-all-lock-button{min-width:102px;font-size:12px;padding:10px 8px}}
+</style>
 </head>
 
 <body>
@@ -1146,41 +1185,39 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
       <div class="wow-toss-bottom-action"><div class="wow-toss-selected"><span>선택한 대체 정류장</span><b id="wowTossSelectedStop">지도에서 파란 핀을 눌러주세요</b></div><button type="button" id="wowTossNext" onclick="wowMissionGo(2)">이 정류장으로 이동하기 <span aria-hidden="true">→</span></button></div>
     </div>
-    <div id="wowMissionScreen2" class="wow-toss-screen" hidden>
-      <div class="wow-toss-head"><span class="wow-toss-eyebrow">ARRIVAL CHECK</span><h2>정류장에 도착하셨나요?</h2><p>선택한 정류장에 도착하면 아래 버튼으로 위치를 인증해 주세요.</p></div>
-      <div class="wow-toss-arrival-card"><span class="wow-toss-arrival-icon">⌖</span><div><small>인증할 정류장</small><strong id="wowTossArrivalName">선택된 정류장</strong><span id="wowTossArrivalId">정류장 ID</span></div></div>
-      <div class="wow-toss-detail">      <div class="recommend">
-        <span class="stop-tag" id="modeLabel">정류장 방문 미션</span>
-        <h2 id="target" style="margin-top:12px">
-          대체 정류장을 선택하세요
-        </h2>
-        <p id="distance">두 정류장 사이 거리 계산 중</p>
-        <p id="routeDescription" class="muted"></p>
-        <p id="wowDemandContext" class="wow-demand-context" aria-live="polite"></p>
-        <div class="points" id="reward">+150 P</div>
-        <p class="distance-note">거리 보너스 기준 · 직선거리 100m당 20P · 최대 100P</p>
-        <p id="rewardBreakdown" style="font-size:13px;color:#287c52;line-height:1.6;margin-top:8px;"></p>
+    <div id="wowMissionScreen2" class="wow-toss-screen wow-gps-compact-screen" hidden>
+      <div class="wow-gps-compact-intro">
+        <span class="wow-toss-eyebrow">STEP 02 · ARRIVAL</span>
+        <h2>도착하셨나요?</h2>
+        <p>정류장에 도착했다면 위치를 인증해 주세요.</p>
       </div>
-
-      <p class="notice">
-        시연용 미션 · 실제 버스 탑승 여부 미확인. 정류장 좌표는 제공된
-        데이터를 사용하지만 실제 버스 노선별 정차 여부,
-        보행 경로 및 혼잡도는 아직 검증되지 않았습니다.
-        표시 거리는 두 정류장 사이 직선거리이며,
-        GPS 인증은 위치 권한과 정류장 반경 70m 이내 접근이 필요합니다.
-      </p>
-
-
-<div class="gps-verification">
-  <div class="gps-verification-head"><span class="gps-icon">◎</span><div><strong>GPS 도착 인증</strong><small>선택 정류장 반경 70m · 위치 정확도 100m 이내</small></div></div>
-  <button id="completeBtn" onclick="completeMission()">내 위치 인증</button>
-  <p id="gpsStatus" class="gps-status" role="status" aria-live="polite">위치 권한 필요 · HTTPS 접속 권장</p>
-</div>
-
-
-
-</div>
-      <button type="button" class="wow-toss-secondary" onclick="wowMissionGo(1)">← 다른 정류장 선택하기</button>
+      <div class="wow-gps-compact-card">
+        <div class="wow-gps-compact-marker" aria-hidden="true">⌖</div>
+        <span class="wow-gps-compact-label">인증할 정류장</span>
+        <strong id="wowTossArrivalName">선택된 정류장</strong>
+        <span id="wowTossArrivalId" class="wow-gps-compact-id">정류장 ID</span>
+        <div class="wow-gps-compact-stats">
+          <div><small>예상 포인트</small><strong id="reward">+150 P</strong></div>
+          <div><small>정류장 사이 거리</small><span id="distance">계산 중</span></div>
+        </div>
+      </div>
+      <button type="button" class="wow-gps-compact-back" onclick="wowMissionGo(1)">← 정류장 다시 선택</button>
+      <details class="wow-gps-compact-details">
+        <summary>미션 기준 및 상세 정보</summary>
+        <div class="wow-gps-compact-detail-content">
+          <span id="modeLabel">정류장 방문 미션</span>
+          <p id="target">대체 정류장을 선택하세요</p>
+          <p id="routeDescription"></p>
+          <p id="wowDemandContext" class="wow-demand-context"></p>
+          <p class="distance-note">거리 보너스: 직선거리 100m당 20P · 최대 100P</p>
+          <p id="rewardBreakdown"></p>
+          <p class="wow-gps-compact-disclaimer">시연용 미션으로 실제 버스 탑승 여부와 노선별 정차·혼잡도는 확인하지 않습니다. 거리는 직선거리이며, 인증에는 정류장 반경 70m 이내 접근 및 위치 정확도 100m 이내가 필요합니다.</p>
+        </div>
+      </details>
+      <div class="gps-verification wow-gps-fixed-action">
+        <button id="completeBtn" onclick="completeMission()">GPS 도착 인증하기</button>
+        <p id="gpsStatus" class="gps-status" role="status" aria-live="polite">정류장 반경 70m 이내에서 인증할 수 있어요.</p>
+      </div>
     </div>
     <div id="wowMissionScreen3" class="wow-toss-screen" hidden>
       <div class="wow-toss-success"><div class="wow-toss-success-check">✓</div><span class="wow-toss-eyebrow">MISSION COMPLETE</span><h2>도착 인증 완료!</h2><p>대체 정류장 이용에 참여해 주셔서 감사합니다.</p><div class="wow-toss-earned"><small>이번 미션에서 획득한 포인트</small><strong id="wowTossEarned">+0 P</strong></div><button type="button" onclick="showPage('character')">와우 꾸미러 가기 →</button><button type="button" class="wow-toss-secondary" onclick="wowMissionGo(1)">다른 정류장 보기</button></div>
@@ -1203,15 +1240,20 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 <img alt="사용자가 제공한 원본 과잠 와우 마스코트" class="wow-body" id="wowBody"/>
 <div id="wowStickerLayers"></div><div id="wowPatchLayers"></div><div id="wowAccessoryLayers"></div>
 </div>
+<div class="wow-all-lock-control" role="group" aria-label="와우 꾸미기 전체 고정">
+  <div class="wow-all-lock-copy">
+    <strong id="wowAllLockTitle">꾸미기 아이템 전체 고정</strong>
+    <span id="wowAllLockStatus" role="status" aria-live="polite">장착한 와펜·액세서리·스티커를 한 번에 고정할 수 있어요.</span>
+  </div>
+  <button type="button" class="wow-all-lock-button" id="wowAllLockButton" onclick="toggleAllWowItemLocks()" aria-pressed="false" disabled>🔒 전체 고정</button>
+</div>
 <div class="wow-editor" hidden="" id="wowEditor">
 <div class="wow-editor-row"><b id="wowSelectedName">선택한 아이템</b><button id="wowResetItemPosition" onclick="resetWowPosition()">위치 초기화</button></div>
-<button type="button" class="wow-patch-lock-toggle" id="wowPatchLockButton" hidden onclick="toggleWowItemLock()" aria-pressed="false">🔒 아이템 고정하기</button>
-<p id="wowPatchLockHelp" class="muted" hidden>고정된 꾸미기 아이템은 드래그·크기 조절·위치 초기화가 제한됩니다. 필요할 때 언제든 해제할 수 있어요.</p>
 <label for="wowSize">아이템 크기 <span id="wowSizeLabel">100%</span></label>
 <input id="wowSize" max="90" min="4" oninput="resizeWowItem(this.value)" step="1" type="range"/>
 <p class="muted" style="margin:5px 0">선택한 아이템 드래그 · 크기 조절 · 위치 초기화</p>
 <button class="wow-remove-item" hidden="" id="wowRemoveSticker" onclick="removeSelectedWowSticker()" type="button">선택한 스티커 제거</button></div>
-<div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p><div class="wow-lock-management"><div class="wow-lock-management-heading">장착한 아이템 고정 관리 <span>와펜 · 액세서리 · 스티커</span></div><div id="wowPatchLockList" class="wow-patch-lock-list"></div></div>
+<div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p>
 </div>
 <div aria-labelledby="wowCustomizeTab-patches" class="card" data-wow-customize-panel="patches" id="wowCustomizePatches" role="tabpanel"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="wowPatchQuickSelect">학과 바로 선택</label><select class="wow-patch-quick" id="wowPatchQuickSelect"><option value="">전체 학과에서 선택</option></select><label class="search-label" for="patchSearch">학과명 검색</label><input autocomplete="off" class="patch-search" id="patchSearch" oninput="renderPatchShop()" placeholder="예: 컴퓨터공학과" type="search"/><div class="shop-count" id="patchCount">35개 학과</div><div class="wow-shop-grid" id="shop"></div><button aria-expanded="false" id="patchShopToggle" onclick="togglePatchShop()" type="button">전체 와펜 35종 펼치기 ↓</button><p aria-live="polite" id="wardrobeSyncStatus" role="status"></p></div><div aria-labelledby="wowCustomizeTab-upgrade" class="card upgrade-card" data-wow-customize-panel="upgrade" hidden="" id="patchLab" role="tabpanel">
 <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
@@ -2348,6 +2390,35 @@ function toggleWowItemLock(id=wowSelected){
  save();
 }
 function toggleWowPatchLock(id=wowSelected){toggleWowItemLock(id);}// 이전 버튼 호환
+// 현재 착용 중인 모든 와펜·액세서리·스티커를 한 번의 클릭으로 고정/해제합니다.
+// 기존 개별 잠금 값은 해제 때 함께 지워서 UI와 드래그 제한이 불일치하지 않도록 합니다.
+function toggleAllWowItemLocks(){
+  const active=wowActiveLayerIds();
+  if(!active.length)return;
+  const allLocked=active.every(id=>wowIsItemLocked(id));
+  const activeSet=new Set(active);
+  state.wowLockedItems=(state.wowLockedItems||[]).filter(id=>!activeSet.has(id));
+  state.wowLockedPatches=(state.wowLockedPatches||[]).filter(id=>!activeSet.has(id));
+  if(!allLocked)state.wowLockedItems=[...new Set([...state.wowLockedItems,...active])];
+  save(); // 기존 localStorage + Supabase 꾸미기 설정 동기화
+}
+function renderAllWowItemLockControl(){
+  const btn=document.getElementById('wowAllLockButton');
+  const status=document.getElementById('wowAllLockStatus');
+  const heading=document.getElementById('wowAllLockTitle');
+  if(!btn||!status)return;
+  const active=wowActiveLayerIds(),locked=active.filter(id=>wowIsItemLocked(id));
+  const allLocked=active.length>0&&locked.length===active.length;
+  btn.disabled=!active.length;
+  btn.textContent=allLocked?'🔓 전체 해제':'🔒 전체 고정';
+  btn.classList.toggle('is-all-locked',allLocked);
+  btn.setAttribute('aria-pressed',String(allLocked));
+  if(heading)heading.textContent=allLocked?'모든 아이템 고정됨':'꾸미기 아이템 전체 고정';
+  status.textContent=!active.length?'와펜·액세서리·스티커를 장착하면 사용할 수 있어요.'
+    :allLocked?`${active.length}개 아이템이 고정되어 있어요.`
+    :`${active.length}개 중 ${locked.length}개 고정 · 한 번에 모두 고정할 수 있어요.`;
+}
+
 function renderWowPatchLockList(){
  const list=document.getElementById('wowPatchLockList');if(!list)return;
  const active=wowActiveLayerIds();
@@ -2594,7 +2665,7 @@ function renderWowAccessories(){
     const equippedPatches=state.wowEquipped.filter(id=>state.owned.includes(id)).slice(0,5);
     drawWowLayers();
     renderWowEditor();
-    renderWowPatchLockList();
+    renderAllWowItemLockControl();
     document.getElementById("equipped").textContent="착용 중인 패치: "+(equippedPatches.length?equippedPatches.map(id=>items.find(x=>x.id===id).name).join(", "):"없음");
     renderPatchShop();
 
