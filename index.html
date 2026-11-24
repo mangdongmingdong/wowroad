@@ -699,6 +699,44 @@ select,input,textarea{border-color:#cdd8ec!important;color:#1a3056!important}inp
 @media(min-width:520px){.wow-alternative-cards{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:360px){.wow-map-live{display:none}}
 </style>
+
+<style id="wowroad-tap-map-ux">
+#mission>.card{padding:15px 13px 25px!important}
+.wow-map-intro{display:flex;gap:12px;align-items:center;background:linear-gradient(135deg,#153261,#28599e);color:white;border-radius:17px;padding:17px 14px;margin:12px 0 14px}
+.wow-map-intro-icon{display:grid;place-items:center;min-width:42px;height:42px;background:#ffffff23;border-radius:12px;font-size:24px}
+.wow-map-intro strong{color:#fff;font-size:17px;line-height:1.3}
+.wow-map-intro p{color:#d5e5ff;font-size:12px;line-height:1.6;margin:5px 0 0}
+.wow-map-legend,.wow-map-line-legend{display:flex;flex-wrap:wrap;gap:6px 14px;font-size:11px;line-height:1.55;color:#30476e;margin:7px 0}
+.wow-map-line-legend{margin-bottom:12px}
+.wow-map-legend span,.wow-map-line-legend span{display:inline-flex;align-items:center;gap:6px}
+.wow-legend-dot{width:10px;height:10px;border-radius:50%;display:inline-block}
+.wow-legend-dot.red{background:#da5260}.wow-legend-dot.blue{background:#246ac2}
+.wow-line-a,.wow-line-b{display:inline-block;width:25px;height:0;border-top:4px solid #159d85;border-radius:2px}
+.wow-line-b{border-color:#cf8c39}
+.wow-map-hero{position:relative;border:1px solid #d4e1f3;border-radius:16px;overflow:hidden;background:#eaf0f9}
+#mission #map{height:390px!important;min-height:390px!important;border:0!important;border-radius:0!important;margin:0!important;overflow:hidden}
+.wow-map-help-overlay{position:absolute;z-index:5;top:10px;left:50%;transform:translateX(-50%);white-space:nowrap;background:rgba(255,255,255,.94);border:1px solid #d7e4f3;padding:7px 12px;border-radius:50px;font-size:11px;font-weight:750;color:#204b89;box-shadow:0 3px 14px #213f7026;pointer-events:none}
+.wow-map-toolbar{display:flex;align-items:center;justify-content:space-between;gap:8px;margin:11px 0;font-size:11px;color:#667b9a}
+#wowShowAllStops{background:#eef4ff!important;border:1px solid #cfdbef!important;color:#24508b!important;border-radius:10px!important;padding:8px 10px!important;white-space:nowrap;font-size:11px!important;font-weight:700!important}
+.wow-map-selection{border-radius:14px;padding:15px 14px;background:#edf4ff;border:1px solid #c8d8f5;margin:13px 0 9px;display:flex;flex-direction:column;gap:5px}
+.wow-map-selection-label{color:#295a9d;font-size:11px;font-weight:800}.wow-map-selection strong{font-size:17px;color:#14376b}.wow-map-selection>span{font-size:12px;color:#5b7194}
+.wow-selection-pulse{animation:wowselectPulse .5s ease}@keyframes wowselectPulse{0%{box-shadow:0 0 0 0 #437ac74f}100%{box-shadow:0 0 0 10px #437ac700}}
+.wow-map-fallback{margin:15px 0;background:#f8faff;border:1px solid #e0e8f5;border-radius:13px;padding:13px}
+.wow-map-fallback>strong{font-size:12px;color:#254371}.wow-map-fallback>p{font-size:11px;color:#657997;margin:6px 0 10px}
+.wow-direct-stop-list{display:grid;gap:6px}
+.wow-direct-stop-button{text-align:left!important;background:#fff!important;border:1px solid #d9e3f2!important;border-radius:9px!important;color:#294771!important;padding:9px 10px!important;font-size:11px!important;margin:0!important;width:100%;line-height:1.5!important}
+.wow-direct-stop-button.selected{border-color:#4c80cb!important;background:#eaf2ff!important;font-weight:800!important}
+.wow-tap-map-pin{appearance:none;display:flex;align-items:center;gap:3px;flex-direction:column;justify-content:center;position:relative;min-width:48px;max-width:84px;padding:4px 5px!important;border-radius:11px!important;border:2px solid #fff!important;background:#2765ae!important;color:#fff!important;box-shadow:0 2px 9px #1b3c6870!important;transform:translateY(-6px);cursor:pointer;line-height:1.05!important;white-space:nowrap;user-select:none}
+.wow-tap-map-pin.crowded{background:#ce4d59!important;pointer-events:none;cursor:default}
+.wow-tap-map-pin.alternate.selected{background:#144c9c!important;outline:4px solid #f3cc59;z-index:20;transform:translateY(-10px);box-shadow:0 4px 14px #19345b99!important}
+.wow-tap-map-pin .wow-pin-number{font-size:11px;line-height:1.1!important;font-weight:900;background:#ffffff2f;border-radius:5px;padding:2px 5px}
+.wow-tap-map-pin .wow-pin-label{font-size:10px;line-height:1.1;font-weight:800;letter-spacing:-.35px}
+.wow-tap-map-pin.alternate:focus-visible{outline:4px solid #ffcb42}
+.wow-map-disclaimer{font-size:11px!important;color:#7786a0!important;line-height:1.65!important;margin:10px 0!important}
+.wow-route-summary{margin:8px 0!important;gap:7px;flex-wrap:wrap;justify-content:center}
+.wow-map-fallback[hidden],.wow-accessible-select{display:none!important}
+@media(max-width:390px){#mission #map{height:340px!important;min-height:340px!important}.wow-map-legend,.wow-map-line-legend{font-size:10px}.wow-tap-map-pin{min-width:42px;padding:3px 4px!important}.wow-tap-map-pin .wow-pin-label{font-size:9px}}
+</style>
 </head>
 
 <body>
@@ -827,27 +865,24 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
       <div class="section-eyebrow">SMART ROUTE</div><h2>📍 정류장 분산 미션</h2><p class="muted mission-intro">이용 방향 선택 · 대체 정류장 탐색 · 거리 및 보상 확인</p>
 
-      <div class="wow-flow-head"><div class="wow-flow-icon">🗺️</div><div><strong>어디서 타거나 내리시나요?</strong><p>방향과 대체 정류장만 선택하면 지도에 즉시 표시됩니다.</p></div></div>
-      <div class="wow-flow-step"><div class="wow-flow-step-title"><b>01</b><span>이용 방식</span></div>
-        <div class="mode-buttons"><button id="boardingBtn" onclick="setMode('boarding')">🚌 승차</button><button id="alightingBtn" onclick="setMode('alighting')">🚶 하차</button></div>
+      <div class="wow-map-intro"><span class="wow-map-intro-icon">🗺️</span><div><strong>지도에서 파란 핀을 눌러 주세요</strong><p>정류장 방향을 먼저 선택할 필요가 없어요. 같은 방면은 선으로 이어져 있습니다.</p></div></div>
+      <div class="wow-map-legend" aria-label="정류장 및 방면 범례">
+        <span><i class="wow-legend-dot red"></i>혼잡 정류장 · 위치만 안내</span>
+        <span><i class="wow-legend-dot blue"></i>대체 정류장 · 눌러서 선택</span>
       </div>
-      <div class="wow-flow-step"><div class="wow-flow-step-title"><b>02</b><span>버스 진행 방향</span></div>
-        <select id="direction" onchange="updateDirection()" aria-label="버스 진행 방향"><option value="A">삼진제약 → 극동방송 방면</option><option value="B">극동방송 → 삼진제약 방면</option></select>
-        <p class="wow-flow-help">같은 이름의 정류장도 진행 방향에 따라 위치가 다릅니다.</p>
-      </div>
-      <div class="wow-flow-step wow-choose-step"><div class="wow-flow-step-title"><b>03</b><span>가고 싶은 대체 정류장 선택</span></div>
-        <p class="wow-flow-help">아래 카드 중 하나를 선택하세요. 선택한 정류장이 지도에 파란색으로 강조됩니다.</p>
-        <div id="wowAlternativeCards" class="wow-alternative-cards" role="group" aria-label="대체 정류장 선택"></div>
-        <select id="alternativeStop" onchange="updateMission()" aria-label="대체 정류장" class="wow-accessible-select" tabindex="-1"></select>
-        <select id="crowdedStop" onchange="updateMission()" aria-label="자동 지정된 기준 혼잡 정류장" class="wow-accessible-select" tabindex="-1"></select>
-      </div>
-      <div class="wow-selected-head"><div><strong>📍 선택한 정류장 지도</strong><p>빨강: 혼잡 정류장 위치 · 파랑: 선택한 대체 정류장</p></div><span class="wow-map-live">선택 즉시 반영</span></div>
-      <div id="wowRouteSummary" class="wow-route-summary" aria-live="polite"><span class="wow-summary-from">혼잡 정류장 위치</span><span class="wow-summary-direction">→</span><span class="wow-summary-to">선택한 대체 정류장</span></div>
-      <div id="map" role="region" aria-label="혼잡 정류장과 선택한 대체 정류장 지도"></div>
-      <div class="wow-map-actions"><span class="wow-map-key"><i class="wow-key-red"></i>혼잡 정류장</span><span class="wow-map-key"><i class="wow-key-blue"></i>선택한 대체 정류장</span><button type="button" id="wowShowAllStops" aria-pressed="false" onclick="wowToggleAllStops()">전체 8개 보기</button></div>
-      <section id="wowAllStopPanel" class="wow-eight-stop-panel" hidden aria-live="polite"><div class="wow-eight-stop-title"><strong>전체 정류장 8개</strong><span id="wowEightStopCount">8개 핀 표시 중</span></div><p>8개의 정류장 위치를 번호와 ID로 확인할 수 있습니다.</p><div id="wowEightStopList" class="wow-eight-stop-list"></div></section>
-      <p class="wow-map-disclaimer">지도에서 빨간 핀은 혼잡 정류장의 위치를 나타냅니다. 파란 핀은 선택한 대체 정류장입니다. 표시된 연결선은 참고용 직선으로 실제 보행 경로가 아닙니다.</p>
+      <div class="wow-map-line-legend"><span><i class="wow-line-a"></i>삼진제약 → 극동방송 방면</span><span><i class="wow-line-b"></i>극동방송 → 삼진제약 방면</span></div>
+      <div class="wow-map-hero"><div id="map" role="region" aria-label="총 8개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div><div class="wow-map-help-overlay">파란 핀 5개 중 한 곳을 터치하세요</div></div>
+      <div class="wow-map-toolbar"><span>8개 정류장 표시 · 대체 정류장 5개 선택 가능</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 위치 보기 <span aria-hidden="true">↗</span></button></div>
+      <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">✓ 선택한 대체 정류장</div><strong id="wowMapSelectedName">정류장을 선택해 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
+      <div id="wowRouteSummary" class="wow-route-summary" aria-live="polite"><span class="wow-summary-from">혼잡 정류장</span><span class="wow-summary-direction">↔</span><span class="wow-summary-to">선택한 대체 정류장</span></div>
+      <p class="wow-map-disclaimer">연결선은 등록된 정류장 순서를 나타내는 참고용 직선이며, 실제 버스 운행 경로나 보행 경로는 아닙니다. 실제 탑승 방향은 정류장 표지판과 노선 정보를 확인해 주세요.</p>
       <div id="directionGuide" class="wow-direction-guide" aria-live="polite"></div>
+      <div class="wow-map-fallback" aria-label="지도에서 선택하기 어려운 경우 대체 정류장 목록"><strong>지도에서 선택하기 어려우신가요?</strong><p>아래 정류장을 눌러도 같은 결과를 확인할 수 있습니다.</p><div id="wowDirectStopList" class="wow-direct-stop-list"></div></div>
+      <select id="direction" class="wow-accessible-select" tabindex="-1" aria-hidden="true"><option value="A">삼진제약 → 극동방송</option><option value="B">극동방송 → 삼진제약</option></select>
+      <select id="alternativeStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
+      <select id="crowdedStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
+      <div id="wowAlternativeCards" hidden></div>
+      <div id="wowAllStopPanel" hidden><div id="wowEightStopList"></div><span id="wowEightStopCount"></span></div>
       <div class="recommend">
         <span class="stop-tag" id="modeLabel">하차 미션</span>
         <h2 id="target" style="margin-top:12px">
@@ -1319,17 +1354,9 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   function setMode(mode) {
     currentMode = mode;
 
-    document.getElementById("boardingBtn")
-      .classList.toggle(
-        "active",
-        mode === "boarding"
-      );
-
-    document.getElementById("alightingBtn")
-      .classList.toggle(
-        "active",
-        mode === "alighting"
-      );
+    // 지도에서 선택만 수행하므로 별도의 승차·하차 UI는 표시하지 않습니다.
+    document.getElementById('boardingBtn')?.classList.toggle('active',mode==='boarding');
+    document.getElementById('alightingBtn')?.classList.toggle('active',mode==='alighting');
 
     updateMission();
   }
@@ -1489,13 +1516,16 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     if (!mission) return;
     const hiddenCrowded=document.getElementById('crowdedStop');
     if(hiddenCrowded)hiddenCrowded.value=mission.crowdedId;
-    wowRenderAlternativeCards();
+    wowUpdateDirectStopList();
+    const selectedName=document.getElementById('wowMapSelectedName');
+    const selectedDir=document.getElementById('wowMapSelectedDirection');
+    if(selectedName)selectedName.textContent=`${stops[mission.alternativeId].name} · ID ${mission.alternativeId}`;
+    if(selectedDir)selectedDir.textContent=mission.direction==='A'?'삼진제약 → 극동방송 방면':'극동방송 → 삼진제약 방면';
 
     const modeName =
       currentMode === "boarding" ? "승차" : "하차";
 
-    document.getElementById("modeLabel").textContent =
-      `${modeName} 미션`;
+    document.getElementById("modeLabel").textContent = '정류장 방문 미션';
 
     document.getElementById("target").textContent =
       `${stops[mission.alternativeId].name} (${mission.alternativeId})`;
@@ -1504,7 +1534,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       `직선거리 · 약 ${mission.distance}m`;
 
     document.getElementById("routeDescription").textContent =
-      mission.movementDescription;
+      '선택한 대체 정류장 방문을 인증하는 미션입니다. 같은 방면의 정류장인지 지도에서 확인해 주세요.';
 
     const rewardInfo = getDifferentialReward(mission.crowdedId);
     document.getElementById("reward").textContent =
@@ -1588,173 +1618,109 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     });
   }
 
-  function makeStopOverlay(id, color, label) {
-    const stop = stops[id];
-
-    const position = new kakao.maps.LatLng(
-      stop.position[0],
-      stop.position[1]
-    );
-
-    const content = document.createElement("div");
-
-    content.style.cssText = `
-      background:${color};
-      color:white;
-      padding:8px 11px;
-      border-radius:12px;
-      font-size:12px;
-      font-weight:bold;
-      border:2px solid white;
-      box-shadow:0 2px 8px #0003;
-      white-space:nowrap;
-      text-align:center;
-    `;
-
-    content.textContent =
-      `${label} ${stop.name} (${id})`;
-
-    return new kakao.maps.CustomOverlay({
-      position,
-      content,
-      yAnchor: 1.2,
-      map: kakaoMap
+  // 지도 중심 UX: 전체 8개 핀 상시 표시, 대체 정류장 5개는 직접 누를 수 있습니다.
+  // 연결선은 정류장 순서의 도식적 직선이며 실제 도로/버스 노선 경로를 의미하지 않습니다.
+  let wowAllStopOverlays=[];
+  let wowGuideLines=[];
+  let wowSelectionLine=null;
+  const wowMapStopIds=[...directions.A,...directions.B];
+  const wowDirectionLabels={A:'삼진제약 → 극동방송 방면',B:'극동방송 → 삼진제약 방면'};
+  function wowSelectStopFromMap(id){
+    const direction=alternativeStops.A.includes(id)?'A':alternativeStops.B.includes(id)?'B':null;
+    if(!direction)return;
+    const directionEl=document.getElementById('direction');
+    const alternativeEl=document.getElementById('alternativeStop');
+    if(directionEl.value!==direction){ directionEl.value=direction; updateDirection(); }
+    alternativeEl.value=id;
+    updateMission();
+    const notice=document.getElementById('wowMapSelection');
+    if(notice){notice.classList.remove('wow-selection-pulse');void notice.offsetWidth;notice.classList.add('wow-selection-pulse');}
+  }
+  function wowUpdateDirectStopList(){
+    const list=document.getElementById('wowDirectStopList');
+    if(!list)return;
+    const selected=document.getElementById('alternativeStop')?.value;
+    if(list.childElementCount!==5){
+      list.replaceChildren();
+      ['A','B'].forEach(direction=>alternativeStops[direction].forEach(id=>{
+        const b=document.createElement('button');b.type='button';b.dataset.stopId=id;
+        b.className='wow-direct-stop-button';
+        b.textContent=`${stops[id].name} (${id}) · ${direction==='A'?'극동방송 방면':'삼진제약 방면'}`;
+        b.addEventListener('click',()=>wowSelectStopFromMap(id));
+        list.append(b);
+      }));
+    }
+    list.querySelectorAll('button').forEach(b=>{
+      const picked=b.dataset.stopId===selected;
+      b.classList.toggle('selected',picked);b.setAttribute('aria-pressed',String(picked));
     });
   }
-
-  // 전체 8개 보기: 버튼·표시 상태·카카오맵 핀을 동일한 스코프에서 관리합니다.
-  // 마커 번호는 directions A/B 순서에 따라 고정하며, 정류장 ID로 식별합니다.
-  let wowAllStopOverlays = [];
-  let wowAllStopsVisible = false;
-  let wowDirectionArrow = null;
-  const wowMapStopIds = [...directions.A, ...directions.B];
-
-  function wowSyncAllStopUI() {
-    const button = document.getElementById('wowShowAllStops');
-    const panel = document.getElementById('wowAllStopPanel');
-    const note = document.querySelector('.wow-map-disclaimer');
-    if (button) {
-      button.textContent = wowAllStopsVisible ? '선택한 2개만 보기' : '전체 8개 보기';
-      button.setAttribute('aria-pressed', String(wowAllStopsVisible));
-    }
-    if (panel) panel.hidden = !wowAllStopsVisible;
-    if (note) note.textContent = wowAllStopsVisible
-      ? '전체 정류장 8개를 번호와 정류장 ID로 표시합니다. 같은 이름이어도 서로 다른 정류장이며, 아래 목록에서 위치를 확인할 수 있습니다.'
-      : '빨간 핀은 해당 진행 방향의 혼잡 정류장 위치입니다. 파란 핀은 선택한 대체 정류장이며, 대체 정류장 카드를 바꾸면 지도가 즉시 갱신됩니다.';
+  function wowResetMapView(){
+    if(!kakaoMap){initKakaoMap();return;}
+    const bounds=new kakao.maps.LatLngBounds();
+    wowMapStopIds.forEach(id=>bounds.extend(new kakao.maps.LatLng(...stops[id].position)));
+    kakaoMap.relayout();kakaoMap.setBounds(bounds,70,50,70,50);
   }
-
-  function wowBuildAllStopList() {
-    const list = document.getElementById('wowEightStopList');
-    if (!list || list.childElementCount === 8) return;
-    list.replaceChildren();
-    wowMapStopIds.forEach((id, index) => {
-      const stop = stops[id];
-      const directionLabel = index < 4 ? 'A · 극동방송 방면' : 'B · 삼진제약 방면';
-      const button = document.createElement('button');
-      button.type = 'button';
-      button.className = 'wow-eight-stop-card';
-      button.setAttribute('aria-label', `${index+1}번 ${stop.name} 정류장, ${directionLabel}, 정류장 ID ${id}, 지도에서 위치 확인`);
-      const num = document.createElement('b');
-      num.className='wow-eight-stop-number';
-      num.textContent=String(index+1);
-      const info=document.createElement('span');
-      const name=document.createElement('strong');name.textContent=stop.name;
-      const meta=document.createElement('small');meta.textContent=`${directionLabel} · ID ${id}`;
-      info.append(name,meta);
-      button.append(num,info);
-      button.addEventListener('click', () => {
-        if (!kakaoMap) return;
-        const pos=new kakao.maps.LatLng(stop.position[0],stop.position[1]);
-        kakaoMap.setLevel(2);
-        kakaoMap.panTo(pos);
-        for(const other of list.children) other.classList.remove('active');
-        button.classList.add('active');
-      });
-      list.append(button);
-    });
-  }
-
-  function wowToggleAllStops() {
-    wowAllStopsVisible = !wowAllStopsVisible;
-    wowSyncAllStopUI();
-    if (wowAllStopsVisible) wowBuildAllStopList();
-    if (!kakaoMap) {
-      initKakaoMap();
-    } else {
-      kakaoMap.relayout();
-      updateMap();
-    }
-  }
-
-  function updateMap() {
-    if (!kakaoMap) return;
-    const mission = getCurrentMission();
-    if (!mission) return;
-    const routeSummary = document.getElementById('wowRouteSummary');
-    if (routeSummary) {
-      routeSummary.querySelector('.wow-summary-from').textContent=`🔴 주변 혼잡 정류장 ${crowdedStops[mission.direction].length}곳`;
+  // Legacy button function alias; full map is now shown without a toggle.
+  function wowToggleAllStops(){wowResetMapView();}
+  function updateMap(){
+    if(!kakaoMap)return;
+    const mission=getCurrentMission();if(!mission)return;
+    if(crowdedMarker){crowdedMarker.setMap(null);crowdedMarker=null;}
+    if(alternativeMarker){alternativeMarker.setMap(null);alternativeMarker=null;}
+    if(connectionLine){connectionLine.setMap(null);connectionLine=null;}
+    wowAllStopOverlays.forEach(overlay=>overlay.setMap(null));wowAllStopOverlays=[];
+    wowGuideLines.forEach(line=>line.setMap(null));wowGuideLines=[];
+    if(wowSelectionLine){wowSelectionLine.setMap(null);wowSelectionLine=null;}
+    const routeSummary=document.getElementById('wowRouteSummary');
+    if(routeSummary){
+      routeSummary.querySelector('.wow-summary-from').textContent=`🔴 기준: ${stops[mission.crowdedId].name} (${mission.crowdedId})`;
       routeSummary.querySelector('.wow-summary-to').textContent=`🔵 선택: ${stops[mission.alternativeId].name} (${mission.alternativeId})`;
     }
-    if (crowdedMarker) {crowdedMarker.setMap(null);crowdedMarker=null;}
-    if (alternativeMarker) {alternativeMarker.setMap(null);alternativeMarker=null;}
-    if (connectionLine) {connectionLine.setMap(null);connectionLine=null;}
-    if (wowDirectionArrow) {wowDirectionArrow.setMap(null);wowDirectionArrow=null;}
-    wowAllStopOverlays.forEach(overlay => overlay.setMap(null));
-    wowAllStopOverlays=[];
-
-    const from=stops[mission.crowdedId].position;
-    const to=stops[mission.alternativeId].position;
-    const p1=new kakao.maps.LatLng(from[0],from[1]);
-    const p2=new kakao.maps.LatLng(to[0],to[1]);
-
-    if (wowAllStopsVisible) {
-      // 정확히 8개의 번호 핀을 전부 새로 생성합니다. 선택한 2개도 포함합니다.
-      wowMapStopIds.forEach((id, index) => {
-        const stop=stops[id];
-        const pin=document.createElement('div');
-        pin.className='wow-eight-map-pin';
-        pin.textContent=String(index+1);
-        pin.title=`${index+1}. ${stop.name} · 정류장 ID ${id}`;
-        pin.setAttribute('aria-label',pin.title);
-        if (id===mission.crowdedId) pin.classList.add('crowded');
-        if (id===mission.alternativeId) pin.classList.add('alternative');
-        const overlay=new kakao.maps.CustomOverlay({
-          position:new kakao.maps.LatLng(stop.position[0],stop.position[1]),
-          content:pin,
-          xAnchor:0.5,
-          yAnchor:0.5,
-          zIndex:10+index,
-          map:kakaoMap
-        });
-        wowAllStopOverlays.push(overlay);
-      });
-      const bounds=new kakao.maps.LatLngBounds();
-      wowMapStopIds.forEach(id=>{
-        const [lat,lng]=stops[id].position;
-        bounds.extend(new kakao.maps.LatLng(lat,lng));
-      });
-      kakaoMap.setBounds(bounds,65,65,65,65);
-      wowBuildAllStopList();
-      const count=document.getElementById('wowEightStopCount');
-      if(count)count.textContent=`${wowAllStopOverlays.length}개 핀 표시 중`;
-    } else {
-      // 선택 상태에서는 해당 방향의 혼잡 정류장을 모두 빨강으로 표시합니다.
-      // 혼잡 정류장을 직접 고르거나 잘못된 이동 화살표를 읽을 필요가 없습니다.
-      const crowdedForDirection=crowdedStops[mission.direction]||[];
-      crowdedForDirection.forEach(id=>{
-        const overlay=makeStopOverlay(id,'#d84d5a','혼잡');
-        wowAllStopOverlays.push(overlay);
-      });
-      alternativeMarker=makeStopOverlay(mission.alternativeId,'#245bb6','선택한 대체');
-      const bounds=new kakao.maps.LatLngBounds();
-      crowdedForDirection.forEach(id=>{
-        const coord=stops[id].position;
-        bounds.extend(new kakao.maps.LatLng(coord[0],coord[1]));
-      });
-      bounds.extend(p2);
-      kakaoMap.setBounds(bounds,65,45,65,45);
+    // 방면 A와 B는 서로 다른 색의 선으로 연결, 선택한 쪽을 진하게 강조.
+    for(const direction of ['A','B']){
+      const positions=directions[direction].map(id=>new kakao.maps.LatLng(...stops[id].position));
+      const chosen=mission.direction===direction;
+      const line=new kakao.maps.Polyline({map:kakaoMap,path:positions,
+        strokeWeight:chosen?6:4,
+        strokeColor:direction==='A'?'#159d85':'#cf8c39',
+        strokeOpacity:chosen?.94:.42,
+        strokeStyle:'solid',zIndex:chosen?4:2});
+      wowGuideLines.push(line);
     }
-    wowSyncAllStopUI();
+    // 선택한 대체 정류장과 계산 기준 혼잡 정류장을 보라색 점선으로 연결.
+    const selectedFrom=new kakao.maps.LatLng(...stops[mission.crowdedId].position);
+    const selectedTo=new kakao.maps.LatLng(...stops[mission.alternativeId].position);
+    wowSelectionLine=new kakao.maps.Polyline({map:kakaoMap,path:[selectedFrom,selectedTo],
+      strokeWeight:4,strokeColor:'#7451d1',strokeOpacity:.95,strokeStyle:'shortdash',zIndex:6});
+    wowMapStopIds.forEach((id,index)=>{
+      const stop=stops[id];
+      const direction=directions.A.includes(id)?'A':'B';
+      const crowded=(crowdedStops[direction]||[]).includes(id);
+      const selected=id===mission.alternativeId;
+      const pin=document.createElement(crowded?'div':'button');
+      if(!crowded)pin.type='button';
+      pin.className='wow-tap-map-pin'+(crowded?' crowded':' alternate')+(selected?' selected':'');
+      const num=document.createElement('span');num.className='wow-pin-number';num.textContent=String(index+1);
+      const label=document.createElement('span');label.className='wow-pin-label';label.textContent=stop.name;
+      pin.append(num,label);
+      pin.title=`${stop.name} 정류장 (${id}) · ${wowDirectionLabels[direction]}`+(crowded?' · 혼잡 정류장':' · 대체 정류장 선택');
+      pin.setAttribute('aria-label',pin.title);
+      if(!crowded){
+        pin.setAttribute('aria-pressed',String(selected));
+        pin.addEventListener('click',event=>{event.preventDefault();event.stopPropagation();wowSelectStopFromMap(id);});
+        pin.addEventListener('pointerdown',event=>event.stopPropagation());
+      }
+      const overlay=new kakao.maps.CustomOverlay({position:new kakao.maps.LatLng(...stop.position),content:pin,
+        xAnchor:.5,yAnchor:.95,zIndex:selected?20:crowded?9:11,map:kakaoMap});
+      wowAllStopOverlays.push(overlay);
+    });
+    wowUpdateDirectStopList();
+    // 첫 진입에는 8개를 모두 보여 주고, 사용자가 핀을 선택할 때마다 과도하게 지도가 움직이지 않게 합니다.
+    if(!window.wowMapViewInitialized){
+      window.wowMapViewInitialized=true;
+      wowResetMapView();
+    }
   }
   // =====================================
   // 9. 미션 완료
