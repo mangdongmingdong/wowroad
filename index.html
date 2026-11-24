@@ -942,16 +942,16 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         <span><i class="wow-legend-dot red"></i>혼잡 정류장 · 위치만 안내</span>
         <span><i class="wow-legend-dot blue"></i>대체 정류장 · 눌러서 선택</span>
       </div>
-      <div class="wow-map-line-legend wow-direction-switch" role="group" aria-label="진행 방향의 핀 강조하기"><button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i>하나은행 앞 정류장 이용 <span class="wow-direction-tag">핀 보기</span></button><button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i>신한은행 앞 정류장 이용 <span class="wow-direction-tag">핀 보기</span></button><button type="button" id="wowDirectionC" data-wow-direction="C" aria-pressed="false" onclick="wowFocusDirection('C')"><i class="wow-line-c"></i>홍대입구역 방면 · 273 / 마포09 <span class="wow-direction-tag">핀 보기</span></button></div>
+      <div class="wow-map-line-legend wow-direction-switch" role="group" aria-label="진행 방향의 핀 강조하기"><button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i>하나은행 앞 정류장 이용 <span class="wow-direction-tag">핀 보기</span></button><button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i>신한은행 앞 정류장 이용 <span class="wow-direction-tag">핀 보기</span></button></div>
        <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">지도 위 방향선을 누르거나 방면 버튼을 눌러 주세요. 해당 방면의 핀이 앞으로 표시됩니다.</p>
       <div class="wow-map-hero"><div id="map" role="region" aria-label="총 10개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div><div class="wow-map-help-overlay">파란 핀을 눌러 선택</div></div>
-      <div class="wow-map-toolbar"><span>정류장 10개 · 선택 가능 7개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 지도 보기 ↗</button></div>
+      <div class="wow-map-toolbar"><span>정류장 10개 · 선택 가능 6개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 지도 보기 ↗</button></div>
       <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">STEP 02 · 선택한 대체 정류장</div><strong id="wowMapSelectedName">정류장을 선택해 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
       <div id="wowRouteSummary" class="wow-route-summary" aria-live="polite"><span class="wow-summary-from">혼잡 정류장</span><span class="wow-summary-direction">↔</span><span class="wow-summary-to">선택한 대체 정류장</span></div>
       <p class="wow-map-disclaimer">연결선은 정류장 순서를 설명하기 위한 참고선으로 실제 도로 경로가 아닙니다. 특히 <strong>마포09는 서교푸르지오아파트(14906)에 정차하지만, 273번은 정차하지 않습니다.</strong> 버스 노선과 정류장 ID를 확인한 뒤 선택해 주세요.</p>
       <div id="directionGuide" class="wow-direction-guide" aria-live="polite"></div>
       <div class="wow-map-fallback" aria-label="대체 정류장 목록"><strong>정류장 목록에서 선택하기</strong><p>지도에서 핀이 겹친다면 아래 목록에서 고를 수 있어요.</p><div id="wowDirectStopList" class="wow-direct-stop-list"></div></div>
-      <select id="direction" class="wow-accessible-select" tabindex="-1" aria-hidden="true"><option value="A">하나은행 앞 정류장 이용</option><option value="B">신한은행 앞 정류장 이용</option><option value="C">홍대입구역 방면 · 273 / 마포09</option></select>
+      <select id="direction" class="wow-accessible-select" tabindex="-1" aria-hidden="true"><option value="A">하나은행 앞 정류장 이용</option><option value="B">신한은행 앞 정류장 이용</option></select>
       <select id="alternativeStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
       <select id="crowdedStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
       <div id="wowAlternativeCards" hidden></div>
@@ -1155,25 +1155,20 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
   // 사용자 제공 운행 순서
   const directions = {
-    A: ["14283", "14899", "14233", "14231"],
-    B: ["14230", "14890", "14232", "14982"],
-    // 마포09 실제 경유 순서: 홍대정문(14899) → 서교푸르지오(14906) → 홍대입구역사거리(14284).
-    // 273은 14906에 정차하지 않으므로 핀별 노선명을 별도로 안내합니다.
-    C: ["14899", "14906", "14284"]
+    A: ["14283", "14899", "14233", "14231", "14906", "14284"],
+    B: ["14230", "14890", "14232", "14982"]
   };
 
   // 혼잡 정류장
   const crowdedStops = {
     A: ["14899", "14233"],
-    B: ["14232"],
-    C: ["14899"]
+    B: ["14232", "14890"]
   };
 
   // 선택 가능한 대체 정류장
   const alternativeStops = {
-    A: ["14283", "14231"],
-    B: ["14230", "14890", "14982"],
-    C: ["14906", "14284"]
+    A: ["14283", "14231", "14906", "14284"],
+    B: ["14230", "14982"]
   };
 
   // 대상 버스 노선 ID
@@ -1457,6 +1452,11 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   // 혼잡 정류장은 사용자가 선택하지 않습니다. 선택한 대체 정류장과
   // 같은 진행 방향에서 직선거리가 가장 가까운 혼잡 정류장을 계산 기준으로 사용합니다.
   function wowNearestCrowded(direction, alternativeId) {
+    // 마포08: 홍대정문(14890) 혼잡을 피해서 삼진제약(14982)을 이용하도록 안내.
+    // 직선거리만으로 기준 정류장을 선정하면 14232를 잘못 연결하므로 예외를 고정합니다.
+    if(direction==='B' && alternativeId==='14982')return '14890';
+    // 하나은행 앞 방면의 홍대입구역 쪽 신규 대체 정류장은 홍대정문(14899) 혼잡 분산 목적.
+    if(direction==='A' && ['14906','14284'].includes(alternativeId))return '14899';
     const options=crowdedStops[direction]||[];
     if(!options.length)return null;
     return options.reduce((best,id)=>{
@@ -1505,10 +1505,8 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     });
     const guide=document.getElementById('directionGuide');
     if(guide)guide.textContent=direction==='A'
-      ? '하나은행 앞 정류장 이용 · 삼진제약 → 홍대정문 → 홍익대학교 → 극동방송. 정확한 정류장 ID와 버스 노선을 확인하세요.'
-      : direction==='B'
-      ? '신한은행 앞 정류장 이용 · 극동방송 → 홍대정문 → 홍익대학교 → 삼진제약. 정확한 정류장 ID와 버스 노선을 확인하세요.'
-      : '홍대입구역 방면 · 마포09는 홍대정문 → 서교푸르지오아파트 → 홍대입구역사거리 순서입니다. 273번은 서교푸르지오아파트에 정차하지 않으니 주의하세요.';
+      ? '하나은행 앞 정류장 이용 · 대체 정류장 4곳: 삼진제약(14283), 극동방송(14231), 서교푸르지오아파트(14906·마포09), 홍대입구역사거리(14284·273/마포09). 노선별 정차 여부를 확인하세요.'
+      : '신한은행 앞 정류장 이용 · 대체 정류장: 극동방송(14230), 삼진제약(14982). 실제 노선과 정류장 ID를 확인하세요.';
     updateMission();
   }
 
@@ -1589,6 +1587,10 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         alternativeIndex < crowdedIndex
           ? "혼잡 정류장보다 앞선 정류장에서 타는 선택입니다."
           : "혼잡 정류장 이후 정류장에서 타는 선택입니다.";
+    }
+
+    if(direction==='A' && ['14906','14284'].includes(alternativeId)) {
+      movementDescription = '하나은행 앞 혼잡 정류장 대신 홍대입구역 쪽 대체 정류장을 이용하는 미션입니다. 탑승 노선의 실제 정차 여부를 확인하세요.';
     }
 
     return {
@@ -1709,36 +1711,46 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     });
   }
 
-  // 지도 중심 UX: 전체 10개 핀 상시 표시, 대체 정류장 7개는 직접 누를 수 있습니다.
+  // 지도 중심 UX: 전체 10개 핀 상시 표시, 대체 정류장 6개는 직접 누를 수 있습니다.
   // 연결선은 정류장 순서의 도식적 직선이며 실제 도로/버스 노선 경로를 의미하지 않습니다.
   let wowAllStopOverlays=[];
   let wowGuideLines=[];
   let wowMapActiveDirection=null;
   let wowLineClickTargets=[];
   function wowFocusDirection(direction){
-    if(!['A','B','C'].includes(direction))return;
-    // Already-selected direction can be dismissed to show both sets of pins equally.
-    wowMapActiveDirection=wowMapActiveDirection===direction?null:direction;
-    const tip=document.getElementById('wowDirectionTip');
-    if(tip)tip.textContent=wowMapActiveDirection
-      ? wowDirectionLabels[wowMapActiveDirection]+' 핀을 앞으로 표시했어요. 파란 핀을 눌러 대체 정류장을 선택하세요.'
-      : '두 방향의 핀을 모두 보여드리고 있어요. 지도 위 방향선이나 방면 버튼을 눌러 주세요.';
-    ['A','B','C'].forEach(d=>{
+    if(!['A','B'].includes(direction))return;
+    // 단일 선택: 같은 버튼을 다시 눌러도 해제되지 않으며, 다른 방면은 자동 해제됩니다.
+    wowMapActiveDirection=direction;
+    ['A','B'].forEach(d=>{
       const btn=document.getElementById('wowDirection'+d);
-      if(btn){btn.classList.toggle('active',wowMapActiveDirection===d);btn.setAttribute('aria-pressed',String(wowMapActiveDirection===d));}
+      if(btn){
+        const active=d===direction;
+        btn.classList.toggle('active',active);
+        btn.setAttribute('aria-pressed',String(active));
+        btn.querySelector('.wow-direction-tag').textContent=active?'선택됨':'핀 보기';
+      }
     });
-    updateMap();
+    // 방면 버튼과 실제 미션 기준 방면을 일치시킵니다.
+    const directionSelect=document.getElementById('direction');
+    if(directionSelect && directionSelect.value!==direction){
+      directionSelect.value=direction;
+      updateDirection(); // 대체 정류장, 지도, 미션 요약도 동기화
+    } else {
+      updateMap();
+    }
+    const tip=document.getElementById('wowDirectionTip');
+    if(tip)tip.textContent=wowDirectionLabels[direction]+' 선택됨 · 이 방면의 파란 핀을 눌러 대체 정류장을 선택하세요.';
   }
   let wowSelectionLine=null;
   const wowMapStopIds=[...new Set(Object.values(directions).flat())];
-  const wowDirectionLabels={A:'하나은행 앞 정류장 이용',B:'신한은행 앞 정류장 이용',C:'홍대입구역 방면 (273 · 마포09)'};
+  const wowDirectionLabels={A:'하나은행 앞 정류장 이용',B:'신한은행 앞 정류장 이용'};
   function wowSelectStopFromMap(id){
     const direction=Object.keys(alternativeStops).find(d=>(alternativeStops[d]||[]).includes(id))||null;
     if(!direction)return;
     wowMapActiveDirection=direction;
     const tip=document.getElementById('wowDirectionTip');
     if(tip)tip.textContent=wowDirectionLabels[direction]+'의 대체 정류장을 선택했어요. 같은 방면의 핀이 앞으로 표시됩니다.';
-    ['A','B','C'].forEach(d=>{const btn=document.getElementById('wowDirection'+d);if(btn){btn.classList.toggle('active',d===direction);btn.setAttribute('aria-pressed',String(d===direction));}});
+    ['A','B'].forEach(d=>{const btn=document.getElementById('wowDirection'+d);if(btn){const active=d===direction;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));btn.querySelector('.wow-direction-tag').textContent=active?'선택됨':'핀 보기';}});
     const directionEl=document.getElementById('direction');
     const alternativeEl=document.getElementById('alternativeStop');
     if(directionEl.value!==direction){ directionEl.value=direction; updateDirection(); }
@@ -1751,9 +1763,9 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     const list=document.getElementById('wowDirectStopList');
     if(!list)return;
     const selected=document.getElementById('alternativeStop')?.value;
-    if(list.childElementCount!==7){
+    if(list.childElementCount!==6){
       list.replaceChildren();
-      ['A','B','C'].forEach(direction=>alternativeStops[direction].forEach(id=>{
+      ['A','B'].forEach(direction=>alternativeStops[direction].forEach(id=>{
         const b=document.createElement('button');b.type='button';b.dataset.stopId=id;
         b.className='wow-direct-stop-button';
         b.textContent=`${stops[id].name} (${id}) · ${wowDirectionLabels[direction]}`+(stops[id].routes?' · '+stops[id].routes.join(' / '):'');
@@ -1789,21 +1801,27 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       routeSummary.querySelector('.wow-summary-from').textContent=`🔴 기준: ${stops[mission.crowdedId].name} (${mission.crowdedId})`;
       routeSummary.querySelector('.wow-summary-to').textContent=`🔵 선택: ${stops[mission.alternativeId].name} (${mission.alternativeId})`;
     }
-    // 방면 A와 B는 서로 다른 색의 선으로 연결, 선택한 쪽을 진하게 강조.
-    for(const direction of ['A','B','C']){
-      const positions=directions[direction].map(id=>new kakao.maps.LatLng(...stops[id].position));
+    // 같은 방면의 각 구간을 구분해 표시. 14906/14284는 기존 종단과
+    // 일직선으로 잇지 않고 홍대정문(14899)에서 갈라지는 별도의 참고 연결선입니다.
+    const routeSegments = [
+      {direction:'A',ids:['14283','14899','14233','14231']},
+      {direction:'A',ids:['14899','14906','14284']},
+      {direction:'B',ids:['14230','14890','14232','14982']}
+    ];
+    for(const segment of routeSegments){
+      const direction=segment.direction;
+      const positions=segment.ids.map(id=>new kakao.maps.LatLng(...stops[id].position));
       const focused=wowMapActiveDirection===direction;
       const subdued=wowMapActiveDirection!==null&&!focused;
+      const color=direction==='A'?'#159d85':'#cf8c39';
       const line=new kakao.maps.Polyline({map:kakaoMap,path:positions,
-        strokeWeight:focused?8:5,
-        strokeColor:direction==='A'?'#159d85':direction==='B'?'#cf8c39':'#6b65c8',
+        strokeWeight:focused?8:5,strokeColor:color,
         strokeOpacity:focused?1:subdued?.24:.83,
         strokeStyle:'solid',zIndex:focused?9:3});
       wowGuideLines.push(line);
-      // Give the route line a generous touch target on mobile.
       const touchLine=new kakao.maps.Polyline({map:kakaoMap,path:positions,
-        strokeWeight:24,strokeColor:direction==='A'?'#159d85':direction==='B'?'#cf8c39':'#6b65c8',
-        strokeOpacity:.015,strokeStyle:'solid',zIndex:4});
+        strokeWeight:24,strokeColor:color,strokeOpacity:.015,
+        strokeStyle:'solid',zIndex:4});
       kakao.maps.event.addListener(touchLine,'click',()=>wowFocusDirection(direction));
       kakao.maps.event.addListener(line,'click',()=>wowFocusDirection(direction));
       wowLineClickTargets.push(touchLine);
@@ -1829,7 +1847,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       const num=document.createElement('span');num.className='wow-pin-number';num.textContent=String(index+1);
       const label=document.createElement('span');label.className='wow-pin-label';label.textContent=stop.name;
       pin.append(num,label);
-      pin.title=`${stop.name} 정류장 (${id}) · ${wowDirectionLabels[Object.keys(alternativeStops).find(d=>alternativeStops[d].includes(id))||direction]}`+(stop.routes?' · '+stop.routes.join(', '):'')+(crowded?' · 혼잡 정류장':' · 대체 정류장 선택');
+      pin.title=`${stop.name} 정류장 (${id}) · ${wowDirectionLabels[Object.keys(alternativeStops).find(d=>alternativeStops[d].includes(id))||direction]}`+(stop.routes?' · '+stop.routes.join(', '):'')+(crowded?' · 혼잡 정류장 (선택 불가)':' · 대체 정류장 선택');
       pin.setAttribute('aria-label',pin.title);
       if(!crowded){
         pin.setAttribute('aria-pressed',String(selected));
@@ -1843,7 +1861,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     wowUpdateDirectStopList();
     const pinNotice=document.getElementById('wowDirectionTip');
     if(pinNotice && !wowMapActiveDirection){
-      pinNotice.textContent='정류장 핀 10개 표시 중 · 파란 핀 7개를 눌러 대체 정류장을 선택하세요. 선이나 방면 버튼을 누르면 해당 방향을 강조합니다.';
+      pinNotice.textContent='정류장 핀 10개 표시 중 · 파란 핀 6개를 눌러 대체 정류장을 선택하세요. 선이나 방면 버튼을 누르면 해당 방향을 강조합니다.';
     }
     // 첫 진입에는 10개를 모두 보여 주고, 사용자가 핀을 선택할 때마다 과도하게 지도가 움직이지 않게 합니다.
     if(!window.wowMapViewInitialized){
@@ -2308,6 +2326,12 @@ function renderWowAccessories(){
 .account-logged-in{display:flex;justify-content:space-between;align-items:center;gap:10px;flex-wrap:wrap}
 .account-signout{width:auto;padding:9px 18px;margin:12px 0 0;font-size:13px}
 .lab-auth-panel[hidden],.lab-account-panel[hidden]{display:none!important}
+
+/* 방면 탭: 반드시 한 개만 선택 상태로 표시 (2026-11-24) */
+.wow-direction-switch button.active{background:#244478!important;color:#fff!important;border-color:#244478!important;box-shadow:0 4px 12px #1e3e7526!important}
+.wow-direction-switch button.active .wow-direction-tag{color:#d9eaff!important}
+.wow-direction-switch button:not(.active){background:#fff!important;color:#334565!important;border-color:#d9e2ee!important;box-shadow:none!important}
+.wow-direction-switch button:focus:not(:focus-visible){outline:none!important}
 </style>
 <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
 <script>
