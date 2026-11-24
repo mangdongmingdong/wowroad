@@ -795,7 +795,7 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 #mission .wow-map-selection{background:white!important;color:#202d40!important;border:1.5px solid #b8caff!important;border-radius:17px!important;padding:16px!important;box-shadow:0 5px 22px #2254ad0c!important}#mission .wow-map-selection-label{color:#3266da!important;font-size:10px!important;font-weight:850!important;letter-spacing:.4px!important}#mission #wowMapSelectedName{font-size:18px!important;color:#1c2d4a!important;font-weight:850!important}#mission #wowMapSelectedDirection{font-size:11px!important;color:#7788a4!important}#mission .wow-route-summary{background:#f7f9fd!important;border:1px solid #e6ebf5!important;border-radius:13px!important;margin:10px 0!important;padding:12px!important;color:#4c617c!important;font-size:11px!important}#mission .wow-map-disclaimer{font-size:10px!important;color:#a1acb9!important;line-height:1.65!important;margin:10px 2px!important}#mission .wow-map-fallback{border:1px solid #e8edf4!important;background:#fff!important;border-radius:16px!important;padding:15px!important;margin:18px 0!important}#mission .wow-map-fallback>strong{font-size:12px!important;color:#26374f!important}#mission .wow-map-fallback>p{font-size:10px!important;color:#9ba8b8!important;margin:4px 0 11px!important}#mission .wow-direct-stop-button{background:#f6f8fc!important;color:#425574!important;border:1px solid #e7ebf2!important;border-radius:11px!important;font-size:11px!important;padding:11px!important}#mission .wow-direct-stop-button.selected{background:#eaf1ff!important;border-color:#6c91ed!important;color:#2055c4!important}#mission .recommend{background:#fff!important;border:1px solid #e7ebf4!important;border-radius:19px!important;padding:19px!important;margin:17px 0!important}#mission .recommend #target{font-size:21px!important;color:#1d304d!important}#mission .recommend #reward{font-size:24px!important;color:#2b5fdb!important}#mission .gps-verification{background:#f0f5ff!important;border:1px solid #dce7fb!important;border-radius:18px!important;padding:15px!important}#mission #completeBtn{background:#275dd9!important;color:white!important;border-radius:13px!important;font-size:14px!important;min-height:48px}#mission .notice{background:#f5f7fa!important;color:#8995a5!important;font-size:10px!important;border-radius:13px!important}
 #mission .wow-tap-map-pin.alternate{background:white!important;color:#2656c7!important;border-color:#c7d8ff!important;box-shadow:0 3px 11px #172b4b44!important}#mission .wow-tap-map-pin.alternate.selected{background:#2f67db!important;color:white!important;border-color:white!important;box-shadow:0 0 0 4px #78a0fa55,0 5px 15px #172b4b44!important}#mission .wow-tap-map-pin.crowded{background:#d75b5d!important;color:#fff!important;box-shadow:0 3px 12px #9b212144!important}
 /* Styling on other pages: content preserved, cleaner hierarchy */
-#character>.card:first-child>h2,#history>.card:first-child>h2{font-size:24px!important}#character .wow-stage{border-radius:19px!important;background:linear-gradient(180deg,#eaf0fb,#f7f8fc)!important}#character .wow-shop-item{border:1px solid #e6eaf2!important;box-shadow:none!important;background:white!important;border-radius:15px!important}#character #shop .wow-shop-item{min-height:270px!important}#character .wow-category button.active{background:#295cce!important}#history #historyList .item{border-color:#e6ebf2!important;border-radius:14px!important}
+#character>.card:first-child>h2,#history>.card:first-child>h2{font-size:24px!important}#character .wow-stage{border-radius:19px!important}#character .wow-shop-item{border:1px solid #e6eaf2!important;box-shadow:none!important;background:white!important;border-radius:15px!important}#character #shop .wow-shop-item{min-height:270px!important}#character .wow-category button.active{background:#295cce!important}#history #historyList .item{border-color:#e6ebf2!important;border-radius:14px!important}
 /* Keep system dialog usable in redesigned shell */
 @media(max-width:390px){.app{padding-left:15px!important;padding-right:15px!important}.app .wow-app-header{margin-left:-15px;margin-right:-15px;padding-left:15px;padding-right:15px}#mission #map{height:375px!important;min-height:375px!important}.wow-home-welcome{padding:27px 20px 20px}.wow-home-welcome h2{font-size:26px!important}.wow-map-line-legend{gap:4px 10px!important}}
 @media(min-width:800px){.app{box-shadow:0 0 35px #19335820}}
@@ -972,6 +972,27 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 @media(max-width:420px){#mission.wow-toss-mission{padding-left:16px;padding-right:16px}#mission .wow-toss-bottom-action{margin-left:-16px;margin-right:-16px;padding-left:16px;padding-right:16px}#mission .wow-toss-head h2{font-size:24px}}
 </style>
 
+<style>
+/* Unified lock management for patches, accessories and stickers. */
+.wow-lock-group{margin:10px 0 0;border-top:1px solid #e6ecf6;padding-top:10px}
+.wow-lock-group:first-child{border-top:0;margin-top:0;padding-top:0}
+.wow-lock-group-title{font-size:12px;font-weight:800;color:#687b99;margin:0 0 7px}
+#wowPatchLockList .wow-patch-lock-name{overflow-wrap:anywhere;min-width:0}
+#wowStage .wow-layer-locked{cursor:default!important;touch-action:manipulation!important}
+</style>
+<style id="wowroad-theme-visibility-fix">
+/* The active backdrop always wins over earlier app-shell skins. */
+#character #wowStage.wow-stage {
+  background: var(--wow-stage-bg, linear-gradient(160deg,#d6f2ea 0%,#d6f2ea 55%,#fff 145%)) !important;
+  background-color: transparent !important;
+  transition: background 220ms ease;
+}
+/* Keep theme choices readable and visually selected. */
+#character #wowBackdropOptions .backdrop-chip.selected {
+  border-color: #2659bf !important;
+  box-shadow: 0 0 0 2px #dbe7ff !important;
+}
+</style>
 </head>
 
 <body>
@@ -1184,13 +1205,13 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 </div>
 <div class="wow-editor" hidden="" id="wowEditor">
 <div class="wow-editor-row"><b id="wowSelectedName">선택한 아이템</b><button id="wowResetItemPosition" onclick="resetWowPosition()">위치 초기화</button></div>
-<button type="button" class="wow-patch-lock-toggle" id="wowPatchLockButton" hidden onclick="toggleWowPatchLock()" aria-pressed="false">🔒 패치 고정하기</button>
-<p id="wowPatchLockHelp" class="muted" hidden>고정하면 다른 꾸미기 아이템을 터치해도 이 패치는 움직이지 않습니다.</p>
+<button type="button" class="wow-patch-lock-toggle" id="wowPatchLockButton" hidden onclick="toggleWowItemLock()" aria-pressed="false">🔒 아이템 고정하기</button>
+<p id="wowPatchLockHelp" class="muted" hidden>고정된 꾸미기 아이템은 드래그·크기 조절·위치 초기화가 제한됩니다. 필요할 때 언제든 해제할 수 있어요.</p>
 <label for="wowSize">아이템 크기 <span id="wowSizeLabel">100%</span></label>
 <input id="wowSize" max="90" min="4" oninput="resizeWowItem(this.value)" step="1" type="range"/>
 <p class="muted" style="margin:5px 0">선택한 아이템 드래그 · 크기 조절 · 위치 초기화</p>
 <button class="wow-remove-item" hidden="" id="wowRemoveSticker" onclick="removeSelectedWowSticker()" type="button">선택한 스티커 제거</button></div>
-<div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p><div class="wow-lock-management"><div class="wow-lock-management-heading">장착한 패치 고정 관리 <span>잠금/해제</span></div><div id="wowPatchLockList" class="wow-patch-lock-list"></div></div>
+<div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p><div class="wow-lock-management"><div class="wow-lock-management-heading">장착한 아이템 고정 관리 <span>와펜 · 액세서리 · 스티커</span></div><div id="wowPatchLockList" class="wow-patch-lock-list"></div></div>
 </div>
 <div aria-labelledby="wowCustomizeTab-patches" class="card" data-wow-customize-panel="patches" id="wowCustomizePatches" role="tabpanel"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="wowPatchQuickSelect">학과 바로 선택</label><select class="wow-patch-quick" id="wowPatchQuickSelect"><option value="">전체 학과에서 선택</option></select><label class="search-label" for="patchSearch">학과명 검색</label><input autocomplete="off" class="patch-search" id="patchSearch" oninput="renderPatchShop()" placeholder="예: 컴퓨터공학과" type="search"/><div class="shop-count" id="patchCount">35개 학과</div><div class="wow-shop-grid" id="shop"></div><button aria-expanded="false" id="patchShopToggle" onclick="togglePatchShop()" type="button">전체 와펜 35종 펼치기 ↓</button><p aria-live="polite" id="wardrobeSyncStatus" role="status"></p></div><div aria-labelledby="wowCustomizeTab-upgrade" class="card upgrade-card" data-wow-customize-panel="upgrade" hidden="" id="patchLab" role="tabpanel">
 <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
@@ -1439,6 +1460,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     wowJacketOn: true,
     wowPositions: {},
     wowLockedPatches: [],
+    wowLockedItems: [],
     wowAccessoriesEquipped: [],
     wowBackdrop: "mint",
     patchLab: {},
@@ -1453,7 +1475,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   window.wowResetUserLocal=function(){
     // Immediately change account-scoped local state; server wardrobe is restored after wallet loading.
     window.WowWardrobe?.reset();
-    const fresh={...initialState,points:0,starterGranted:true,totalEarned:0,history:[],owned:[],wowEquipped:[],wowPositions:{},wowLockedPatches:[],wowAccessoriesEquipped:[],wowStickers:[],wowBackdrop:'mint',patchCatalogVersion:35};
+    const fresh={...initialState,points:0,starterGranted:true,totalEarned:0,history:[],owned:[],wowEquipped:[],wowPositions:{},wowLockedPatches:[],wowLockedItems:[],wowAccessoriesEquipped:[],wowStickers:[],wowBackdrop:'mint',patchCatalogVersion:35};
     try{const prior=JSON.parse(localStorage.getItem(wowLocalKey())||'{}');state={...fresh,...prior,points:0,starterGranted:true};}catch{state=fresh;}
     render();
   };
@@ -1487,7 +1509,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   // Account-scoped cloud wardrobe: the wallet and item purchases remain authoritative elsewhere.
   // Only equipped items, their positions/sizes and backdrop are stored in this table.
   (function setupWowWardrobe(){
-    const fields=['wowEquipped','wowAccessoriesEquipped','wowStickers','wowPositions','wowLockedPatches','wowBackdrop','wowJacketOn'];
+    const fields=['wowEquipped','wowAccessoriesEquipped','wowStickers','wowPositions','wowLockedPatches','wowLockedItems','wowBackdrop','wowJacketOn'];
     let loadedUser=null, ready=false, restorePromise=null, pending=null, writeChain=Promise.resolve(), generation=0;
     let lastError='';
     const label=()=>document.getElementById('wardrobeSyncStatus');
@@ -1507,6 +1529,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       r.wowAccessoriesEquipped=safeIds(raw.wowAccessoriesEquipped).filter(id=>/^acc\d+$/.test(id)||/^ear/.test(id));
       r.wowStickers=safeIds(raw.wowStickers).filter(id=>id.startsWith('stk'));
       r.wowLockedPatches=safeIds(raw.wowLockedPatches).filter(id=>/^dept\d+$/.test(id));
+      r.wowLockedItems=[...new Set([...safeIds(raw.wowLockedItems),...r.wowLockedPatches])].filter(id=>/^(dept\d+|acc\d+|ear\w+|stk\d+)$/.test(id));
       r.wowBackdrop=['mint','sky','cream','lavender'].includes(raw.wowBackdrop)?raw.wowBackdrop:'mint';
       r.wowJacketOn=true;
       r.wowPositions={};
@@ -2301,33 +2324,55 @@ function alignAllWowPatches(){
  drawWowLayers();
 }
 function wowPos(id){state.wowPositions ||= {};return state.wowPositions[id] || wowDefaultPosition(id);}
-function wowIsPatchLocked(id){return /^dept\d+$/.test(id||'') && (state.wowLockedPatches||[]).includes(id);}
-function toggleWowPatchLock(id=wowSelected){
- if(!id||!/^dept\d+$/.test(id))return;
- state.wowLockedPatches ||= [];
- state.wowLockedPatches=wowIsPatchLocked(id)?state.wowLockedPatches.filter(x=>x!==id):[...new Set([...state.wowLockedPatches,id])];
+// 장착된 모든 이동형 꾸미기 아이템의 잠금을 통합 관리합니다.
+// 이전 버전에서 저장한 와펜 잠금(wowLockedPatches)도 그대로 읽습니다.
+function wowActiveLayerIds(){
+ const owned=new Set(state.owned||[]);
+ const active=[...(state.wowEquipped||[]).slice(0,5),...(state.wowAccessoriesEquipped||[]),...(state.wowStickers||[])];
+ return [...new Set(active)].filter(id=>owned.has(id)&&wowGet(id));
+}
+function wowIsItemLocked(id){
+ return !!id && ((state.wowLockedItems||[]).includes(id) || (state.wowLockedPatches||[]).includes(id));
+}
+function wowIsPatchLocked(id){return wowIsItemLocked(id);}// 기존 호출 호환
+function toggleWowItemLock(id=wowSelected){
+ if(!id || !wowActiveLayerIds().includes(id))return;
+ state.wowLockedItems ||= [];
+ const wasLocked=wowIsItemLocked(id);
+ // 기존 잠금 필드에서 해당 패치도 제거하여 해제가 정상 동작하도록 합니다.
+ state.wowLockedPatches=(state.wowLockedPatches||[]).filter(x=>x!==id);
+ state.wowLockedItems=wasLocked
+   ?state.wowLockedItems.filter(x=>x!==id)
+   :[...new Set([...state.wowLockedItems,id])];
  wowSelected=id;
  save();
 }
+function toggleWowPatchLock(id=wowSelected){toggleWowItemLock(id);}// 이전 버튼 호환
 function renderWowPatchLockList(){
  const list=document.getElementById('wowPatchLockList');if(!list)return;
- const ids=(state.wowEquipped||[]).filter(id=>state.owned.includes(id)).slice(0,5);
- if(!ids.length){list.innerHTML='<p class="muted">와펜을 장착하면 여기에서 고정할 수 있습니다.</p>';return;}
- list.innerHTML=ids.map(id=>{
- const it=wowGet(id),locked=wowIsPatchLocked(id);
- const label=(it?.name||id).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
- return `<div class="wow-patch-lock-row"><span class="wow-patch-lock-name">${locked?'🔒':'🔓'} ${label}</span><button type="button" class="${locked?'is-locked':''}" onclick="toggleWowPatchLock('${id}')">${locked?'고정 해제':'패치 고정'}</button></div>`;
- }).join('');
+ const active=wowActiveLayerIds();
+ if(!active.length){list.innerHTML='<p class="muted">와펜, 액세서리 또는 스티커를 장착하면 여기서 고정할 수 있습니다.</p>';return;}
+ const groups=[
+   ['와펜',active.filter(id=>id.startsWith('dept'))],
+   ['액세서리',active.filter(id=>!id.startsWith('dept')&&!id.startsWith('stk'))],
+   ['배경 스티커',active.filter(id=>id.startsWith('stk'))]
+ ];
+ list.innerHTML=groups.filter(([,ids])=>ids.length).map(([group,ids])=>
+   `<div class="wow-lock-group"><div class="wow-lock-group-title">${group}</div>${ids.map(id=>{
+      const it=wowGet(id),locked=wowIsItemLocked(id);
+      const label=(it?.name||id).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+      return `<div class="wow-patch-lock-row"><span class="wow-patch-lock-name">${locked?'🔒':'🔓'} ${label}</span><button type="button" class="${locked?'is-locked':''}" onclick="toggleWowItemLock('${id}')" aria-pressed="${locked}">${locked?'고정 해제':'고정하기'}</button></div>`;
+   }).join('')}</div>`
+ ).join('');
 }
 function wowSelect(id){wowSelected=id;renderWowEditor();drawWowLayers();}
 function renderWowEditor(){
  const box=document.getElementById('wowEditor'),it=wowGet(wowSelected);
  if(!it){box.hidden=true;return;}
- const patch=id=>/^dept\d+$/.test(id||'');
- const isPatch=patch(wowSelected),locked=wowIsPatchLocked(wowSelected);
+ const isActive=wowActiveLayerIds().includes(wowSelected),locked=wowIsItemLocked(wowSelected);
  const lockButton=document.getElementById('wowPatchLockButton');
- if(lockButton){lockButton.hidden=!isPatch;lockButton.textContent=locked?'🔓 패치 고정 해제하기':'🔒 패치 고정하기';lockButton.classList.toggle('is-locked',locked);lockButton.setAttribute('aria-pressed',String(locked));}
- const lockHelp=document.getElementById('wowPatchLockHelp');if(lockHelp)lockHelp.hidden=!isPatch;
+ if(lockButton){lockButton.hidden=!isActive;lockButton.textContent=locked?'🔓 고정 해제하기':'🔒 아이템 고정하기';lockButton.classList.toggle('is-locked',locked);lockButton.setAttribute('aria-pressed',String(locked));}
+ const lockHelp=document.getElementById('wowPatchLockHelp');if(lockHelp)lockHelp.hidden=!isActive;
  const resetButton=document.getElementById('wowResetItemPosition');if(resetButton)resetButton.disabled=locked;
  const sizeInput=document.getElementById('wowSize');if(sizeInput)sizeInput.disabled=locked;
  document.getElementById('wowRemoveSticker').hidden=!wowSelected.startsWith('stk');
@@ -2432,7 +2477,7 @@ function renderWowAccessories(){
     const id=state.wowBackdrop||'mint';
     const stage=document.getElementById('wowStage');
     const choice=wowBackdrops.find(v=>v.id===id)||wowBackdrops[0];
-    stage.style.setProperty('--wow-stage-bg',`linear-gradient(160deg,${choice.color} 0%,${choice.color} 38%,#ffffff 100%)`);
+    stage.style.setProperty('--wow-stage-bg',`linear-gradient(160deg,${choice.color} 0%,${choice.color} 55%,#ffffff 145%)`);
     const choices=document.getElementById('wowBackdropOptions');
     if(choices)choices.innerHTML=wowBackdrops.map(v=>`<button type="button" class="backdrop-chip ${id===v.id?'selected':''}" style="--chip:${v.color}" onclick="setWowBackdrop('${v.id}')" aria-pressed="${id===v.id}"><span></span>${v.label}</button>`).join('');
   }
