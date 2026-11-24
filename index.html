@@ -837,6 +837,46 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 #character #shop::-webkit-scrollbar-thumb,#character #wowAccessoryShop::-webkit-scrollbar-thumb,#character #wowStickerPicker::-webkit-scrollbar-thumb{background:#c4d2e8;border-radius:5px}
 @media(max-width:390px){#character .wow-customize-nav{gap:3px;padding:3px}#character .wow-customize-tab span:nth-child(2){font-size:10px}#character .wow-customize-tab small{font-size:8px}#character #shop .wow-shop-item,#character #wowAccessoryShop .wow-shop-item{flex-basis:148px!important;width:148px!important;max-width:148px!important}}
 </style>
+
+<style id="wowPatchAlignmentEditorStyles">
+#wowPatchEditorLaunch{position:fixed;bottom:92px;right:max(18px,calc((100vw - 430px)/2 + 14px));z-index:12000;padding:12px 17px;border:0;border-radius:999px;color:#fff;background:#17396d;box-shadow:0 8px 26px #132f5f55;font-weight:800;cursor:pointer}
+#wowPatchEditorOverlay[hidden],#wowPatchEditorLaunch[hidden]{display:none!important}
+#wowPatchEditorOverlay{position:fixed;z-index:22000;inset:0;background:#10192bbc;display:flex;align-items:center;justify-content:center;padding:12px;font-family:"Malgun Gothic",sans-serif}
+#wowPatchEditorDialog{width:min(100%,480px);max-height:calc(100dvh - 24px);overflow:auto;background:#fff;color:#182842;border-radius:22px;box-shadow:0 25px 70px #09172b70;padding:18px}
+#wowPatchEditorDialog h2{margin:0;font-size:19px}
+#wowPatchEditorDialog .pe-intro{color:#718099;font-size:12px;line-height:1.5;margin:6px 0 14px}
+#wowPatchEditorDialog .pe-top{display:flex;align-items:center;justify-content:space-between;gap:12px}
+#wowPatchEditorDialog button{cursor:pointer}
+#wowPatchEditorDialog .pe-close{border:0;background:#edf2fa;border-radius:10px;padding:8px 12px;color:#25385c}
+#wowPatchEditorDialog #peSelect{width:100%;padding:13px;border:1px solid #cddaf0;border-radius:12px;background:#fff;color:#182842;margin:10px 0}
+#wowPatchEditorDialog .pe-preview{height:210px;background:#f1f5fa;border:1px dashed #c8d5e7;border-radius:15px;display:flex;align-items:center;justify-content:center;overflow:hidden;position:relative}
+#wowPatchEditorDialog .pe-preview:before{content:"";position:absolute;left:50%;top:0;bottom:0;border-left:1px dashed #c9d3df}
+#wowPatchEditorDialog .pe-preview:after{content:"";position:absolute;top:50%;left:0;right:0;border-top:1px dashed #c9d3df}
+#wowPatchEditorDialog #pePreviewImage{width:160px;height:160px;object-fit:contain;z-index:1;position:relative;transform-origin:center}
+#wowPatchEditorDialog .pe-control{display:block;margin:12px 0}
+#wowPatchEditorDialog .pe-control-line{display:flex;align-items:center;justify-content:space-between;font-size:13px;font-weight:700;margin-bottom:5px}
+#wowPatchEditorDialog .pe-control input[type=range]{width:100%;accent-color:#2c5dc6}
+#wowPatchEditorDialog .pe-actions{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-top:15px}
+#wowPatchEditorDialog .pe-actions button{padding:11px 7px;background:#edf2fa;border:1px solid #d7e2f2;border-radius:11px;color:#18365b;font-weight:700;font-size:12px}
+#wowPatchEditorDialog .pe-actions button.pe-primary{background:#244b94;color:white;border-color:#244b94}
+#wowPatchEditorDialog .pe-status{font-size:12px;color:#266949;min-height:17px;margin-top:10px}
+</style>
+
+<style id="wowPatchLockStyles">
+.wow-layer.wow-layer-locked{cursor:default!important;outline:none!important;filter:drop-shadow(0 1.5px 2px rgba(16,32,71,.3))}
+.wow-patch-lock-toggle[hidden],#wowPatchLockHelp[hidden]{display:none!important}
+.wow-patch-lock-toggle{display:block;width:100%;margin:8px 0;padding:12px 14px;border-radius:12px;border:1px solid #a4b7d4;background:#edf3ff;color:#16396d;font-size:13px;font-weight:800;cursor:pointer}
+.wow-patch-lock-toggle.is-locked{background:#e6f6ef;color:#176447;border-color:#9ddfc3}
+.wow-editor input:disabled,.wow-editor button:disabled{opacity:.44;cursor:not-allowed}
+.wow-lock-management{margin:14px 0;padding:13px;border:1px solid #e2e8f3;border-radius:15px;background:#f7f9fd}
+.wow-lock-management-heading{font-weight:800;font-size:13px;color:#173455;display:flex;justify-content:space-between;gap:8px}
+.wow-lock-management-heading span{font-size:11px;font-weight:500;color:#687891}
+.wow-patch-lock-list{display:grid;gap:8px;margin-top:10px}
+.wow-patch-lock-row{display:flex;align-items:center;gap:8px;justify-content:space-between;min-height:44px;padding:8px 10px;border-radius:11px;background:#fff;border:1px solid #e4eaf5}
+.wow-patch-lock-name{font-size:12px;font-weight:650;color:#19365a;min-width:0;overflow-wrap:anywhere}
+.wow-patch-lock-row button{flex-shrink:0;border:1px solid #d3def0;background:#edf3ff;color:#1d4785;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:800;cursor:pointer}
+.wow-patch-lock-row button.is-locked{background:#def5e9;border-color:#a1dbbb;color:#146443}
+</style>
 </head>
 
 <body>
@@ -1035,12 +1075,14 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 <div id="wowStickerLayers"></div><div id="wowPatchLayers"></div><div id="wowAccessoryLayers"></div>
 </div>
 <div class="wow-editor" hidden="" id="wowEditor">
-<div class="wow-editor-row"><b id="wowSelectedName">선택한 아이템</b><button onclick="resetWowPosition()">위치 초기화</button></div>
+<div class="wow-editor-row"><b id="wowSelectedName">선택한 아이템</b><button id="wowResetItemPosition" onclick="resetWowPosition()">위치 초기화</button></div>
+<button type="button" class="wow-patch-lock-toggle" id="wowPatchLockButton" hidden onclick="toggleWowPatchLock()" aria-pressed="false">🔒 패치 고정하기</button>
+<p id="wowPatchLockHelp" class="muted" hidden>고정하면 다른 꾸미기 아이템을 터치해도 이 패치는 움직이지 않습니다.</p>
 <label for="wowSize">아이템 크기 <span id="wowSizeLabel">100%</span></label>
 <input id="wowSize" max="90" min="4" oninput="resizeWowItem(this.value)" step="1" type="range"/>
 <p class="muted" style="margin:5px 0">선택한 아이템 드래그 · 크기 조절 · 위치 초기화</p>
 <button class="wow-remove-item" hidden="" id="wowRemoveSticker" onclick="removeSelectedWowSticker()" type="button">선택한 스티커 제거</button></div>
-<div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p>
+<div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p><div class="wow-lock-management"><div class="wow-lock-management-heading">장착한 패치 고정 관리 <span>잠금/해제</span></div><div id="wowPatchLockList" class="wow-patch-lock-list"></div></div>
 </div>
 <div aria-labelledby="wowCustomizeTab-patches" class="card" data-wow-customize-panel="patches" id="wowCustomizePatches" role="tabpanel"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="wowPatchQuickSelect">학과 바로 선택</label><select class="wow-patch-quick" id="wowPatchQuickSelect"><option value="">전체 학과에서 선택</option></select><label class="search-label" for="patchSearch">학과명 검색</label><input autocomplete="off" class="patch-search" id="patchSearch" oninput="renderPatchShop()" placeholder="예: 컴퓨터공학과" type="search"/><div class="shop-count" id="patchCount">35개 학과</div><div class="wow-shop-grid" id="shop"></div><button aria-expanded="false" id="patchShopToggle" onclick="togglePatchShop()" type="button">전체 와펜 35종 펼치기 ↓</button><p aria-live="polite" id="wardrobeSyncStatus" role="status"></p></div><div aria-labelledby="wowCustomizeTab-upgrade" class="card upgrade-card" data-wow-customize-panel="upgrade" hidden="" id="patchLab" role="tabpanel">
 <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
@@ -1288,6 +1330,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     wowEquipped: [],
     wowJacketOn: true,
     wowPositions: {},
+    wowLockedPatches: [],
     wowAccessoriesEquipped: [],
     wowBackdrop: "mint",
     patchLab: {},
@@ -1302,7 +1345,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   window.wowResetUserLocal=function(){
     // Immediately change account-scoped local state; server wardrobe is restored after wallet loading.
     window.WowWardrobe?.reset();
-    const fresh={...initialState,points:0,starterGranted:true,totalEarned:0,history:[],owned:[],wowEquipped:[],wowPositions:{},wowAccessoriesEquipped:[],wowStickers:[],wowBackdrop:'mint',patchCatalogVersion:35};
+    const fresh={...initialState,points:0,starterGranted:true,totalEarned:0,history:[],owned:[],wowEquipped:[],wowPositions:{},wowLockedPatches:[],wowAccessoriesEquipped:[],wowStickers:[],wowBackdrop:'mint',patchCatalogVersion:35};
     try{const prior=JSON.parse(localStorage.getItem(wowLocalKey())||'{}');state={...fresh,...prior,points:0,starterGranted:true};}catch{state=fresh;}
     render();
   };
@@ -1336,7 +1379,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   // Account-scoped cloud wardrobe: the wallet and item purchases remain authoritative elsewhere.
   // Only equipped items, their positions/sizes and backdrop are stored in this table.
   (function setupWowWardrobe(){
-    const fields=['wowEquipped','wowAccessoriesEquipped','wowStickers','wowPositions','wowBackdrop','wowJacketOn'];
+    const fields=['wowEquipped','wowAccessoriesEquipped','wowStickers','wowPositions','wowLockedPatches','wowBackdrop','wowJacketOn'];
     let loadedUser=null, ready=false, restorePromise=null, pending=null, writeChain=Promise.resolve(), generation=0;
     let lastError='';
     const label=()=>document.getElementById('wardrobeSyncStatus');
@@ -1355,6 +1398,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       r.wowEquipped=safeIds(raw.wowEquipped).filter(id=>id.startsWith('dept')).slice(0,5);
       r.wowAccessoriesEquipped=safeIds(raw.wowAccessoriesEquipped).filter(id=>/^acc\d+$/.test(id)||/^ear/.test(id));
       r.wowStickers=safeIds(raw.wowStickers).filter(id=>id.startsWith('stk'));
+      r.wowLockedPatches=safeIds(raw.wowLockedPatches).filter(id=>/^dept\d+$/.test(id));
       r.wowBackdrop=['mint','sky','cream','lavender'].includes(raw.wowBackdrop)?raw.wowBackdrop:'mint';
       r.wowJacketOn=true;
       r.wowPositions={};
@@ -2147,19 +2191,44 @@ function alignAllWowPatches(){
  drawWowLayers();
 }
 function wowPos(id){state.wowPositions ||= {};return state.wowPositions[id] || wowDefaultPosition(id);}
+function wowIsPatchLocked(id){return /^dept\d+$/.test(id||'') && (state.wowLockedPatches||[]).includes(id);}
+function toggleWowPatchLock(id=wowSelected){
+ if(!id||!/^dept\d+$/.test(id))return;
+ state.wowLockedPatches ||= [];
+ state.wowLockedPatches=wowIsPatchLocked(id)?state.wowLockedPatches.filter(x=>x!==id):[...new Set([...state.wowLockedPatches,id])];
+ wowSelected=id;
+ save();
+}
+function renderWowPatchLockList(){
+ const list=document.getElementById('wowPatchLockList');if(!list)return;
+ const ids=(state.wowEquipped||[]).filter(id=>state.owned.includes(id)).slice(0,5);
+ if(!ids.length){list.innerHTML='<p class="muted">와펜을 장착하면 여기에서 고정할 수 있습니다.</p>';return;}
+ list.innerHTML=ids.map(id=>{
+ const it=wowGet(id),locked=wowIsPatchLocked(id);
+ const label=(it?.name||id).replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;');
+ return `<div class="wow-patch-lock-row"><span class="wow-patch-lock-name">${locked?'🔒':'🔓'} ${label}</span><button type="button" class="${locked?'is-locked':''}" onclick="toggleWowPatchLock('${id}')">${locked?'고정 해제':'패치 고정'}</button></div>`;
+ }).join('');
+}
 function wowSelect(id){wowSelected=id;renderWowEditor();drawWowLayers();}
 function renderWowEditor(){
  const box=document.getElementById('wowEditor'),it=wowGet(wowSelected);
  if(!it){box.hidden=true;return;}
+ const patch=id=>/^dept\d+$/.test(id||'');
+ const isPatch=patch(wowSelected),locked=wowIsPatchLocked(wowSelected);
+ const lockButton=document.getElementById('wowPatchLockButton');
+ if(lockButton){lockButton.hidden=!isPatch;lockButton.textContent=locked?'🔓 패치 고정 해제하기':'🔒 패치 고정하기';lockButton.classList.toggle('is-locked',locked);lockButton.setAttribute('aria-pressed',String(locked));}
+ const lockHelp=document.getElementById('wowPatchLockHelp');if(lockHelp)lockHelp.hidden=!isPatch;
+ const resetButton=document.getElementById('wowResetItemPosition');if(resetButton)resetButton.disabled=locked;
+ const sizeInput=document.getElementById('wowSize');if(sizeInput)sizeInput.disabled=locked;
  document.getElementById('wowRemoveSticker').hidden=!wowSelected.startsWith('stk');
  box.hidden=false;document.getElementById('wowSelectedName').textContent=it.name;
  const p=wowPos(wowSelected);document.getElementById('wowSize').value=p.w;
  document.getElementById('wowSizeLabel').textContent=Math.round(p.w/(it.w||12)*100)+'%';
 }
-function resizeWowItem(value){if(!wowSelected)return;const p={...wowPos(wowSelected),w:Math.max(4,Math.min(90,Number(value)))};p.x=Math.max(0,Math.min(100-p.w,p.x));state.wowPositions[wowSelected]=p;save();renderWowEditor();}
-function resetWowPosition(){if(!wowSelected)return;delete state.wowPositions[wowSelected];save();renderWowEditor();}
+function resizeWowItem(value){if(!wowSelected||wowIsPatchLocked(wowSelected))return;const p={...wowPos(wowSelected),w:Math.max(4,Math.min(90,Number(value)))};p.x=Math.max(0,Math.min(100-p.w,p.x));state.wowPositions[wowSelected]=p;save();renderWowEditor();}
+function resetWowPosition(){if(!wowSelected||wowIsPatchLocked(wowSelected))return;delete state.wowPositions[wowSelected];save();renderWowEditor();}
 function wowLayerMarkup(id){const it=wowGet(id),p=wowPos(id);if(!it)return '';
- return `<img class="wow-layer ${wowSelected===id?'is-selected':''}" data-wow-id="${id}" src="${it.src}" alt="${it.name}" draggable="false" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;z-index:${wowSelected===id?25:10}">`;
+ return `<img class="wow-layer ${wowSelected===id?'is-selected':''} ${wowIsPatchLocked(id)?'wow-layer-locked':''}" data-wow-id="${id}" src="${it.src}" alt="${it.name}" draggable="false" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;z-index:${wowSelected===id?25:10}">`;
 }
 function drawWowLayers(){
  renderWowBackdrop();
@@ -2221,12 +2290,13 @@ function renderWowAccessories(){
  stage.addEventListener('pointerdown',e=>{
   const el=e.target.closest('[data-wow-id]');if(!el)return;
   const id=el.dataset.wowId;wowSelected=id;renderWowEditor();drawWowLayers();
+  if(wowIsPatchLocked(id)){drag=null;return;}
   const rect=stage.getBoundingClientRect(),p=wowPos(id);
   drag={id,startX:e.clientX,startY:e.clientY,x:p.x,y:p.y,rect};
   stage.setPointerCapture(e.pointerId);e.preventDefault();
  });
  stage.addEventListener('pointermove',e=>{
-  if(!drag)return;const p=wowPos(drag.id);
+  if(!drag||wowIsPatchLocked(drag.id))return;const p=wowPos(drag.id);
   const x=drag.x+(e.clientX-drag.startX)/drag.rect.width*100;
   const y=drag.y+(e.clientY-drag.startY)/drag.rect.height*100;
   state.wowPositions[drag.id]={...p,x:Math.max(0,Math.min(100-p.w,x)),y:Math.max(0,Math.min(96,y))};
@@ -2260,6 +2330,66 @@ function renderWowAccessories(){
   // Patch Lab 공동 모금은 별도 Supabase 모듈에서 관리합니다.
   function setupPatchLab(){}
 
+
+  // 와펜별 상점 이미지 정렬. 공개 사이트에도 반영할 최종 설정은 이 기본값에 넣습니다.
+  // 예: "dept0": {x: -3, y: 2, scale: 105}
+  const wowPatchAlignmentDefaults = {};
+  const wowPatchAlignmentKey = 'wowroad_patch_alignment_editor_v1';
+  function peClamp(n,min,max,base){ n=Number(n);return Number.isFinite(n)?Math.min(max,Math.max(min,n)):base; }
+  function peNormalize(o){return {x:peClamp(o?.x,-55,55,0),y:peClamp(o?.y,-55,55,0),scale:peClamp(o?.scale,60,145,100)};}
+  let wowPatchLocalAlignment={};
+  try {const o=JSON.parse(localStorage.getItem(wowPatchAlignmentKey)||'{}');if(o&&typeof o==='object'&&!Array.isArray(o))wowPatchLocalAlignment=o;}catch(e){}
+  function peGet(id){return peNormalize(wowPatchLocalAlignment[id]??wowPatchAlignmentDefaults[id]);}
+  function peTransform(id){const a=peGet(id);return `translate(${a.x}px,${a.y}px) scale(${(a.scale/100).toFixed(3)})`;}
+  function peSave(){try{localStorage.setItem(wowPatchAlignmentKey,JSON.stringify(wowPatchLocalAlignment));}catch(e){} }
+  let peSelected='dept0';
+  function peStatus(t){const el=document.getElementById('peStatus');if(el)el.textContent=t;}
+  function openWowPatchEditor(){
+    const sel=document.getElementById('peSelect');if(!sel)return;
+    if(!sel.options.length)sel.innerHTML=items.map((item)=>`<option value="${item.id}">${item.name}</option>`).join('');
+    const o=document.getElementById('wowPatchEditorOverlay');o.hidden=false;
+    peChoose(peSelected);
+  }
+  function closeWowPatchEditor(){document.getElementById('wowPatchEditorOverlay').hidden=true;}
+  function peChoose(id){
+    const index=items.findIndex(item=>item.id===id);if(index<0)return;
+    peSelected=id;document.getElementById('peSelect').value=id;
+    document.getElementById('pePreviewImage').src=wowDepartmentImages[index];
+    const a=peGet(id);
+    document.getElementById('peX').value=a.x;
+    document.getElementById('peY').value=a.y;
+    document.getElementById('peScale').value=a.scale;
+    peRefreshPreview();peStatus(`${index+1}/35 · ${items[index].name} 편집 중`);
+  }
+  function peRefreshPreview(){
+    const x=Number(document.getElementById('peX').value),y=Number(document.getElementById('peY').value),scale=Number(document.getElementById('peScale').value);
+    document.getElementById('peXValue').textContent=x+'px';document.getElementById('peYValue').textContent=y+'px';document.getElementById('peScaleValue').textContent=scale+'%';
+    document.getElementById('pePreviewImage').style.transform=`translate(${x}px,${y}px) scale(${scale/100})`;
+  }
+  function peAdjust(){
+    wowPatchLocalAlignment[peSelected]=peNormalize({x:document.getElementById('peX').value,y:document.getElementById('peY').value,scale:document.getElementById('peScale').value});
+    peSave();peRefreshPreview();renderPatchShop();peStatus('이 브라우저에 자동 저장됨 · 최종 공유용 JSON 내려받기를 해 주세요.');
+  }
+  function peMove(delta){const i=items.findIndex(item=>item.id===peSelected);peChoose(items[(i+delta+items.length)%items.length].id);}
+  function peResetCurrent(){delete wowPatchLocalAlignment[peSelected];peSave();peChoose(peSelected);renderPatchShop();peStatus('선택 학과 정렬이 초기화되었습니다.');}
+  function peResetAll(){if(!confirm('저장된 35개 와펜 정렬 설정을 모두 초기화할까요?'))return;wowPatchLocalAlignment={};peSave();peChoose(peSelected);renderPatchShop();peStatus('이 브라우저의 모든 와펜 정렬 설정을 초기화했습니다.');}
+  function peExport(){
+    const exported={};for(const item of items){const v=peGet(item.id);exported[item.id]=v;}
+    const blob=new Blob([JSON.stringify(exported,null,2)],{type:'application/json;charset=utf-8'});
+    const a=document.createElement('a');const u=URL.createObjectURL(blob);a.href=u;a.download='wowroad_patch_alignment_35.json';a.click();setTimeout(()=>URL.revokeObjectURL(u),1000);peStatus('35개 학과 정렬 설정 JSON 다운로드 완료');
+  }
+  async function peImport(event){
+    const file=event.target.files?.[0];if(!file)return;
+    try{const obj=JSON.parse(await file.text());if(!obj||typeof obj!=='object'||Array.isArray(obj))throw new Error('잘못된 JSON 형식');
+      const updated={};for(const item of items){if(Object.prototype.hasOwnProperty.call(obj,item.id))updated[item.id]=peNormalize(obj[item.id]);}
+      if(!Object.keys(updated).length)throw new Error('일치하는 학과 설정이 없습니다.');
+      wowPatchLocalAlignment=updated;peSave();peChoose(peSelected);renderPatchShop();peStatus(`${Object.keys(updated).length}개 학과 설정을 불러왔습니다.`);
+    }catch(e){alert('설정 파일을 읽지 못했습니다: '+e.message);}event.target.value='';
+  }
+  if(new URLSearchParams(location.search).get('patch-editor')==='1'){
+    document.addEventListener('DOMContentLoaded',()=>{const b=document.getElementById('wowPatchEditorLaunch');if(b)b.hidden=false;});
+  }
+
   let patchShopExpanded=true;
   function togglePatchShop(){patchShopExpanded=!patchShopExpanded;renderPatchShop();}
   function renderPatchShop() {
@@ -2274,7 +2404,7 @@ function renderWowAccessories(){
     document.getElementById('shop').innerHTML = list.length ? list.map(({item,i})=>{
       const owned=state.owned.includes(item.id), on=equipped.includes(item.id);
       return `<div class="wow-shop-item ${on?'patch-equipped':''}">
-        <div class="patch-art"><img src="${wowDepartmentImages[i]}" alt="${item.name} 패치" loading="lazy"></div>
+        <div class="patch-art"><img src="${wowDepartmentImages[i]}" alt="${item.name} 패치" loading="lazy" style="transform:${peTransform(item.id)};transform-origin:center"></div>
         <b class="patch-title">${item.name}</b><small class="patch-price">${on?'착용 중':owned?'보유 중':item.price+' P'}</small>
         <button onclick="buyItem('${item.id}')">${on?'떼기':owned?'착용하기':'구매하기'}</button></div>`;
     }).join('') : '<p class="search-empty">검색 결과 없음 · 다른 학과명 입력</p>';
@@ -2309,6 +2439,7 @@ function renderWowAccessories(){
     const equippedPatches=state.wowEquipped.filter(id=>state.owned.includes(id)).slice(0,5);
     drawWowLayers();
     renderWowEditor();
+    renderWowPatchLockList();
     document.getElementById("equipped").textContent="착용 중인 패치: "+(equippedPatches.length?equippedPatches.map(id=>items.find(x=>x.id===id).name).join(", "):"없음");
     renderPatchShop();
 
@@ -2897,5 +3028,25 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   });
 })();
 </script>
+
+<button type="button" id="wowPatchEditorLaunch" hidden onclick="openWowPatchEditor()">⚙ 와펜 정렬 편집</button>
+<div id="wowPatchEditorOverlay" hidden role="presentation">
+<section id="wowPatchEditorDialog" role="dialog" aria-modal="true" aria-labelledby="peTitle">
+ <div class="pe-top"><h2 id="peTitle">와펜 35종 정렬 편집기</h2><button type="button" class="pe-close" onclick="closeWowPatchEditor()">닫기 ✕</button></div>
+ <p class="pe-intro">학과를 선택한 뒤 슬라이더를 움직이면 미리보기와 상점 카드에 즉시 반영됩니다. 이 브라우저에서만 임시 저장되며, 모든 사용자에게 적용하려면 설정 JSON을 HTML에 반영해야 합니다.</p>
+ <label for="peSelect" style="font-size:13px;font-weight:700">편집할 학과 선택</label>
+ <select id="peSelect" onchange="peChoose(this.value)"></select>
+ <div class="pe-preview"><img id="pePreviewImage" alt="선택한 와펜 이미지 미리보기"></div>
+ <div class="pe-control"><div class="pe-control-line"><span>좌우 이동 (X)</span><output id="peXValue">0px</output></div><input type="range" id="peX" min="-55" max="55" step="1" value="0" oninput="peAdjust()"></div>
+ <div class="pe-control"><div class="pe-control-line"><span>상하 이동 (Y)</span><output id="peYValue">0px</output></div><input type="range" id="peY" min="-55" max="55" step="1" value="0" oninput="peAdjust()"></div>
+ <div class="pe-control"><div class="pe-control-line"><span>이미지 크기</span><output id="peScaleValue">100%</output></div><input type="range" id="peScale" min="60" max="145" step="1" value="100" oninput="peAdjust()"></div>
+ <div class="pe-actions">
+ <button type="button" onclick="peMove(-1)">← 이전 학과</button><button type="button" onclick="peMove(1)">다음 학과 →</button>
+ <button type="button" onclick="peResetCurrent()">선택 학과 초기화</button><button type="button" onclick="peResetAll()">전체 설정 초기화</button>
+ <button class="pe-primary" type="button" onclick="peExport()">설정 JSON 내려받기</button><button type="button" onclick="document.getElementById('peImportFile').click()">설정 JSON 불러오기</button>
+ </div>
+ <input id="peImportFile" type="file" accept=".json,application/json" hidden onchange="peImport(event)">
+ <p class="pe-status" id="peStatus" aria-live="polite"></p>
+</section></div>
 </body>
 </html>
