@@ -877,6 +877,43 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 .wow-patch-lock-row button{flex-shrink:0;border:1px solid #d3def0;background:#edf3ff;color:#1d4785;border-radius:9px;padding:8px 10px;font-size:11px;font-weight:800;cursor:pointer}
 .wow-patch-lock-row button.is-locked{background:#def5e9;border-color:#a1dbbb;color:#146443}
 </style>
+
+<style id="wowMissionUX20261125">
+/* Mission UX refresh — no changes to SDK, Supabase or GPS logic */
+#mission>.card{padding:18px 15px 23px!important;background:#fff!important;border-radius:22px!important}
+#mission .wow-mission-v2-head{padding:12px 3px 9px!important}
+#mission .wow-mission-v2-head .wow-overline{letter-spacing:.17em;font-size:10px!important;color:#6a8de7!important;font-weight:850!important}
+#mission .wow-mission-v2-head h2{font-size:27px!important;line-height:1.32!important;margin:13px 0 13px!important;color:#14213d!important;letter-spacing:-.05em!important}
+#mission .wow-mission-v2-head .mission-intro{font-size:13px!important;line-height:1.8!important;color:#536582!important;margin:0 0 14px!important}
+#mission .wow-mission-v2-head .mission-intro strong{font-weight:850!important;color:#2456d8!important}
+#mission .wow-mission-v2-step{display:flex;align-items:center;gap:11px;margin:9px 2px 9px!important}
+#mission .wow-mission-v2-stepno{display:grid;place-items:center;min-width:34px;width:34px;height:34px;border-radius:11px;background:#eaf0ff;color:#2258cf;font-weight:900;font-size:13px}
+#mission .wow-mission-v2-step>div{display:flex;flex-direction:column;gap:3px;min-width:0}
+#mission .wow-mission-v2-step strong{font-size:14px;color:#172b4d;letter-spacing:-.035em}
+#mission .wow-mission-v2-step small{font-size:11px;color:#71829b;line-height:1.5}
+#mission .wow-direction-v2{display:grid!important;grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:9px!important;margin:12px 0 8px!important}
+#mission .wow-direction-v2 button{position:relative;display:flex!important;align-items:flex-start!important;flex-direction:column!important;flex-wrap:nowrap!important;justify-content:space-between!important;gap:8px!important;padding:14px 12px!important;min-height:106px!important;border:1.5px solid #dbe3f1!important;background:#fff!important;border-radius:16px!important;color:#243856!important;box-shadow:none!important;text-align:left!important;font-size:13px!important;transition:background .15s,border-color .15s,box-shadow .15s}
+#mission .wow-direction-v2 button.active{border-color:#245cdb!important;background:#eef4ff!important;box-shadow:0 0 0 1px #245cdb!important}
+#mission .wow-direction-v2 button i{height:4px!important;width:32px!important;border-top-width:4px!important;flex:none!important}
+#mission .wow-direction-v2 .wow-direction-title{display:block!important;font-size:13px!important;font-weight:850!important;line-height:1.5!important;letter-spacing:-.04em!important;white-space:normal!important}
+#mission .wow-direction-v2 .wow-direction-tag{display:block!important;align-self:flex-end!important;margin:0!important;font-size:10px!important;font-weight:800!important;color:#3c6ad7!important;white-space:nowrap!important}
+#mission .wow-direction-v2 button.active .wow-direction-tag{color:#1746bc!important}
+#mission .wow-direction-tip{font-size:11px!important;line-height:1.6!important;padding:0 2px;margin:5px 0 18px!important;color:#677996!important}
+#mission .wow-mission-v2-mapstep{margin:17px 2px 10px!important}
+#mission .wow-mission-v2-legend{display:flex!important;justify-content:flex-start!important;flex-wrap:wrap!important;gap:10px!important;margin:10px 1px 12px!important;font-size:11px!important;color:#6a7890!important}
+#mission .wow-mission-v2-legend span{display:flex!important;align-items:center!important;gap:5px!important}
+#mission .wow-mission-v2-legend b{color:#273952;font-weight:800}
+#mission .wow-map-hero{border:1px solid #e2e7f0!important;border-radius:18px!important;overflow:hidden!important}
+#mission #map{height:380px!important;min-height:380px!important}
+#mission .wow-map-help-overlay{background:#fff!important;color:#2456cb!important;border-color:#dce7ff!important;box-shadow:0 4px 15px #1a3f681b!important}
+#mission .wow-map-selection{background:#f2f6ff!important;border:1px solid #e0e9ff!important;border-radius:17px!important;margin:15px 0 11px!important;padding:16px!important}
+#mission .wow-map-selection-label{font-size:11px!important;color:#416bc6!important}
+#mission #wowMapSelectedName{font-size:18px!important;color:#162f61!important}
+#mission .wow-route-summary{border-color:#e4e9f2!important;background:#fafcff!important}
+#mission .recommend{margin-top:14px!important}
+#mission .wow-route-external{display:none!important}
+@media(max-width:360px){#mission .wow-direction-v2 button{min-height:108px!important;padding:12px 10px!important}#mission .wow-direction-v2 .wow-direction-title{font-size:12px!important}}
+</style>
 </head>
 
 <body>
@@ -993,18 +1030,25 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   <section id="mission" class="page">
     <div class="card">
 
-      <div class="wow-mission-head"><span class="wow-overline">MISSION · STEP 01</span><h2>대체 정류장 찾기</h2><p class="mission-intro">지도에 표시된 <strong>파란 핀</strong>을 누르면 선택이 완료됩니다.</p></div>
-
-      <div class="wow-map-intro"><span class="wow-map-intro-icon" aria-hidden="true">01</span><div><strong>정류장 핀을 선택하세요</strong><p>빨간 핀은 혼잡 정류장, 파란 핀은 선택 가능한 대체 정류장입니다.</p></div></div>
-      <div class="wow-map-legend" aria-label="정류장 및 방면 범례">
-        <span><i class="wow-legend-dot red"></i>혼잡 정류장 · 위치만 안내</span>
-        <span><i class="wow-legend-dot blue"></i>대체 정류장 · 눌러서 선택</span>
+      <div class="wow-mission-head wow-mission-v2-head">
+        <span class="wow-overline">WOWROAD · MISSION</span>
+        <h2>어느 정류장 쪽을<br>이용하시나요?</h2>
+        <p class="mission-intro">① 이용하는 정류장 쪽을 고른 후<br>② 지도에서 <strong>파란 핀</strong>을 눌러 대체 정류장을 선택해 주세요.</p>
       </div>
-      <div class="wow-map-line-legend wow-direction-switch" role="group" aria-label="진행 방향의 핀 강조하기"><button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i>하나은행 앞 정류장 이용 <span class="wow-direction-tag">핀 보기</span></button><button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i>신한은행 앞 정류장 이용 <span class="wow-direction-tag">핀 보기</span></button></div>
-       <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">지도 위 방향선을 누르거나 방면 버튼을 눌러 주세요. 해당 방면의 핀이 앞으로 표시됩니다.</p>
+      <div class="wow-mission-v2-step"><span class="wow-mission-v2-stepno">01</span><div><strong>이용할 정류장 쪽 선택</strong><small>아래 두 곳 중 한 곳을 선택해 주세요</small></div></div>
+      <div class="wow-map-line-legend wow-direction-switch wow-direction-v2" role="group" aria-label="이용 정류장 쪽 선택">
+        <button type="button" id="wowDirectionA" data-wow-direction="A" aria-pressed="false" onclick="wowFocusDirection('A')"><i class="wow-line-a"></i><span class="wow-direction-title">하나은행 앞<br>정류장 이용</span><span class="wow-direction-tag">선택하기</span></button>
+        <button type="button" id="wowDirectionB" data-wow-direction="B" aria-pressed="false" onclick="wowFocusDirection('B')"><i class="wow-line-b"></i><span class="wow-direction-title">체육관 앞<br>정류장 이용</span><span class="wow-direction-tag">선택하기</span></button>
+      </div>
+      <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">정류장 쪽을 선택하면 그 방향의 핀이 강조됩니다.</p>
+      <div class="wow-mission-v2-step wow-mission-v2-mapstep"><span class="wow-mission-v2-stepno">02</span><div><strong>지도에서 파란 핀 선택</strong><small>파란 핀을 누르면 선택한 정류장 정보가 아래에 표시됩니다</small></div></div>
+      <div class="wow-map-legend wow-mission-v2-legend" aria-label="정류장 색상 안내">
+        <span><i class="wow-legend-dot red"></i><b>빨간 핀</b> · 혼잡 정류장</span>
+        <span><i class="wow-legend-dot blue"></i><b>파란 핀</b> · 선택 가능</span>
+      </div>
       <div class="wow-map-hero"><div id="map" role="region" aria-label="총 10개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div><div class="wow-map-help-overlay">파란 핀을 눌러 선택</div></div>
       <div class="wow-map-toolbar"><span>정류장 10개 · 선택 가능 6개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 지도 보기 ↗</button></div>
-      <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">STEP 02 · 선택한 대체 정류장</div><strong id="wowMapSelectedName">정류장을 선택해 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
+      <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">✓ 선택한 대체 정류장</div><strong id="wowMapSelectedName">지도의 파란 핀을 눌러 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
       <div id="wowRouteSummary" class="wow-route-summary" aria-live="polite"><span class="wow-summary-from">혼잡 정류장</span><span class="wow-summary-direction">↔</span><span class="wow-summary-to">선택한 대체 정류장</span></div>
       <p class="wow-map-disclaimer">연결선은 정류장 순서를 설명하기 위한 참고선으로 실제 도로 경로가 아닙니다. 특히 <strong>마포09는 서교푸르지오아파트(14906)에 정차하지만, 273번은 정차하지 않습니다.</strong> 버스 노선과 정류장 ID를 확인한 뒤 선택해 주세요.</p>
       <div id="directionGuide" class="wow-direction-guide" aria-live="polite"></div>
@@ -1019,7 +1063,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
           <div id="wowDirectStopList" class="wow-direct-stop-list"></div>
         </div>
       </details>
-      <select id="direction" class="wow-accessible-select" tabindex="-1" aria-hidden="true"><option value="A">하나은행 앞 정류장 이용</option><option value="B">신한은행 앞 정류장 이용</option></select>
+      <select id="direction" class="wow-accessible-select" tabindex="-1" aria-hidden="true"><option value="A">하나은행 앞 정류장 이용</option><option value="B">체육관 앞 정류장 이용</option></select>
       <select id="alternativeStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
       <select id="crowdedStop" class="wow-accessible-select" tabindex="-1" aria-hidden="true"></select>
       <div id="wowAlternativeCards" hidden></div>
@@ -1032,7 +1076,6 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         <p id="distance">두 정류장 사이 거리 계산 중</p>
         <p id="routeDescription" class="muted"></p>
         <p id="wowDemandContext" class="wow-demand-context" aria-live="polite"></p>
-        <a id="wowKakaoWalk" class="wow-route-external" href="https://map.kakao.com/" target="_blank" rel="noopener noreferrer">↗ 카카오맵에서 실제 이동 경로 확인</a>
         <div class="points" id="reward">+150 P</div>
         <p class="distance-note">거리 보너스 기준 · 직선거리 100m당 20P · 최대 100P</p>
         <p id="rewardBreakdown" style="font-size:13px;color:#287c52;line-height:1.6;margin-top:8px;"></p>
@@ -1578,7 +1621,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     const guide=document.getElementById('directionGuide');
     if(guide)guide.textContent=direction==='A'
       ? '하나은행 앞 정류장 이용 · 대체 정류장 4곳: 삼진제약(14283), 극동방송(14231), 서교푸르지오아파트(14906·마포09), 홍대입구역사거리(14284·273/마포09). 노선별 정차 여부를 확인하세요.'
-      : '신한은행 앞 정류장 이용 · 대체 정류장: 극동방송(14230), 삼진제약(14982). 실제 노선과 정류장 ID를 확인하세요.';
+      : '체육관 앞 정류장 이용 · 대체 정류장: 극동방송(14230), 삼진제약(14982). 실제 노선과 정류장 ID를 확인하세요.';
     updateMission();
   }
 
@@ -1799,7 +1842,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
         const active=d===direction;
         btn.classList.toggle('active',active);
         btn.setAttribute('aria-pressed',String(active));
-        btn.querySelector('.wow-direction-tag').textContent=active?'선택됨':'핀 보기';
+        btn.querySelector('.wow-direction-tag').textContent=active?'선택됨':'선택하기';
       }
     });
     // 방면 버튼과 실제 미션 기준 방면을 일치시킵니다.
@@ -1815,14 +1858,14 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
   }
   let wowSelectionLine=null;
   const wowMapStopIds=[...new Set(Object.values(directions).flat())];
-  const wowDirectionLabels={A:'하나은행 앞 정류장 이용',B:'신한은행 앞 정류장 이용'};
+  const wowDirectionLabels={A:'하나은행 앞 정류장 이용',B:'체육관 앞 정류장 이용'};
   function wowSelectStopFromMap(id){
     const direction=Object.keys(alternativeStops).find(d=>(alternativeStops[d]||[]).includes(id))||null;
     if(!direction)return;
     wowMapActiveDirection=direction;
     const tip=document.getElementById('wowDirectionTip');
     if(tip)tip.textContent=wowDirectionLabels[direction]+'의 대체 정류장을 선택했어요. 같은 방면의 핀이 앞으로 표시됩니다.';
-    ['A','B'].forEach(d=>{const btn=document.getElementById('wowDirection'+d);if(btn){const active=d===direction;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));btn.querySelector('.wow-direction-tag').textContent=active?'선택됨':'핀 보기';}});
+    ['A','B'].forEach(d=>{const btn=document.getElementById('wowDirection'+d);if(btn){const active=d===direction;btn.classList.toggle('active',active);btn.setAttribute('aria-pressed',String(active));btn.querySelector('.wow-direction-tag').textContent=active?'선택됨':'선택하기';}});
     const directionEl=document.getElementById('direction');
     const alternativeEl=document.getElementById('alternativeStop');
     if(directionEl.value!==direction){ directionEl.value=direction; updateDirection(); }
