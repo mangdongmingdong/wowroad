@@ -1186,6 +1186,59 @@ body.wow-map-modal-open{overflow:hidden!important}
   .app header .wow-health-points #points {font-size:16px!important;}
 }
 </style>
+
+<style id="wow-restore-original-customize-2026">
+/* Restore the full-size original character preview and the normal page scroll.
+   View / Edit behavior is preserved; the only scroll container is the page itself. */
+#character.wow-studio-layout.active{
+  display:block!important;
+  height:auto!important;max-height:none!important;min-height:0!important;
+  overflow:visible!important;
+  padding:14px 14px 110px!important;
+  background:#f6f8fc!important;
+}
+#character .wow-studio-preview-pane{position:relative!important;display:block!important;z-index:auto!important;min-height:0!important;margin:0 0 16px!important;}
+#character .wow-studio-preview-pane>.card{padding:16px 14px 14px!important;overflow:visible!important;}
+#character #wowStage.wow-stage{
+  display:block!important;
+  position:relative!important;
+  width:min(100%,320px)!important;
+  max-width:320px!important;
+  height:auto!important;
+  aspect-ratio:1122 / 1402!important;
+  margin:14px auto 12px!important;
+  border-radius:20px!important;
+  overflow:hidden!important;
+}
+#character .wow-studio-store-pane{
+  display:block!important;
+  position:static!important;
+  flex:none!important;
+  height:auto!important;
+  max-height:none!important;
+  min-height:0!important;
+  overflow:visible!important;
+  scrollbar-gutter:auto!important;
+  overscroll-behavior:auto!important;
+  padding:0 0 22px!important;
+}
+#character .wow-studio-store-pane .wow-customize-nav{
+  position:static!important;top:auto!important;
+}
+#character .wow-view-export{margin:4px 0 10px!important;}
+#character .wow-view-export button{
+  width:100%!important;display:block!important;border:1px solid #d7e1f2!important;
+  border-radius:12px!important;padding:12px 10px!important;min-height:44px!important;
+  background:#edf3ff!important;color:#2357b7!important;
+  font-size:14px!important;font-weight:750!important;cursor:pointer;
+}
+#character .wow-view-export button:disabled{opacity:.6;cursor:wait;}
+#character.wow-studio-editing .wow-view-export{display:none!important;}
+#character .wow-studio-store-heading{padding-top:3px!important;}
+@media(max-width:390px){
+  #character #wowStage.wow-stage{width:min(100%,320px)!important;max-width:320px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -1403,6 +1456,9 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 <div class="wow-stage" id="wowStage">
 <img alt="사용자가 제공한 원본 과잠 와우 마스코트" class="wow-body" id="wowBody"/>
 <div id="wowStickerLayers"></div><div id="wowPatchLayers"></div><div id="wowAccessoryLayers"></div>
+</div>
+<div class="wow-view-export" id="wowViewExport">
+  <button type="button" id="wowSaveImageButton" onclick="wowSaveCurrentOutfitImage()">↓ 내 와우 이미지 저장</button>
 </div>
 <div class="wow-all-lock-control" role="group" aria-label="꾸미기 아이템 전체 고정 및 해제">
   <button type="button" class="wow-all-lock-button" id="wowAllLockButton" onclick="toggleAllWowItemLocks()" aria-pressed="false" disabled>🔒 전체 고정</button>
@@ -3637,6 +3693,41 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
   // Login, logout, and session refresh can occur asynchronously.
   setInterval(syncPresentationButton,1200);
   document.addEventListener('visibilitychange',syncPresentationButton);
+})();
+</script>
+
+<script id="wow-export-own-outfit-image-2026">
+(function(){
+  'use strict';
+  window.wowSaveCurrentOutfitImage=async function(){
+    const btn=document.getElementById('wowSaveImageButton');
+    if(window.wowStudioEditing){alert('감상 모드에서 이미지를 저장해 주세요.');return;}
+    const stage=document.getElementById('wowStage');
+    if(!stage){alert('와우 캐릭터를 찾을 수 없습니다.');return;}
+    if(typeof window.html2canvas!=='function'){
+      alert('이미지 저장 도구를 불러오지 못했습니다. 인터넷 연결 후 다시 시도해 주세요.');return;
+    }
+    if(btn){btn.disabled=true;btn.textContent='이미지 준비 중…';}
+    try{
+      if(document.fonts && document.fonts.ready)await document.fonts.ready;
+      await Promise.all(Array.from(stage.querySelectorAll('img')).map(async img=>{
+        if(!img.complete){await new Promise(resolve=>{img.addEventListener('load',resolve,{once:true});img.addEventListener('error',resolve,{once:true});setTimeout(resolve,3500);});}
+        if(img.complete&&img.naturalWidth&&img.decode){try{await img.decode();}catch(e){}}
+      }));
+      const canvas=await window.html2canvas(stage,{backgroundColor:null,scale:3,useCORS:true,logging:false});
+      const blob=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error('이미지 생성 실패')),'image/png'));
+      const url=URL.createObjectURL(blob);
+      const a=document.createElement('a');a.href=url;
+      a.download='wowroad-my-wow-'+new Date().toISOString().slice(0,10)+'.png';
+      document.body.appendChild(a);a.click();a.remove();
+      setTimeout(()=>URL.revokeObjectURL(url),10000);
+    }catch(e){
+      console.error('와우 이미지 저장 실패:',e);
+      alert('이미지를 저장하지 못했습니다. 새로고침 후 다시 시도해 주세요.');
+    }finally{
+      if(btn){btn.disabled=false;btn.textContent='↓ 내 와우 이미지 저장';}
+    }
+  };
 })();
 </script>
 </body>
