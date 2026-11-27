@@ -1238,6 +1238,9 @@ body.wow-map-modal-open{overflow:hidden!important}
 @media(max-width:390px){
   #character #wowStage.wow-stage{width:min(100%,320px)!important;max-width:320px!important;}
 }
+
+/* 감상 모드에서는 전체 고정/해제 버튼을 숨기고, 편집 모드에서만 표시합니다. */
+#character:not(.wow-studio-editing) .wow-all-lock-control { display: none !important; }
 </style>
 </head>
 
