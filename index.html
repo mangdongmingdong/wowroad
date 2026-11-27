@@ -1051,6 +1051,141 @@ html{scroll-behavior:smooth}body{background:#e9edf4!important;color:var(--wow-te
 #character .wow-all-lock-control .wow-all-lock-button:disabled{opacity:.52}
 .wow-lock-sr-only{position:absolute!important;width:1px!important;height:1px!important;padding:0!important;margin:-1px!important;overflow:hidden!important;clip:rect(0,0,0,0)!important;white-space:nowrap!important;border:0!important}
 </style>
+
+<style id="wow-studio-split-ux-2026">
+/* Display two independent zones: the character stays visible; ONLY the catalog scrolls. */
+#character.wow-studio-layout.active{display:flex!important;flex-direction:column!important;min-height:0!important;overflow:hidden!important;gap:8px!important;padding:8px 12px 0!important;box-sizing:border-box!important;}
+#character .wow-studio-preview-pane{flex:0 0 auto;min-height:0;position:relative;z-index:2;}
+#character .wow-studio-preview-pane>.card{margin:0!important;padding:12px 14px 10px!important;border-radius:18px!important;box-shadow:0 1px 9px #1426500a!important;}
+#character .wow-studio-preview-pane .section-eyebrow{display:none!important}
+#character .wow-studio-preview-pane h2{font-size:18px!important;margin:0!important;line-height:1.35!important;}
+#character .wow-studio-preview-pane>.card>p.muted{display:none!important}
+#character .wow-studio-mode-switch{display:flex;gap:4px;position:absolute;right:14px;top:11px;background:#eef2f9;border:1px solid #e2e7f1;border-radius:12px;padding:3px}
+#character .wow-studio-mode-switch button{width:auto!important;min-width:57px!important;margin:0!important;padding:8px 10px!important;border-radius:9px!important;background:transparent!important;color:#64748b!important;box-shadow:none!important;border:0!important;font-size:12px!important;font-weight:700!important}
+#character .wow-studio-mode-switch button.is-active{background:#fff!important;color:#2157c2!important;box-shadow:0 1px 5px #25395620!important}
+#character #wowStage.wow-stage{width:min(100%,230px)!important;max-width:100%!important;height:var(--wow-preview-height,210px)!important;aspect-ratio:auto!important;margin:9px auto 8px!important;border-radius:15px!important;touch-action:pan-y;}
+#character.wow-studio-editing #wowStage.wow-stage{touch-action:none;outline:2px solid #c5d8ff;outline-offset:2px}
+#character:not(.wow-studio-editing) #wowStage .wow-layer{pointer-events:none!important;}
+#character .wow-all-lock-control{margin:5px 0 0!important;padding:0!important;min-height:0!important}
+#character .wow-all-lock-control button{min-height:38px!important;padding:7px!important;border-radius:10px!important;font-size:12px!important}
+#character .wow-align-toolbar,#character .patch-position-note,#character #equipped{display:none!important}
+#character .wow-editor{margin:7px 0 0!important;padding:8px!important}
+#character .wow-editor[hidden]{display:none!important}
+#character .wow-editor label,#character .wow-editor p{font-size:11px!important}
+#character:not(.wow-studio-editing) .wow-editor{display:none!important}
+#character .wow-studio-store-pane{flex:1 1 auto!important;min-height:0!important;overflow-y:auto!important;overflow-x:hidden!important;overscroll-behavior-y:contain;-webkit-overflow-scrolling:touch;scrollbar-gutter:stable; padding:4px 2px 16px!important}
+#character .wow-studio-store-heading{display:flex;justify-content:space-between;align-items:baseline;gap:8px;margin:4px 4px 8px}
+#character .wow-studio-store-heading strong{font-size:16px;color:#172b4d}
+#character .wow-studio-store-heading span{font-size:11px;color:#8490a7}
+#character .wow-studio-store-pane .wow-customize-nav{margin:0 0 9px!important;padding:4px!important;position:sticky;top:0;z-index:5;background:#f1f4fa!important}
+#character .wow-studio-store-pane>[data-wow-customize-panel]{margin:0!important;padding:12px!important;border-radius:16px!important}
+#character .wow-studio-store-pane>[data-wow-customize-panel][hidden]{display:none!important}
+#character .wow-studio-store-pane [data-wow-customize-panel] .section-eyebrow{font-size:10px}
+#character .wow-studio-store-pane [data-wow-customize-panel] h2{font-size:17px!important;margin-top:4px!important}
+#character .wow-studio-store-pane .wow-shop-grid{max-width:100%;}
+@media(max-height:760px){#character #wowStage.wow-stage{height:var(--wow-preview-height,174px)!important;}}
+@media(max-width:390px){#character.wow-studio-layout.active{padding-left:7px!important;padding-right:7px!important}#character .wow-studio-preview-pane>.card{padding:10px 11px 8px!important}#character .wow-studio-mode-switch{right:11px;top:9px}#character .wow-studio-store-heading span{display:none}}
+</style>
+<style id="wow-unified-premium-ux-2026">
+/* ===== Shared visual language: quiet surface, consistent action color ===== */
+:root{--wow-ui-ink:#17253f;--wow-ui-blue:#285bca;--wow-ui-line:#e6ebf3;--wow-ui-muted:#66758f;--wow-ui-bg:#f6f8fc}
+.app{background:var(--wow-ui-bg)!important}
+.app button,.app select,.app input{font-family:inherit}
+.app button{transition:background-color .15s ease,border-color .15s ease,box-shadow .15s ease}
+.app button:focus-visible,.app input:focus-visible,.app select:focus-visible{outline:3px solid #75a6ff!important;outline-offset:2px!important}
+.page .card{border:1px solid var(--wow-ui-line)!important;box-shadow:0 2px 18px #132c5109!important}
+.page h2{letter-spacing:-.035em}
+.page .muted{color:var(--wow-ui-muted)}
+/* Home: one primary CTA and scannable summary */
+#home.wow-clean-home{padding-top:16px!important}
+#home .wow-home-welcome{border-radius:24px!important;box-shadow:0 10px 32px #1d46902b!important}
+#home .wow-home-welcome .wow-main-cta{border-radius:15px!important;min-height:54px!important}
+#home .wow-home-label{font-weight:760!important;letter-spacing:-.015em}
+#home .wow-metrics{gap:12px!important}
+#home .wow-metric{border-radius:18px!important;border:1px solid #e8ecf5!important;box-shadow:none!important}
+#home .wow-home-link{border-radius:16px!important;min-height:64px!important}
+/* Studio: fixed preview and only catalogue pane scrolls, with no duplicate helper prose */
+#character.wow-studio-layout.active{background:#f6f8fc!important}
+#character .wow-studio-preview-pane>.card{border-radius:20px!important}
+#character .wow-studio-store-pane{scroll-padding-top:70px}
+#character .wow-studio-preview-pane .wow-studio-hint{display:none!important}
+#character .wow-studio-preview-pane .wow-all-lock-control{margin-top:6px!important}
+#character .wow-studio-store-heading span{display:none!important}
+#character .wow-studio-store-pane .wow-customize-tab{min-height:54px!important}
+#character .wow-studio-store-pane .wow-customize-nav{box-shadow:0 3px 14px #182e4910}
+#character .wow-studio-store-pane .wow-shop-grid,#character .wow-studio-store-pane .wow-sticker-list{scroll-snap-type:x proximity}
+#character .wow-studio-store-pane .wow-shop-item,#character .wow-studio-store-pane .wow-sticker-list>*{scroll-snap-align:start}
+#character .wow-studio-mode-switch button{min-height:36px!important}
+#character:not(.wow-studio-editing) .wow-layer{cursor:default!important;touch-action:auto!important}
+#character.wow-studio-editing #wowStage{border-color:#5c8bec!important}
+/* Mission fullscreen map - original Kakao instance remains mounted */
+#mission .wow-map-hero{position:relative}
+#mission .wow-map-expand{position:absolute!important;z-index:20;right:11px;top:11px;width:auto!important;min-height:41px!important;padding:8px 12px!important;background:#fff!important;border:1px solid #d8e1f0!important;border-radius:13px!important;color:#193c80!important;font-size:12px!important;font-weight:760!important;box-shadow:0 4px 16px #1a335c2a!important}
+#mission .wow-map-expand span{white-space:nowrap}
+#mission .wow-full-map-top,#mission .wow-full-map-bottom{display:none}
+body.wow-map-modal-open{overflow:hidden!important}
+#mission .wow-map-hero.wow-fullscreen{position:fixed!important;inset:0!important;z-index:100000!important;width:100vw!important;height:100dvh!important;max-height:none!important;margin:0!important;padding:0!important;overflow:hidden!important;background:#fff!important;border:0!important;border-radius:0!important;box-shadow:none!important}
+#mission .wow-map-hero.wow-fullscreen #map{position:absolute!important;inset:0!important;width:100%!important;height:100%!important;min-height:100%!important;border:0!important;border-radius:0!important}
+#mission .wow-map-hero.wow-fullscreen .wow-map-expand{display:none!important}
+#mission .wow-map-hero.wow-fullscreen .wow-map-help-overlay{top:88px!important;bottom:auto!important;left:50%!important;transform:translateX(-50%);z-index:18!important;white-space:nowrap;font-size:12px!important}
+#mission .wow-map-hero.wow-fullscreen .wow-full-map-top{position:absolute;top:0;left:0;right:0;z-index:25;display:flex;align-items:center;justify-content:space-between;gap:12px;padding:calc(env(safe-area-inset-top,0px) + 15px) 18px 12px;background:linear-gradient(#fff 70%,#ffffffde);color:#172741}
+#mission .wow-full-map-top strong{font-size:18px;letter-spacing:-.025em}
+#mission .wow-full-map-top button{width:auto!important;min-height:42px!important;padding:8px 14px!important;background:#edf2fb!important;color:#244879!important;border:0!important;border-radius:12px!important;font-weight:740!important}
+#mission .wow-map-hero.wow-fullscreen .wow-full-map-bottom{position:absolute;bottom:0;left:0;right:0;z-index:25;display:flex;align-items:center;justify-content:space-between;gap:10px;padding:16px 16px calc(env(safe-area-inset-bottom,0px) + 16px);background:#fff;box-shadow:0 -8px 32px #15345b20;border-radius:22px 22px 0 0}
+#mission .wow-full-map-bottom>div{flex:1;min-width:0;display:flex;flex-direction:column;gap:4px}
+#mission .wow-full-map-bottom small{font-size:10px;color:#6b7891;line-height:1.4}
+#mission .wow-full-map-bottom strong{font-size:14px;color:#152848;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#mission .wow-full-map-bottom button{width:auto!important;flex:0 0 auto;min-width:105px!important;background:#245cc9!important;color:#fff!important;border-radius:12px!important;padding:13px 15px!important;font-size:13px!important}
+#mission .wow-toss-head p{max-width:33ch;line-height:1.6}
+#mission .wow-toss-directions button{min-height:68px}
+#mission .wow-map-toolbar{gap:8px;flex-wrap:wrap}
+#mission .wow-map-toolbar button{width:auto!important;font-size:12px!important}
+/* History: real entries rendered as a compact timeline */
+#history.wow-history-page{padding-top:16px!important}
+#history .wow-history-card{border-radius:20px!important;padding:19px 18px!important}
+#history .wow-history-card h2{margin-bottom:5px!important;font-size:23px!important}
+#history .wow-history-subtitle{font-size:12px;color:#8390a5;margin:0 0 15px}
+#history #historyList{display:flex;flex-direction:column;gap:0}
+#history .wow-timeline-entry{position:relative;display:flex;align-items:center;gap:11px;padding:14px 0;min-height:64px;border-bottom:1px solid #eff2f7}
+#history .wow-timeline-entry:last-child{border-bottom:none}
+#history .wow-timeline-icon{display:grid;place-items:center;flex:0 0 34px;width:34px;height:34px;background:#e9f1ff;color:#265dc9;border-radius:11px;font-weight:800}
+#history .wow-timeline-content{min-width:0;flex:1;display:flex;flex-direction:column;gap:4px}
+#history .wow-timeline-content strong{color:#1a2943;font-size:13px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+#history .wow-timeline-content small{color:#8190a5;font-size:11px;line-height:1.3}
+#history .wow-timeline-points{font-size:13px;color:#205bc3;white-space:nowrap;font-variant-numeric:tabular-nums}
+#history .wow-history-empty{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:9px;padding:32px 15px 20px;text-align:center}
+#history .wow-history-empty>span{display:grid;place-items:center;width:48px;height:48px;border-radius:16px;background:#edf3ff;color:#245cc9;font-size:25px}
+#history .wow-history-empty strong{font-size:14px;color:#223453}
+#history .wow-history-empty p{margin:0;color:#8390a4;font-size:12px}
+#history .wow-history-empty button{width:auto!important;padding:11px 22px!important;margin-top:8px;border-radius:12px!important}
+#history .wow-contest{margin-top:12px!important;border-radius:20px!important}
+@media (max-width:380px){#mission .wow-full-map-bottom{padding-left:12px!important;padding-right:12px!important}#mission .wow-full-map-bottom small{max-width:20ch}}
+@media (prefers-reduced-motion:reduce){.wow-timeline-entry,.wow-map-expand{transition:none!important}}
+</style>
+
+<style id="wowroad-health-points-20261127">
+/* Health points: preserve the original #points element for all wallet updates. */
+.app header .wow-health-points {
+  display:flex; flex-direction:column; align-items:flex-end; justify-content:center;
+  gap:3px; background:#e9f0ff; border:1px solid #d9e5ff;
+  border-radius:15px; padding:9px 13px; min-width:115px;
+  box-shadow:none; white-space:nowrap;
+}
+.app header .wow-health-points-label {
+  font-size:11px; font-weight:750; line-height:1.15; letter-spacing:-.1px;
+  color:#627ba9;
+}
+.app header .wow-health-points #points {
+  background:transparent!important; padding:0!important; border:0!important;
+  border-radius:0!important; box-shadow:none!important;
+  font-size:18px!important; font-weight:850!important; line-height:1.2;
+  color:#1d4ed8!important; margin:0!important;
+}
+@media (max-width:380px){
+  .app header .wow-health-points {min-width:100px; padding:8px 10px;}
+  .app header .wow-health-points #points {font-size:16px!important;}
+}
+</style>
 </head>
 
 <body>
@@ -1140,7 +1275,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 
   <header class="wow-app-header">
     <div class="wow-brand-lockup"><span class="wow-brand-mark" aria-hidden="true">W</span><div><span class="wow-brand-name">와우로드</span><small>WOWROAD</small></div></div>
-    <div class="wow-header-actions"><div class="points" id="points" title="보유 포인트">0 P</div><button type="button" id="wowQuickSignOut" class="wow-top-signout" title="로그아웃" aria-label="로그아웃" hidden>로그아웃</button></div>
+    <div class="wow-header-actions"><div class="wow-health-points" role="group" aria-label="건강 포인트 잔액"><span class="wow-health-points-label">건강 포인트</span><div class="points" id="points" title="건강 포인트 잔액">0 P</div></div><button type="button" id="wowQuickSignOut" class="wow-top-signout" title="로그아웃" aria-label="로그아웃" hidden>로그아웃</button></div>
   </header>
 
   <!-- 홈: 명확한 단일 주요 행동 + 실제 계정 상태 -->
@@ -1151,12 +1286,12 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       <p>정류장을 바꾸는 작은 선택에, 귀여운 보상을 더하자!</p>
       <button class="wow-main-cta" type="button" onclick="showPage('mission')">지도에서 정류장 찾기 <span aria-hidden="true">→</span></button>
     </div>
-    <div class="wow-home-label">나의 이용 현황 <span>MY ACTIVITY</span></div>
+    <div class="wow-home-label">나의 이용 현황 <span>MY WOWROAD</span></div>
     <div class="wow-metrics">
       <div class="wow-metric"><span class="wow-metric-icon">✓</span><small>완료한 미션</small><strong id="missionCount">0회</strong></div>
       <div class="wow-metric"><span class="wow-metric-icon">P</span><small>누적 획득 포인트</small><strong id="totalEarned">0 P</strong></div>
     </div>
-    <div class="wow-home-label">와우로드 이용하기 <span>QUICK ACCESS</span></div>
+    <div class="wow-home-label">바로가기 <span>EXPLORE</span></div>
     <button class="wow-home-link" type="button" onclick="showPage('mission')"><span class="wow-feature-icon wow-feature-blue">⌖</span><span><strong>대체 정류장 찾기</strong><small>지도에서 파란 핀을 눌러 선택</small></span><b aria-hidden="true">›</b></button>
     <button class="wow-home-link" type="button" onclick="showPage('character')"><span class="wow-feature-icon wow-feature-green">W</span><span><strong>나만의 와우 꾸미기</strong><small>포인트로 와펜과 액세서리 꾸미기</small></span><b aria-hidden="true">›</b></button>
     <button class="wow-home-link" type="button" onclick="showPage('history')"><span class="wow-feature-icon wow-feature-gray">▤</span><span><strong>미션 기록 · 공모전</strong><small>이동 내역과 나만의 와우 공모전</small></span><b aria-hidden="true">›</b></button>
@@ -1179,8 +1314,17 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       <p class="wow-direction-tip" id="wowDirectionTip" aria-live="polite">선택한 방면의 정류장 핀이 강조됩니다.</p>
       <div class="wow-toss-step-caption">지도에서 대체 정류장 선택</div>
       <div class="wow-map-legend wow-mission-v2-legend" aria-label="지도 핀 안내"><span><i class="wow-legend-dot red"></i> 혼잡 · 위치 안내</span><span><i class="wow-legend-dot blue"></i> 대체 · 누르면 선택</span></div>
-      <div class="wow-map-hero"><div id="map" role="region" aria-label="총 10개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div><div class="wow-map-help-overlay">파란 핀을 눌러 선택</div></div>
-      <div class="wow-map-toolbar"><span>정류장 10개 · 선택 가능 6개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 지도 보기 ↗</button></div>
+      <div class="wow-map-hero" id="wowMapHero">
+         <div id="map" role="region" aria-label="총 10개 정류장 지도. 파란 핀을 눌러 대체 정류장을 선택하세요."></div>
+         <div class="wow-map-help-overlay">파란 핀을 눌러 선택</div>
+         <button type="button" class="wow-map-expand" id="wowMapExpand" onclick="wowOpenFullMap()" aria-label="지도 전체 화면으로 보기">⛶ <span>지도 확대</span></button>
+         <div class="wow-full-map-top" aria-hidden="true"><strong>정류장 지도</strong><button type="button" onclick="wowCloseFullMap()">✕ 닫기</button></div>
+         <div class="wow-full-map-bottom" aria-hidden="true">
+           <div><small>파란 핀을 누르면 대체 정류장이 선택돼요</small><strong id="wowFullMapStopName">정류장 선택</strong></div>
+           <button type="button" onclick="wowCloseFullMap()">선택 완료</button>
+         </div>
+       </div>
+      <div class="wow-map-toolbar"><span>정류장 10개 · 선택 가능 6개</span><button type="button" id="wowShowAllStops" onclick="wowResetMapView()">전체 위치 맞추기</button></div>
       <div id="wowMapSelection" class="wow-map-selection" aria-live="polite"><div class="wow-map-selection-label">✓ 선택한 대체 정류장</div><strong id="wowMapSelectedName">지도의 파란 핀을 눌러 주세요</strong><span id="wowMapSelectedDirection">파란색 핀을 누르면 방면과 정류장 ID가 표시됩니다.</span></div>
       <div id="wowRouteSummary" class="wow-route-summary" aria-live="polite"><span class="wow-summary-from">혼잡 정류장</span><span class="wow-summary-direction">↔</span><span class="wow-summary-to">선택한 대체 정류장</span></div>
       <p class="wow-map-disclaimer">연결선은 정류장 순서를 설명하기 위한 참고선으로 실제 도로 경로가 아닙니다. 특히 <strong>마포09는 서교푸르지오아파트(14906)에 정차하지만, 273번은 정차하지 않습니다.</strong> 버스 노선과 정류장 ID를 확인한 뒤 선택해 주세요.</p>
@@ -1239,20 +1383,20 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
       </div>
     </div>
     <div id="wowMissionScreen3" class="wow-toss-screen" hidden>
-      <div class="wow-toss-success"><div class="wow-toss-success-check">✓</div><span class="wow-toss-eyebrow">MISSION COMPLETE</span><h2>도착 인증 완료!</h2><p>대체 정류장 이용에 참여해 주셔서 감사합니다.</p><div class="wow-toss-earned"><small>이번 미션에서 획득한 포인트</small><strong id="wowTossEarned">+0 P</strong></div><button type="button" onclick="showPage('character')">와우 꾸미러 가기 →</button><button type="button" class="wow-toss-secondary" onclick="wowMissionGo(1)">다른 정류장 보기</button></div>
+      <div class="wow-toss-success"><div class="wow-toss-success-check">✓</div><span class="wow-toss-eyebrow">MISSION COMPLETE</span><h2>도착 인증 완료!</h2><p>와우로드 이용을 통해 더욱더 건강해지셨네요!</p><div class="wow-toss-earned"><small>이번 미션에서 획득한 포인트</small><strong id="wowTossEarned">+0 P</strong></div><button type="button" onclick="showPage('character')">와우 꾸미러 가기 →</button><button type="button" class="wow-toss-secondary" onclick="wowMissionGo(1)">다른 정류장 보기</button></div>
     </div>
   </section>
 
   <!-- 캐릭터 -->
-<section class="page" id="character">
+<section class="page wow-studio-layout" id="character">
+<div class="wow-studio-preview-pane">
 <div class="card">
 <div class="section-eyebrow">WOW STUDIO</div><h2>나만의 와우</h2>
-<p class="muted">과잠에 학과 패치와 액세서리를 꾸며 보세요. 학과 패치 최대 5개 · 자유 배치 및 크기 조절</p><div aria-label="꾸미기 종류 선택" class="wow-customize-nav" role="tablist">
-<button aria-controls="wowCustomizePatches" aria-selected="true" class="wow-customize-tab is-active" id="wowCustomizeTab-patches" onclick="wowChooseCustomizeTab('patches')" role="tab" type="button"><span class="wow-customize-tab-icon">◈</span><span>학과 와펜<small>35종</small></span></button>
-<button aria-controls="patchLab" aria-selected="false" class="wow-customize-tab" id="wowCustomizeTab-upgrade" onclick="wowChooseCustomizeTab('upgrade')" role="tab" type="button"><span class="wow-customize-tab-icon">✧</span><span>패치 업그레이드<small>공동 모금</small></span></button>
-<button aria-controls="wowCustomizeAccessories" aria-selected="false" class="wow-customize-tab" id="wowCustomizeTab-accessories" onclick="wowChooseCustomizeTab('accessories')" role="tab" type="button"><span class="wow-customize-tab-icon">◇</span><span>액세서리<small>16종</small></span></button>
-<button aria-controls="wowCustomizeBackground" aria-selected="false" class="wow-customize-tab" id="wowCustomizeTab-background" onclick="wowChooseCustomizeTab('background')" role="tab" type="button"><span class="wow-customize-tab-icon">▧</span><span>배경 스티커<small>테마 · 스티커</small></span></button>
-</div><p class="wow-customize-hint">아래 와우에서 장착 위치를 조절하고, 위의 탭에서 꾸미기 아이템을 골라보세요.</p>
+<div class="wow-studio-mode-switch" role="group" aria-label="꾸미기 모드 선택">
+ <button type="button" id="wowStudioViewBtn" aria-pressed="true" class="is-active" onclick="wowSetStudioMode(false)">감상</button>
+ <button type="button" id="wowStudioEditBtn" aria-pressed="false" onclick="wowSetStudioMode(true)">편집하기</button>
+</div>
+<p class="muted wow-studio-hint">감상 모드에서는 위치가 유지됩니다. 편집할 때만 아이템을 움직일 수 있어요.</p>
 
 
 <div class="wow-stage" id="wowStage">
@@ -1267,9 +1411,18 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 <div class="wow-editor-row"><b id="wowSelectedName">선택한 아이템</b><button id="wowResetItemPosition" onclick="resetWowPosition()">위치 초기화</button></div>
 <label for="wowSize">아이템 크기 <span id="wowSizeLabel">100%</span></label>
 <input id="wowSize" max="90" min="4" oninput="resizeWowItem(this.value)" step="1" type="range"/>
-<p class="muted" style="margin:5px 0">선택한 아이템 드래그 · 크기 조절 · 위치 초기화</p>
+<p class="muted" style="margin:5px 0">드래그하여 위치 조절 · 아래 슬라이더로 크기 변경</p>
 <button class="wow-remove-item" hidden="" id="wowRemoveSticker" onclick="removeSelectedWowSticker()" type="button">선택한 스티커 제거</button></div>
 <div class="wow-align-toolbar"><button onclick="alignAllWowPatches()" type="button">↔ 과잠 패치 5칸 자동 정렬</button><span>이동한 패치의 위치만 초기화 · 구매 정보 유지</span></div><p class="patch-position-note">패치 최대 5개 · 선택 후 드래그 · 크기 및 위치 조절</p><p class="muted" id="equipped" style="text-align:center">착용 중인 패치: 없음</p>
+</div>
+</div>
+<div class="wow-studio-store-pane" id="wowStudioStorePane">
+<div class="wow-studio-store-heading"><strong>아이템 상점</strong><span>카테고리를 선택해 둘러보세요</span></div>
+<div aria-label="꾸미기 종류 선택" class="wow-customize-nav" role="tablist">
+<button aria-controls="wowCustomizePatches" aria-selected="true" class="wow-customize-tab is-active" id="wowCustomizeTab-patches" onclick="wowChooseCustomizeTab('patches')" role="tab" type="button"><span class="wow-customize-tab-icon">◈</span><span>학과 와펜<small>35종</small></span></button>
+<button aria-controls="patchLab" aria-selected="false" class="wow-customize-tab" id="wowCustomizeTab-upgrade" onclick="wowChooseCustomizeTab('upgrade')" role="tab" type="button"><span class="wow-customize-tab-icon">✧</span><span>패치 업그레이드<small>공동 모금</small></span></button>
+<button aria-controls="wowCustomizeAccessories" aria-selected="false" class="wow-customize-tab" id="wowCustomizeTab-accessories" onclick="wowChooseCustomizeTab('accessories')" role="tab" type="button"><span class="wow-customize-tab-icon">◇</span><span>액세서리<small>16종</small></span></button>
+<button aria-controls="wowCustomizeBackground" aria-selected="false" class="wow-customize-tab" id="wowCustomizeTab-background" onclick="wowChooseCustomizeTab('background')" role="tab" type="button"><span class="wow-customize-tab-icon">▧</span><span>배경 스티커<small>테마 · 스티커</small></span></button>
 </div>
 <div aria-labelledby="wowCustomizeTab-patches" class="card" data-wow-customize-panel="patches" id="wowCustomizePatches" role="tabpanel"><div class="section-eyebrow">DEPARTMENT PATCHES</div><h2>🎓 학과별 와펜 35종 상점</h2><p class="muted">패치 1개당 150P · 여러 개 동시 착용 가능</p><label class="search-label" for="wowPatchQuickSelect">학과 바로 선택</label><select class="wow-patch-quick" id="wowPatchQuickSelect"><option value="">전체 학과에서 선택</option></select><label class="search-label" for="patchSearch">학과명 검색</label><input autocomplete="off" class="patch-search" id="patchSearch" oninput="renderPatchShop()" placeholder="예: 컴퓨터공학과" type="search"/><div class="shop-count" id="patchCount">35개 학과</div><div class="wow-shop-grid" id="shop"></div><button aria-expanded="false" id="patchShopToggle" onclick="togglePatchShop()" type="button">전체 와펜 35종 펼치기 ↓</button><p aria-live="polite" id="wardrobeSyncStatus" role="status"></p></div><div aria-labelledby="wowCustomizeTab-upgrade" class="card upgrade-card" data-wow-customize-panel="upgrade" hidden="" id="patchLab" role="tabpanel">
 <div class="section-eyebrow">PATCH LAB · 공동 프로젝트</div>
@@ -1322,12 +1475,14 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
 <div aria-labelledby="wowCustomizeTab-background" class="card wow-customize-background" data-wow-customize-panel="background" hidden="" id="wowCustomizeBackground" role="tabpanel"><div class="section-eyebrow">BACKGROUND STUDIO</div><h2>배경 스티커 · 배경 테마</h2><p class="muted">배경 테마를 바꾸고 스티커를 배치해 나만의 와우를 완성해 보세요.</p><div aria-label="와우 배경 선택" class="wow-backdrop-picker">
 <span class="wow-backdrop-label">🎨 배경 테마</span>
 <div class="wow-backdrop-options" id="wowBackdropOptions"></div>
-</div><div class="wow-sticker-panel"><div class="between"><strong>✨ 배경 스티커 꾸미기</strong><button class="wow-reset-stickers" onclick="clearWowStickers()" type="button">스티커 초기화</button></div><p class="muted" style="margin:4px 0 8px">스티커 1종 20P · 최초 구매 후 재사용 가능</p><div class="wow-sticker-list" id="wowStickerPicker"></div></div></div></section>
+</div><div class="wow-sticker-panel"><div class="between"><strong>✨ 배경 스티커 꾸미기</strong><button class="wow-reset-stickers" onclick="clearWowStickers()" type="button">스티커 초기화</button></div><p class="muted" style="margin:4px 0 8px">스티커 1종 20P · 최초 구매 후 재사용 가능</p><div class="wow-sticker-list" id="wowStickerPicker"></div></div></div></div>
+</section>
 
   <!-- 기록 -->
-  <section id="history" class="page">
-    <div class="card">
-      <div class="section-eyebrow">YOUR JOURNEY</div><h2>미션 기록</h2>
+  <section id="history" class="page wow-history-page">
+    <div class="card wow-history-card">
+      <div class="section-eyebrow">MY JOURNEY</div><h2>나의 이동 기록</h2>
+      <p class="wow-history-subtitle">완료한 미션과 적립 포인트를 모아봤어요.</p>
       <div id="historyList"></div>
     </div>
     <div class="card wow-contest" id="wowContest">
@@ -2018,6 +2173,7 @@ GPS 인증이나 미션 수행은 필요 없어요.</p>
     if(directionEl.value!==direction){ directionEl.value=direction; updateDirection(); }
     alternativeEl.value=id;
     updateMission();
+    window.wowSyncFullMapName?.();
     const notice=document.getElementById('wowMapSelection');
     if(notice){notice.classList.remove('wow-selection-pulse');void notice.offsetWidth;notice.classList.add('wow-selection-pulse');}
   }
@@ -2450,9 +2606,10 @@ function renderWowPatchLockList(){
    }).join('')}</div>`
  ).join('');
 }
-function wowSelect(id){wowSelected=id;renderWowEditor();drawWowLayers();}
+function wowSelect(id){if(!window.wowStudioEditing)return;wowSelected=id;renderWowEditor();drawWowLayers();}
 function renderWowEditor(){
  const box=document.getElementById('wowEditor'),it=wowGet(wowSelected);
+ if(!window.wowStudioEditing){box.hidden=true;return;}
  if(!it){box.hidden=true;return;}
  const isActive=wowActiveLayerIds().includes(wowSelected),locked=wowIsItemLocked(wowSelected);
  const lockButton=document.getElementById('wowPatchLockButton');
@@ -2465,10 +2622,10 @@ function renderWowEditor(){
  const p=wowPos(wowSelected);document.getElementById('wowSize').value=p.w;
  document.getElementById('wowSizeLabel').textContent=Math.round(p.w/(it.w||12)*100)+'%';
 }
-function resizeWowItem(value){if(!wowSelected||wowIsPatchLocked(wowSelected))return;const p={...wowPos(wowSelected),w:Math.max(4,Math.min(90,Number(value)))};p.x=Math.max(0,Math.min(100-p.w,p.x));state.wowPositions[wowSelected]=p;save();renderWowEditor();}
-function resetWowPosition(){if(!wowSelected||wowIsPatchLocked(wowSelected))return;delete state.wowPositions[wowSelected];save();renderWowEditor();}
+function resizeWowItem(value){if(!window.wowStudioEditing||!wowSelected||wowIsPatchLocked(wowSelected))return;const p={...wowPos(wowSelected),w:Math.max(4,Math.min(90,Number(value)))};p.x=Math.max(0,Math.min(100-p.w,p.x));state.wowPositions[wowSelected]=p;save();renderWowEditor();}
+function resetWowPosition(){if(!window.wowStudioEditing||!wowSelected||wowIsPatchLocked(wowSelected))return;delete state.wowPositions[wowSelected];save();renderWowEditor();}
 function wowLayerMarkup(id){const it=wowGet(id),p=wowPos(id);if(!it)return '';
- return `<img class="wow-layer ${wowSelected===id?'is-selected':''} ${wowIsPatchLocked(id)?'wow-layer-locked':''}" data-wow-id="${id}" src="${it.src}" alt="${it.name}" draggable="false" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;z-index:${wowSelected===id?25:10}">`;
+ return `<img class="wow-layer ${window.wowStudioEditing&&wowSelected===id?'is-selected':''} ${wowIsPatchLocked(id)?'wow-layer-locked':''}" data-wow-id="${id}" src="${it.src}" alt="${it.name}" draggable="false" style="left:${p.x}%;top:${p.y}%;width:${p.w}%;z-index:${wowSelected===id?25:10}">`;
 }
 function drawWowLayers(){
  renderWowBackdrop();
@@ -2528,6 +2685,7 @@ function renderWowAccessories(){
  let drag=null;
  const stage=document.getElementById('wowStage');
  stage.addEventListener('pointerdown',e=>{
+  if(!window.wowStudioEditing)return;
   const el=e.target.closest('[data-wow-id]');if(!el)return;
   const id=el.dataset.wowId;wowSelected=id;renderWowEditor();drawWowLayers();
   if(wowIsPatchLocked(id)){drag=null;return;}
@@ -2536,7 +2694,7 @@ function renderWowAccessories(){
   stage.setPointerCapture(e.pointerId);e.preventDefault();
  });
  stage.addEventListener('pointermove',e=>{
-  if(!drag||wowIsPatchLocked(drag.id))return;const p=wowPos(drag.id);
+  if(!window.wowStudioEditing||!drag||wowIsPatchLocked(drag.id))return;const p=wowPos(drag.id);
   const x=drag.x+(e.clientX-drag.startX)/drag.rect.width*100;
   const y=drag.y+(e.clientY-drag.startY)/drag.rect.height*100;
   state.wowPositions[drag.id]={...p,x:Math.max(0,Math.min(100-p.w,x)),y:Math.max(0,Math.min(96,y))};
@@ -2686,21 +2844,19 @@ function renderWowAccessories(){
     renderWowAccessories();
     renderWowStickers();
     setupPatchLab();
+    const wowEscape = value => String(value ?? '').replace(/[&<>"']/g, c => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
     document.getElementById("historyList").innerHTML =
       state.history.length
-        ? state.history.map(entry => `
-            <div class="item">
-              <b>${entry.target}</b>
-              <div class="muted">
-                ${entry.date}
-                ${entry.mode ? " · " + entry.mode : ""}
+        ? [...state.history].reverse().map(entry => `
+            <div class="wow-timeline-entry">
+              <span class="wow-timeline-icon" aria-hidden="true">✓</span>
+              <div class="wow-timeline-content">
+                <strong>${wowEscape(entry.target)}</strong>
+                <small>${wowEscape(entry.date)}${entry.mode ? ' · '+wowEscape(entry.mode) : ''}</small>
               </div>
-              <div style="color:#218c54">
-                +${entry.reward} P
-              </div>
-            </div>
-          `).join("")
-        : "<p class='muted'>아직 완료한 미션이 없어요.</p>";
+              <b class="wow-timeline-points">+${Number(entry.reward||0).toLocaleString()}P</b>
+            </div>`).join("")
+        : '<div class="wow-history-empty"><span aria-hidden="true">↗</span><strong>아직 완료한 미션이 없어요</strong><p>첫 대체 정류장 미션을 시작해 보세요.</p><button type="button" onclick="showPage(\'mission\')">정류장 찾기</button></div>';
 
     updateMission();
   }
@@ -3248,10 +3404,8 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
     // Bring the selected catalog into view, so there is no long vertical search.
     const current=root.querySelector('[data-wow-customize-panel="'+tab+'"]');
     if(current && shouldScroll){
-      const y=current.getBoundingClientRect().top;
-      if(y>window.innerHeight-150||y<95){
-        current.scrollIntoView({behavior:'smooth',block:'start'});
-      }
+      const scroller=document.getElementById('wowStudioStorePane');
+      if(scroller)scroller.scrollTo({top:0,behavior:'smooth'});
     }
   };
   document.addEventListener('DOMContentLoaded',()=>{
@@ -3335,5 +3489,100 @@ if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',
 })();
 </script>
 
+
+<script id="wow-studio-mode-and-layout">
+(function(){
+ 'use strict';
+ window.wowStudioEditing=false;
+ window.wowSetStudioMode=function(editing){
+   window.wowStudioEditing=!!editing;
+   const root=document.getElementById('character');if(!root)return;
+   root.classList.toggle('wow-studio-editing',window.wowStudioEditing);
+   ['View','Edit'].forEach((name,index)=>{
+      const btn=document.getElementById('wowStudio'+name+'Btn');if(!btn)return;
+      const selected=index===Number(window.wowStudioEditing);
+      btn.classList.toggle('is-active',selected);
+      btn.setAttribute('aria-pressed',String(selected));
+   });
+   if(!window.wowStudioEditing){
+     if(typeof wowSelected!=='undefined')wowSelected=null;
+   }
+   if(typeof renderWowEditor==='function')renderWowEditor();
+   if(typeof drawWowLayers==='function')drawWowLayers();
+   window.wowResizeStudio();
+ };
+ window.wowResizeStudio=function(){
+   const root=document.getElementById('character');
+   if(!root||!root.classList.contains('active'))return;
+   const tabs=document.querySelector('.app .tabs');
+   const bottom=tabs?Math.max(0,window.innerHeight-tabs.getBoundingClientRect().top):78;
+   const top=root.getBoundingClientRect().top;
+   const space=Math.max(300,window.innerHeight-top-bottom-3);
+   root.style.height=space+'px';
+   // Keep the top preview readable on short phones while leaving the catalog usable.
+   const stageHeight=Math.max(135,Math.min(250,Math.round(space*.36)));
+   root.style.setProperty('--wow-preview-height',stageHeight+'px');
+   // When editing, don't let expanded size tools consume the entire store viewport.
+   if(window.wowStudioEditing)root.style.setProperty('--wow-preview-height',Math.max(130,stageHeight-45)+'px');
+ };
+ document.addEventListener('DOMContentLoaded',()=>{
+   const root=document.getElementById('character');
+   if(!root)return;
+   const observer=new MutationObserver(()=>{if(root.classList.contains('active'))requestAnimationFrame(window.wowResizeStudio);});
+   observer.observe(root,{attributes:true,attributeFilter:['class']});
+   window.addEventListener('resize',window.wowResizeStudio,{passive:true});
+   window.addEventListener('orientationchange',window.wowResizeStudio,{passive:true});
+   window.wowSetStudioMode(false);
+   requestAnimationFrame(window.wowResizeStudio);
+ });
+})();
+</script>
+<script id="wow-ux-map-fullscreen-script">
+(function(){
+ 'use strict';
+ let prevFocus=null;
+ const hero=()=>document.getElementById('wowMapHero');
+ const repaint=()=>{
+   if(typeof kakaoMap==='undefined'||!kakaoMap)return;
+   requestAnimationFrame(()=>{try{kakaoMap.relayout();}catch(e){console.warn('지도 크기 조정:',e);}});
+   setTimeout(()=>{try{kakaoMap.relayout();}catch(e){}},180);
+ };
+ window.wowOpenFullMap=function(){
+   const el=hero();if(!el)return;
+   prevFocus=document.activeElement;
+   el.classList.add('wow-fullscreen');
+   document.body.classList.add('wow-map-modal-open');
+   el.querySelectorAll('.wow-full-map-top,.wow-full-map-bottom').forEach(x=>x.setAttribute('aria-hidden','false'));
+   document.getElementById('wowMapExpand')?.setAttribute('aria-expanded','true');
+   window.wowSyncFullMapName?.();
+   repaint();
+   el.querySelector('.wow-full-map-top button')?.focus();
+ };
+ window.wowCloseFullMap=function(){
+   const el=hero();if(!el||!el.classList.contains('wow-fullscreen'))return;
+   el.classList.remove('wow-fullscreen');
+   document.body.classList.remove('wow-map-modal-open');
+   el.querySelectorAll('.wow-full-map-top,.wow-full-map-bottom').forEach(x=>x.setAttribute('aria-hidden','true'));
+   document.getElementById('wowMapExpand')?.setAttribute('aria-expanded','false');
+   repaint();
+   if(prevFocus?.isConnected)prevFocus.focus();
+ };
+ window.wowSyncFullMapName=function(){
+   const label=document.getElementById('wowFullMapStopName');
+   const sel=document.getElementById('alternativeStop');
+   if(!label||!sel)return;
+   const option=sel.selectedOptions?.[0];
+   label.textContent=(option?.textContent||'정류장 선택').trim();
+ };
+ document.addEventListener('keydown',e=>{if(e.key==='Escape'&&hero()?.classList.contains('wow-fullscreen'))window.wowCloseFullMap();});
+ document.addEventListener('DOMContentLoaded',()=>{
+   const el=document.getElementById('alternativeStop');
+   if(el)el.addEventListener('change',window.wowSyncFullMapName);
+   const target=document.getElementById('wowMapSelection');
+   if(target){const ob=new MutationObserver(window.wowSyncFullMapName);ob.observe(target,{subtree:true,childList:true,characterData:true});}
+   window.wowSyncFullMapName();
+ });
+})();
+</script>
 </body>
 </html>
